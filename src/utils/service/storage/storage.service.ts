@@ -26,9 +26,7 @@ export class StorageService {
   clearData(): void {
     localStorage.clear();
   }
- 
- 
-
+  
   private encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, environment.keyencrypt).toString();
   }
