@@ -1,0 +1,37 @@
+<nav class="navbar">
+    <div class="navbar__dev">
+        <img class="imagen" src="../../../../assets/iconos/icono-navbar.png" alt="logo">
+    </div>
+     
+    <ul class="navbar__ul font-secondary-bold"> 
+        <div class="navbar__ul responsive-web">
+            <div *ngFor="let item of toolArray$ | async">
+                <li class="navbar__li">
+                    <a [href]="item.routerlink" class="white">{{item.name}}</a>
+                </li>
+            </div>  
+            <app-button
+                nombreBotton="Iniciar Sesión" 
+                (clicked)="onLogin()"
+                size="sm" type="BottonPrimary">
+            </app-button> 
+        </div>
+
+        <div class="navbar__mobile responsive-mobile">
+            <img (click)="onActiveMenuMobile(true)"
+            class="imagen" src="../../../../assets/iconos/icono-menu.png" alt="logo"> 
+     
+            <app-menu 
+                [isShow]="flgMenuMobile"
+                (closed)="onActiveMenuMobile(false)"
+                position="rigth"
+                type="SidenavPrimary">
+            </app-menu> 
+        </div>
+ 
+       
+    </ul>
+
+    
+</nav>
+

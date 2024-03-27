@@ -1,0 +1,40 @@
+<ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'Classic'">
+        <button  [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()" >  
+            <div [ngClass]="typeSize">
+                <p class="font-secondary-bold-14 text">{{ nombreBotton }}</p>  
+            </div>   
+        </button> 
+    </ng-container>
+     
+    <ng-container *ngSwitchCase="'BottonPrimaryBlock'">
+        <button  [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()" >  
+            <div [ngClass]="typeSize">
+                <p class="font-secondary-bold-14 texto-botton">{{ nombreBotton }}</p>  
+            </div>   
+        </button> 
+    </ng-container>
+
+    <ng-container  *ngSwitchCase="'BottonPrimary'">
+        <button [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()">  
+            <div class="show-loading" [ngClass]="typeSize">
+                <p class="font-secondary-bold-16" [ngClass]="{ 'texto-botton' : !loadingdButton,'texto-botton-oculto' : loadingdButton }">
+                    {{ nombreBotton }} 
+                 </p>  
+                 <span *ngIf="loadingdButton" class="spinner spinner--quarter"></span> 
+            </div>   
+        </button> 
+      </ng-container>
+
+    <ng-container *ngSwitchDefault>
+      <button [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()">  
+          <div class="show-loading" [ngClass]="typeSize">
+              <p class="font-secondary-bold-16" [ngClass]="{ 'texto-botton' : !loadingdButton,'texto-botton-oculto' : loadingdButton }">
+                  {{ nombreBotton }} 
+               </p>  
+               <span *ngIf="loadingdButton" class="spinner spinner--quarter"></span> 
+          </div>   
+      </button> 
+    </ng-container>
+  </ng-container>
+  

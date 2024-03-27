@@ -1,0 +1,69 @@
+<div class="login">  
+    <div class="login__content">
+        <div class="primary-bold-h2 color-black-300 ">
+            <span class="line-under-text">Bi</span>envenido(a)
+        </div>
+    
+        <form [formGroup]="loginForm">
+            <div class="formulario font-secondary-regular-12">
+    
+                <div class="formulario__inputs">
+                    <app-input-library 
+                        typeInput="ClassicInput"
+                        label="Correo electrónico"
+                        idTextField="email"
+                        maxLength="50"
+                        formControlName="email"
+                        cbxReactiveForm
+                        emailValidator
+                        [readOnly]="loadingButton"
+                        [msgError]="getErrorEmail"
+                        [firstTouchedValue]="false">
+                    </app-input-library>  
+
+                    <app-input-library
+                        typeInput="ClassicInputPass"
+                        label="Contraseña"
+                        idTextField="password"
+                        minLength="8"   
+                        formControlName="password"
+                        cbxReactiveForm
+                        [readOnly]="loadingButton"
+                        [msgError]="getErrorPass"
+                        [firstTouchedValue]="false">
+                    </app-input-library>  
+                </div>
+            
+                <span class="formulario__olvidopass 
+                    font-secondary-regular-16 color-black-300"
+                    (click)="onChangePassword()">
+                    Olvide mi contraseña
+                </span> 
+            </div> 
+        </form> 
+
+        
+        <div class="mt-4">
+            <app-button
+                (clicked)="onLogin()"
+                nombreBotton="Ingresar"
+                type="BottonPrimary"
+                size="xl"
+                [loadingdButton]="loadingButton"
+                [sizeResponsive]="true"
+                [isDisabled]="loginForm.invalid">
+            </app-button>
+        </div>
+
+        <div class="font-secondary-regular-16">
+            <span class="color-black-300"> 
+                ¿No tienes cuenta? 
+            </span>
+            <b class="cursor-pointer color-secondary" 
+                (click)="onRegistro()" >
+                Regístrate
+            </b>
+        </div> 
+    </div>
+ 
+</div>

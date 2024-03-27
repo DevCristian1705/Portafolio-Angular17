@@ -1,0 +1,25 @@
+ @import '../../assets/custom/breakpoints.scss';
+
+ .home-lading{
+	background-color: lightgray;
+	display: flex;
+    flex-direction: column;
+ }
+  
+ .cards{ 
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    gap: 5em;
+    padding: 5em; 
+ 
+	@include media-breakpoint("lt-md") {  
+		gap: 5em;
+		padding: 3em; 
+		display: flex;
+		flex-direction: column;
+	} 
+ }
+ 
+ 

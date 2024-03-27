@@ -1,0 +1,101 @@
+<div class="registro">  
+    <div class="registro__content">
+        <div class="primary-bold-h2 color-black-300 ">
+            <span class="line-under-text">Re</span>gistrate
+        </div>
+    
+        <form [formGroup]="registerForm">
+            <div class="formulario font-secondary-regular-12">
+    
+                <div class="formulario__inputs">
+                    <app-input-library 
+                        typeInput="ClassicInput"
+                        label="Nombres"
+                        idTextField="names" 
+                        formControlName="names"
+                        cbxReactiveForm 
+                        [readOnly]="loadingButton"
+                        [msgError]="getErrorName"
+                        [firstTouchedValue]="false">
+                    </app-input-library>  
+
+                    <app-input-library 
+                        typeInput="ClassicInput"
+                        label="Apellidos"
+                        idTextField="lastname" 
+                        formControlName="lastname"
+                        cbxReactiveForm 
+                        [readOnly]="loadingButton"
+                        [msgError]="getErrorLastName"
+                        [firstTouchedValue]="false">
+                    </app-input-library>  
+ 
+
+                    <app-input-library 
+                        typeInput="ClassicInput"
+                        label="Celular"
+                        idTextField="cellphone" 
+                        formControlName="cellphone"
+                        cellphoneValidator
+                        maxLength="9"
+                        cbxReactiveForm 
+                        [inputValidation]='numberInput'
+                        [readOnly]="loadingButton"
+                        [msgError]="getErrorCellphone"
+                        [firstTouchedValue]="false">
+                    </app-input-library>  
+
+                   <app-input-library 
+                        typeInput="ClassicInput"
+                        label="Correo electrónico"
+                        idTextField="email"
+                        maxLength="50"
+                        formControlName="email"
+                        cbxReactiveForm
+                        emailValidator
+                        [msgError]="getErrorEmail"
+                        [readOnly]="loadingButton" 
+                        [firstTouchedValue]="false">
+                    </app-input-library>  
+
+                    <app-input-library
+                        typeInput="ClassicInputRegistroPass"
+                        label="Contraseña"
+                        idTextField="password"
+                        minLength="8"   
+                        formControlName="password"
+                        passValidator
+                        cbxReactiveForm  
+                        [readOnly]="loadingButton"
+                        [msgError]="getErrorPass"
+                        [firstTouchedValue]="false">
+                    </app-input-library>    
+                </div> 
+            </div>  
+        </form> 
+
+        
+        <div class="mt-4">
+            <app-button
+                (clicked)="onRegistro()"
+                nombreBotton="Registrarme"
+                type="BottonPrimary"
+                size="xl"
+                [loadingdButton]="loadingButton"
+                [sizeResponsive]="true"
+                [isDisabled]="registerForm.invalid">
+            </app-button>
+        </div> 
+
+        <div class="font-secondary-regular-16">
+            <span class="color-black-300"> 
+                 ¿Tienes cuenta? 
+            </span>
+            <b class="cursor-pointer color-secondary" 
+                (click)="onLogin()" >
+                Inicia Sesión
+            </b>
+        </div> 
+    </div>
+ 
+</div>

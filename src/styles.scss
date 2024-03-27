@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/custom/bg-colors.scss";
+@import "./assets/custom/breakpoint.var.scss";
+@import "./assets/custom/fuentes.scss";
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.line-under-text{
+    text-decoration: none;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: '';
+      height: 4px;
+      bottom: -4px;
+      margin: 0 auto;
+      border-radius: 8px;
+      left: 0;
+      width: 100%;
+      background: #d92f2f;
+    }
+  }
+
+
+.loader-line {
+    height: 6px;
+    position: relative;
+    overflow: hidden;
+    background-color: #FFFFFF; 
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    &:before {
+      content: "";
+      position: absolute; 
+      height: 6px; 
+      background-color: #C7B1DA;
+      -webkit-animation: lineAnim 8s forwards;
+      -moz-animation: lineAnim 8s forwards;
+      animation: lineAnim 3s forwards;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 0px 0px 50px 50px;
+    }
+
+    @keyframes lineAnim {
+      0% {
+        width: 0;
+      } 
+      100% {
+        width: 100%;
+      } 
+    } 
+}
+ 
+
+
+
+.cursor-pinter{
+  cursor: pointer;
+}
