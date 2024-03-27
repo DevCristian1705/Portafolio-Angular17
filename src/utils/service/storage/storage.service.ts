@@ -3,8 +3,7 @@ import * as CryptoJS from 'crypto-js';
 import { STORAGE_KEY } from '../../constants/storage';
 import { IUser } from '../../interface/user.interface';
 import { environment } from '../../../environments/environment.prod';
- 
-
+  
 @Injectable({
   providedIn: 'root'
 })
