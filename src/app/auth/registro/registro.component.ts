@@ -17,13 +17,13 @@ export class RegistroComponent implements OnInit {
  registerForm!: FormGroup; 
  loadingButton: boolean = false;
  numberInput = EInputValidation.Number; 
-
+ 
 get frmNameControl(): FormControl { return this.registerForm.get("names") as FormControl;}
 get frmLastNameControl(): FormControl { return this.registerForm.get("lastname") as FormControl;}
 get frmCellphoneControl(): FormControl { return this.registerForm.get("cellphone") as FormControl;}
 get frmEmailControl(): FormControl { return this.registerForm.get("email") as FormControl;}
 get frmPassControl(): FormControl { return this.registerForm.get("password") as FormControl;}
-
+  
 get getErrorName(): string {
   if (this.frmNameControl.invalid && this.frmNameControl.touched) {
     if (this.frmNameControl.hasError('required')) { return 'Ingresa un/tus nombre(s)'} 
@@ -76,7 +76,7 @@ get getErrorPass(): string {
     const patronCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     this.registerForm = this.fb.group({
-      code_user: [ this.globalsrv.generateUniqueId('USER') , Validators.required],
+      code_user: [ this.globalsrv.generateUniqueId('USER') , Validators.required], 
       names: ['', [Validators.required, Validators.minLength(3)]],
       lastname: ['', [Validators.required, Validators.minLength(3)]],
       cellphone: ['', [Validators.required, Validators.minLength(3)]],
@@ -88,7 +88,9 @@ get getErrorPass(): string {
   
 
   ngOnInit(): void {
-    console.log('lista usuarior registrados', this.storageService.getData(STORAGE_KEY.listUser));
+    let user : any = this.storageService.getData(STORAGE_KEY.listUser)
+    const listUserRegistrados = JSON.parse(user) || [];  
+    console.log('lista usuarior registrados', listUserRegistrados);
   }
 
 
@@ -99,29 +101,32 @@ get getErrorPass(): string {
  
   onRegistro() { 
     this.loadingButton = true;
-    const newUser = this.registerForm.value;  
- 
-    //obtener la lista de usuarios registrados,
-    // si ya existe indicar modal y mandarlo a login
-    let listUserRegistrados : any = this.storageService.getData(STORAGE_KEY.listUser);
-    this.onValidateDatos(listUserRegistrados, newUser);
-  
+    const newUser = this.registerForm.value; 
+    this.onValidateDatos(newUser); 
   }
 
 
-  onValidateDatos(listUserRegistrados: IUser[], newUser: IUser){ 
-    let existingUser = listUserRegistrados.filter(user => user.code_user === newUser.code_user);
+  onValidateDatos(newUser: IUser){ 
+    let user : any = this.storageService.getData(STORAGE_KEY.listUser)
+    const listUserRegistrados = JSON.parse(user) || []; 
 
+ 
+    let existingUser = listUserRegistrados.filter((user: IUser) => 
+        user.names === newUser.names && user.email === newUser.email
+    );
+ 
     if (existingUser.length === 0) {
       listUserRegistrados.push(newUser);
       this.storageService.setData(STORAGE_KEY.listUser, JSON.stringify(listUserRegistrados));
+      this.loadingButton = false; 
       this.onLogin(); 
-    } else {
-      console.log('El usuario con código ' + newUser.code_user + ' ya existe.');
+    } else { 
+      this.loadingButton = false; 
+      console.log('El usuario' + newUser.names + ' ya existe.');
       return;
     }
   
-    this.loadingButton = false; 
+  
   }
 
 

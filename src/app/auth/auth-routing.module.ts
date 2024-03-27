@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
  
 export const routes: Routes = [
   {
@@ -17,6 +18,10 @@ export const routes: Routes = [
       {
         path: 'registro',
         component: RegistroComponent, 
+      },
+      {
+        path: 'change-password',
+        component: ChangePasswordComponent, 
       },
     ], 
   } 

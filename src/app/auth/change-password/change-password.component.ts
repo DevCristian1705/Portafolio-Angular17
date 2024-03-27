@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';   
+import { IUser } from '../../../utils/interface/user.interface';
+import { Router } from '@angular/router';
 import { StorageService } from '../../../utils/service/storage/storage.service';
 import { STORAGE_KEY } from '../../../utils/constants/storage';
-import { IUser } from '../../../utils/interface/user.interface';
- 
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-change-password', 
+  templateUrl: './change-password.component.html',
+  styleUrl: './change-password.component.scss'
 })
-export class LoginComponent   {
+export class ChangePasswordComponent {
 
   loginForm!: FormGroup; 
   loadingButton: boolean = false; 
   userReg : IUser = {} as IUser;
-
-  emailExiste : boolean = false; 
 
   constructor(
     public fb: FormBuilder, 
@@ -30,7 +28,9 @@ export class LoginComponent   {
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
-  
+
+
+    
   get frmEmailControl(): FormControl { return this.loginForm.get("email") as FormControl;  }
   get frmPassControl(): FormControl { return this.loginForm.get("password") as FormControl;  }
 
@@ -51,40 +51,33 @@ export class LoginComponent   {
     return '';
   }
 
- 
+  ngOnInit(){ 
+  }
 
+  
   onLogin() {
-    this.loadingButton = true
-    const dataForm = this.loginForm.value; 
+    this.router.navigateByUrl("auth");
+  }
 
-    if (this.onValidateCredentials(dataForm.email, dataForm.password)) { 
-      this.loadingButton = false;  
-      this.onDashboard();
+  onChangePass(){
+    const DATOS_FORM = this.loginForm.value;
+    this.updateUserPassword(DATOS_FORM.email, DATOS_FORM.password);
+  }
+
+  updateUserPassword(email: string, newPassword: string): void {
+
+    const users : any = this.storageService.getData(STORAGE_KEY.listUser)
+    const listUserRegistrados = JSON.parse(users) || []; 
+ 
+    const userIndex = listUserRegistrados.findIndex((user: any) => user.email === email);
+
+    if (userIndex !== -1) {
+      listUserRegistrados[userIndex].password = newPassword;  
+      this.storageService.setData(STORAGE_KEY.listUser, JSON.stringify(listUserRegistrados)); 
+      this.onLogin();
     } else {
-      console.log('Los datos no existen, te invitamos a registrarte');
-      this.loadingButton = false;  
+      console.log('User not found');
     } 
   }
 
-  onValidateCredentials(email: string, password: string): boolean {
-    const users : any = this.storageService.getData(STORAGE_KEY.listUser)
-    const listUserRegistrados = JSON.parse(users) || []; 
-    const user = listUserRegistrados.find((user: any) => user.email === email && user.password === password);
-    return user !== undefined;
-  }
-
- 
-  onChangePassword() {
-    this.router.navigateByUrl('auth/change-password');
-  }
- 
-  onRegistro() {
-    this.router.navigateByUrl("auth/registro");
-  }
-
-  onDashboard() {
-    this.router.navigateByUrl("auth/registro");
-  }
-
 }
-
