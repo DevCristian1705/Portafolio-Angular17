@@ -1,7 +1,7 @@
 
 import { Injectable } from "@angular/core"; 
 import { Observable, of } from "rxjs";
-import { IDatosDevelop, IDatosProfile, IListExpLaboral, IListProyectos, MenuOptions, ToolOptions } from "../interface/listas";
+import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, MenuOptions, ToolOptions } from "../interface/listas";
  
 
 @Injectable({
@@ -9,7 +9,7 @@ import { IDatosDevelop, IDatosProfile, IListExpLaboral, IListProyectos, MenuOpti
 })
   
 export class GlobalService {
-  //MENUS
+  //DATOS DE EL DEVELOP
   private datosDevelop : IDatosDevelop[] = [
     {
       name : "Cristian Martinez Fajardo",
@@ -18,7 +18,7 @@ export class GlobalService {
       img_dev : "../../assets/imagenes/person-develop.jpeg"
     } 
   ]
-
+ //MENUS
   private MenuOptions: MenuOptions[] = [
     {
       code: 1,
@@ -45,7 +45,7 @@ export class GlobalService {
       routerlink: '#proyectos',
     },
   ];
-
+  //TOOL
   private ToolBarOptions: ToolOptions[] = [
     { 
       name: 'Inicio', 
@@ -64,7 +64,7 @@ export class GlobalService {
       routerlink: '#contact',
     }
   ];
- 
+  //EXP LABORAL
   private ExpLaboralOptions: IListExpLaboral[] = [
     { 
       name_company: 'BANCOM', 
@@ -95,7 +95,7 @@ export class GlobalService {
       altImg : 'logo-midis'
     }, 
   ];
-
+  // PROYECTOS
   private ProyectosOptions: IListProyectos[] = [
     { 
       name_proyecto: 'GENERADOR CODIGO OTP', 
@@ -128,13 +128,37 @@ export class GlobalService {
       altImg : ''
     }, 
     { 
-      name_proyecto: 'TEMPORIZADORES', 
+      name_proyecto: 'CRONOMETRO', 
       description: 'Sistema para indicar a los usuarios que puedes iniciar una actividad basada en un tiempo determinado que puede variar segun los parametros que se etablezcan, como intervalos, o tiempos exactos. ',
       img_proyecto: '', 
       altImg : ''
     }, 
+    { 
+      name_proyecto: 'ENCUESTA', 
+      description: 'Sistema que te muestra una pregunta y sus opciones segun tu respuesta se marcara como CORRECTO o ERROR, y se iran contabilizando para al final de la encuenta te mostremos un puntaje',
+      img_proyecto: '', 
+      altImg : ''
+    }, 
+    { 
+      name_proyecto: 'ORGANIZADOR DE TAREAS', 
+      description: 'Sistema donde te mostramos 3 columnas, POR HACER, EN PROCESO, FINALIZADO, se le da al usuario la opcion de crear la tarea, con un TITULO, DESCRIPCION, Y un boton de HECHO para poder cambiar el estado, tambien puede usar la opcion de Drag and Drop para mover las historias al siguiente estado,',
+      img_proyecto: '', 
+      altImg : ''
+    }, 
+    { 
+      name_proyecto: 'CALENDARIO', 
+      description: 'Sistema para añadir tareas en los dais del calendario, por mes y año, de forma que el usuario pueda ver sus tareas por fecha',
+      img_proyecto: '', 
+      altImg : ''
+    }, 
+    { 
+      name_proyecto: 'SISTEMA DE PEDIDOS', 
+      description: 'Sistema para llevar el conteo de pedidos, por responsables, cada responsoable muestra un total, y al ver el detalle de dicho responsable podremos ver a los pedidos por responsable.',
+      img_proyecto: '', 
+      altImg : ''
+    }, 
   ];
-  
+  //DATOS PERFIL
   private datosProfileOptions: IDatosProfile[] = [
     { 
       titulo: 'Nombre Completo', 
@@ -157,7 +181,52 @@ export class GlobalService {
       dato: 'www.linkedin.com/in/cristian-martinez-fajardo'
     }, 
   ]
-  
+  //Datos de Encuenta
+  private datosEncuesta : IEncuesta[] = [
+    {
+      id_encuesta : 0,
+      pregunta: '¿Cual es la capital de Perú?',
+      opciones_respuesta : [
+      { opcion : 'A', respuesta: 'LIMA', value : true },
+      { opcion : 'B', respuesta: 'CUZCO', value : false },
+      { opcion : 'C', respuesta: 'PARIS', value : false }] 
+    },
+    {
+      id_encuesta : 1,
+      pregunta: '¿Cual es el valor de PI?',
+      opciones_respuesta : [
+      { opcion : 'A', respuesta: '3.14..', value : true },
+      { opcion : 'B', respuesta: '27, 000', value : false },
+      { opcion : 'C', respuesta: '0', value : false }] 
+    },
+    {
+      id_encuesta : 2,
+      pregunta: '¿Que plato es tipico de Perú?',
+      opciones_respuesta : [
+      { opcion : 'A', respuesta: 'Ceviche', value : false },
+      { opcion : 'B', respuesta: 'Arroz con Pato', value : false },
+      { opcion : 'C', respuesta: 'Carapulcra', value : false },
+      { opcion : 'D', respuesta: 'Todas las anteriores', value : true }] 
+    },
+    {
+      id_encuesta : 3,
+      pregunta: '¿De dónde son originarios los perrios Husky Siberianos?',
+      opciones_respuesta : [
+      { opcion : 'A', respuesta: 'Angola', value : false },
+      { opcion : 'B', respuesta: 'Siberia', value : true },
+      { opcion : 'C', respuesta: 'Costa Rica', value : false }] 
+    },
+    {
+      id_encuesta : 4,
+      pregunta: '¿Cuál es el simbolo quimico del agua?',
+      opciones_respuesta : [
+      { opcion : 'A', respuesta: 'Ag', value : false },
+      { opcion : 'B', respuesta: 'Co', value : false },
+      { opcion : 'C', respuesta: 'H2O', value : true }] 
+    },
+  ]
+
+
   onCopyCodeText(text: any) {
     navigator.clipboard.writeText(text)
         .then(() => { console.log('Código copiado')})
@@ -193,6 +262,11 @@ export class GlobalService {
   getDatosDevelop(): Observable<IDatosDevelop[]> { 
     let datosDev: Observable<IDatosDevelop[]> = of(this.datosDevelop); 
     return datosDev;
+  }
+
+  getDatosEncuesta(): Observable<IEncuesta[]> { 
+    let datosEncuesta: Observable<IEncuesta[]> = of(this.datosEncuesta); 
+    return datosEncuesta;
   }
 
   onValidPass(event : any){   
@@ -231,23 +305,50 @@ export class GlobalService {
  
   }
 
-    onValidateFormEmail(email: string) {
-      let validateEmail: boolean = false;
-      if (email) {
-        const regex = /(\.{2,}|\.+$)/;
-        const dotCount = email.split('.').length - 1;
-        if (dotCount > 2 || regex.test(email)) {
-          validateEmail = true;
-        }
+  onValidateFormEmail(email: string) {
+    let validateEmail: boolean = false;
+    if (email) {
+      const regex = /(\.{2,}|\.+$)/;
+      const dotCount = email.split('.').length - 1;
+      if (dotCount > 2 || regex.test(email)) {
+        validateEmail = true;
       }
-
-      return validateEmail;
     }
 
+    return validateEmail;
+  }
 
-    generateUniqueId(prefix: string): string {
-      const randomBuffer = Math.floor(Math.random() * 1000000);
-      return prefix + '-' + randomBuffer;
-    }
+
+  generateUniqueId(prefix: string): string {
+    const randomBuffer = Math.floor(Math.random() * 1000000);
+    return prefix + '-' + randomBuffer;
+  }
 
 }
+
+
+// SISTEMA DE ENCUESTA
+// 2 necesito mostrar las encuentas en mi html
+// idPreguntaActual : number = 0;
+// preguntaActual : IEncuesta as {};
+ 
+// preguntaActual = this.arrayEncuenta[idPreguntaActual];
+
+ 
+// 	preguntaActual.pregunta
+// 	ngFor let opciones of preguntaActual.opciones_respuesta
+// 	opciones.opcion
+// 	opciones.repsuesta
+// 	evento : click = onValidateRespuesta(opciones.value, preguntaActual.id_encuesta)
+
+// 3 necesito validar la respuesta
+// 	onValidateRespuesta(respuesta : boolean, id : number){
+// 		if(respuesta){ style.opcion = VERDADERO}
+// 		else style.opcion = ERRRO;
+// 		this.goNextPregunta(id);
+// 	}
+
+// 4 mostrar la siguiente pregunta
+// goNextPregunta(id : number){ 
+//  preguntaActual = this.arrayEncuenta[id + 1]; 
+// }

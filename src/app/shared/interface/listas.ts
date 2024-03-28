@@ -37,3 +37,15 @@ export interface IDatosDevelop  {
     text_linetwo: string,
     img_dev: string,
 }
+ 
+export interface IRespuestas {
+	opcion : string;
+ 	respuesta: string;
+ 	value : boolean
+}
+  
+export interface IEncuesta  {
+	id_encuesta : number;
+	pregunta: string;
+	opciones_respuesta : IRespuestas[]
+}
