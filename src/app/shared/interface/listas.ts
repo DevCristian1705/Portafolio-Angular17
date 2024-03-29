@@ -1,12 +1,28 @@
-export interface MenuOptions {
+export interface sideBarOptions {
     code: number,
     name: string,
     icon: string, 
     routerlink: string,
 }
   
+
+export interface subMenuOptions {
+    code: number,
+    name: string, 
+    router : string
+}
+
+export interface menuOptions {
+    code: number,
+    name: string,
+    icon: string,   
+    alt_icon: string,   
+    router? : string,
+    subMenu: subMenuOptions[],
+}
+
    
-export interface ToolOptions  { 
+export interface NavbarOptions  { 
     name: string,  
     routerlink: string,
 }
@@ -47,5 +63,6 @@ export interface IRespuestas {
 export interface IEncuesta  {
 	id_encuesta : number;
 	pregunta: string;
+    imagen : string;
 	opciones_respuesta : IRespuestas[]
 }

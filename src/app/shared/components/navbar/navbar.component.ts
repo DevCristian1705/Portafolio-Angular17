@@ -1,16 +1,25 @@
-import { Component} from '@angular/core'; 
+import { Component, Input} from '@angular/core'; 
 import { GlobalService } from '../../service/global';
 import { Router } from '@angular/router';
- 
+const getStyles = (...args: string[]) => ["nombreBotton", ...args].filter(Boolean)
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent  {
- 
-  flgMenuMobile : boolean = false;
-  toolArray$ = this.globalsrv.getToolBar();
+  
+  @Input() type: "Dashboard" | "Classic" = "Classic";
+  isSidebar : boolean = false;
+  navbarArray$ = this.globalsrv.getNavBar();
+
+
+  public get typeClass(): string[] {
+    return getStyles(this.type)
+  }
+
 
   constructor(
     private globalsrv: GlobalService,
@@ -19,12 +28,16 @@ export class NavbarComponent  {
      
   }
    
-  onLogin(){
-    this.router.navigateByUrl('/auth');
+  onNavigate(url:string){
+    this.router.navigateByUrl(url);
   } 
 
-  onActiveMenuMobile(isActive : boolean){
-    this.flgMenuMobile = isActive; 
+  onContraerMenu(){
+    
+  }
+
+  onActiveSideBar(isActive : boolean){
+    this.isSidebar = isActive; 
   }
 
  

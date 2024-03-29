@@ -1,7 +1,7 @@
 
 import { Injectable } from "@angular/core"; 
 import { Observable, of } from "rxjs";
-import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, MenuOptions, ToolOptions } from "../interface/listas";
+import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, sideBarOptions, NavbarOptions, menuOptions } from "../interface/listas";
  
 
 @Injectable({
@@ -19,7 +19,44 @@ export class GlobalService {
     } 
   ]
  //MENUS
-  private MenuOptions: MenuOptions[] = [
+  private menuOptions: menuOptions[] = [
+    {
+      code: 1,
+      name: 'Dashboard',
+      router : '/dashboard',
+      icon: '../../../assets/iconos/icono-home.png',
+      alt_icon: 'icono dashboar',
+      subMenu: []
+    }, 
+    {
+      code: 3,
+      name: 'Experiencia',
+      icon: '../../../assets/iconos/icono-experiencia.png',
+      alt_icon: 'icono experiencia',
+      subMenu: [
+        {code: 0,name: 'Bancom', router : 'dashboard/exp-laboral/bancom'},
+        {code: 1,name: 'Ti Soluciones', router : 'dashboard/exp-laboral/ti-soluciones'},
+        {code: 2,name: 'Textil Del Valle', router : 'dashboard/exp-laboral/del-valle'},
+        {code: 3,name: 'Midis - Pais', router : 'dashboard/exp-laboral/midis'}
+      ]
+    },
+    {
+      code: 4,
+      name: 'Proyectos',
+      icon: '../../../assets/iconos/icono-proyectos.png',
+      alt_icon: 'icono proyectos',   
+      subMenu: [
+        {code: 0,name: 'Generador Otp', router : 'dashboard/proyecto/generate-otp'},
+        {code: 1,name: 'Simulador de Cambio', router : 'dashboard/proyecto/simulator'},
+        {code: 2,name: 'Bg Random', router : 'dashboard/proyecto/bg-random'},
+        {code: 3,name: 'Encuesta', router : 'dashboard/proyecto/encuesta'},
+        {code: 4,name: 'Org de tareas', router : 'dashboard/proyecto/org-task'},
+        {code: 5,name: 'Calendario', router : 'dashboard/proyecto/calendar'}
+      ]
+    },
+  ];
+  //SIDEBAR
+  private sideBarOptions: sideBarOptions[] = [
     {
       code: 1,
       name: 'Inicio',
@@ -46,7 +83,7 @@ export class GlobalService {
     },
   ];
   //TOOL
-  private ToolBarOptions: ToolOptions[] = [
+  private navBarOption: NavbarOptions[] = [
     { 
       name: 'Inicio', 
       routerlink: '#home',
@@ -186,6 +223,7 @@ export class GlobalService {
     {
       id_encuesta : 0,
       pregunta: '¿Cual es la capital de Perú?',
+      imagen : '',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'LIMA', value : true },
       { opcion : 'B', respuesta: 'CUZCO', value : false },
@@ -194,6 +232,7 @@ export class GlobalService {
     {
       id_encuesta : 1,
       pregunta: '¿Cual es el valor de PI?',
+      imagen : '',
       opciones_respuesta : [
       { opcion : 'A', respuesta: '3.14..', value : true },
       { opcion : 'B', respuesta: '27, 000', value : false },
@@ -202,6 +241,7 @@ export class GlobalService {
     {
       id_encuesta : 2,
       pregunta: '¿Que plato es tipico de Perú?',
+      imagen : '',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Ceviche', value : false },
       { opcion : 'B', respuesta: 'Arroz con Pato', value : false },
@@ -211,6 +251,7 @@ export class GlobalService {
     {
       id_encuesta : 3,
       pregunta: '¿De dónde son originarios los perrios Husky Siberianos?',
+      imagen : '',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Angola', value : false },
       { opcion : 'B', respuesta: 'Siberia', value : true },
@@ -219,6 +260,7 @@ export class GlobalService {
     {
       id_encuesta : 4,
       pregunta: '¿Cuál es el simbolo quimico del agua?',
+      imagen : '',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Ag', value : false },
       { opcion : 'B', respuesta: 'Co', value : false },
@@ -234,14 +276,20 @@ export class GlobalService {
     });
   }
 
-  getMenu(): Observable<MenuOptions[]> {
-    let menuOptions: Observable<MenuOptions[]> = of(this.MenuOptions); 
+  getSidebar(): Observable<sideBarOptions[]> {
+    let sideBarOptions: Observable<sideBarOptions[]> = of(this.sideBarOptions); 
+    return sideBarOptions;
+  }
+
+
+  getMenu(): Observable<menuOptions[]> {
+    let menuOptions: Observable<menuOptions[]> = of(this.menuOptions); 
     return menuOptions;
   }
 
-  getToolBar(): Observable<ToolOptions[]> { 
-    let toolbarOptions: Observable<ToolOptions[]> = of(this.ToolBarOptions); 
-    return toolbarOptions;
+  getNavBar(): Observable<NavbarOptions[]> { 
+    let navBarOption: Observable<NavbarOptions[]> = of(this.navBarOption); 
+    return navBarOption;
   }
 
   getExpLaboral(): Observable<IListExpLaboral[]> { 

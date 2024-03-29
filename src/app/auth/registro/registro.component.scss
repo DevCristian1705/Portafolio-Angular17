@@ -5,6 +5,10 @@
   align-items: center;
   overflow: auto;
   height: 100vh;
+ 
+  @include media-breakpoint('lt-md') {
+    align-content: space-between;
+  } 
 
   &::-webkit-scrollbar {
     width: 3px;
@@ -37,4 +41,10 @@
       }
 }
 
+.cabecera-gradiente{
+  display: none;
+  @include media-breakpoint('lt-md') {
+    display: block;
+  }   
+}
   

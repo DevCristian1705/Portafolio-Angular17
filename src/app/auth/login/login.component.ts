@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { StorageService } from '../../../utils/service/storage/storage.service';
 import { STORAGE_KEY } from '../../../utils/constants/storage';
 import { IUser } from '../../../utils/interface/user.interface';
- 
+
 @Component({
-  selector: 'app-login',
+  selector: 'app-login', 
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -58,8 +58,8 @@ export class LoginComponent   {
     const dataForm = this.loginForm.value; 
 
     if (this.onValidateCredentials(dataForm.email, dataForm.password)) { 
-      this.loadingButton = false;  
-      this.onDashboard();
+      this.loadingButton = false;   
+      this.onNavigate('dashboard');
     } else {
       console.log('Los datos no existen, te invitamos a registrarte');
       this.loadingButton = false;  
@@ -73,17 +73,11 @@ export class LoginComponent   {
     return user !== undefined;
   }
 
- 
-  onChangePassword() {
-    this.router.navigateByUrl('auth/change-password');
-  }
- 
-  onRegistro() {
-    this.router.navigateByUrl("auth/registro");
-  }
+  
 
-  onDashboard() {
-    this.router.navigateByUrl("auth/registro");
+ 
+  onNavigate(url : string){
+    this.router.navigateByUrl(url);
   }
 
 }

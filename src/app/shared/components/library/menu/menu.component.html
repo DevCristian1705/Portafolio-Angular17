@@ -1,45 +1,22 @@
-<div [ngClass]="type" >   
-    <div  [ngClass]="{'content' : isShow, 'contentDark' : !isShow}" >
-      <div class="navigation" *ngIf="isShow">  
-        <div class="div-closed">
-          <div class="close-menu" >
-              <div  class="close-menu__icon"  (click)="onHiddenSidenav()"> &#x2715; </div>
-          </div>
-          <div class="div-closed__logo">
-              <img src="../../../../assets/iconos/icono-navbar.png" alt="loco de cambix">
-          </div>
-          <div class="name-user white"> 
-               <!-- {{ firstName | titlecase  | appAddPoints : 50}} {{ sesionUsuario?.lastName  | titlecase }}  -->
-                Cristian Martinez 
-          </div> 
-        </div>
+<div [ngClass]="type" >    
+    <div class="navigation">   
+        <div class="navigation__menu" >
+            <div  *ngFor="let items of menuArray$ | async">
+                <div class="items-content white">
+                    <div class="items-content__item-menu primary-bold-h6">
+                        <img [src]="items.icon" [alt]="items.alt_icon" width="20" height="20">
+                        <span class="cursor-pointer" (click)="onNavigate(items.router || '')"> {{items.name }}</span>
+                    </div>
 
-        <div class="loader-line" ></div>
-
-        <div class="content-menu-sidenav " >
-            <div class="menu" *ngFor="let item of menuArray$ | async">
-                <div class="menu__items" (click)="onActive(item.routerlink)" >
-                    <img class="menu__icon" [src]="item.icon" alt="icono de menu" width="25" height="25">
-                    <span class="font-secondary-regular-18 white menu__name-item " >
-                        <a class="white" [href]="item.routerlink"> {{ item.name }} </a>                    
-                    </span>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <app-button
-                    nombreBotton="Iniciar Sesión"  
-                    (clicked)="onLogin()"
-                    size="lg" type="BottonPrimaryBlock">
-                </app-button> 
-                <app-button
-                    nombreBotton="Registrate" 
-                    (clicked)="onRegistro()" 
-                    size="lg" type="BottonPrimaryBlock">
-                </app-button>  
-            </div>
-        </div>
-
-      </div>
+                    <div class="items-content__submenu font-secondary-regular-14 cursor-pointer" *ngIf="items.subMenu.length">
+                        <div class="submenu-items">
+                            <div (click)="onNavigate(item.router)"  *ngFor="let item of items.subMenu"> 
+                                <span  class="cursor-pointer"> {{item.name }}</span>
+                            </div>
+                        </div> 
+                    </div>
+                </div> 
+            </div> 
+        </div> 
     </div> 
   </div> 

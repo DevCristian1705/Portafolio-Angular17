@@ -18,6 +18,7 @@ import { ReactiveFormDirective } from "../../utils/directives/reactiveForm.direc
 import { EmailValidationDirective } from "../../utils/directives/email-validation.directive";
 import { RouterOutlet } from "@angular/router";
 import { CardComponent } from "./components/library/card/card.component";
+import { SidebarComponent } from "./components/library/sidebar/sidebar.component";
  
 const MODULE_DIRECTIVES = [
     ReactiveFormDirective,
@@ -54,6 +55,7 @@ const MODULE_DIALOG = [
         MenuComponent,
         InputComponent, 
         CardComponent,
+        SidebarComponent
         
     ],
 
@@ -69,6 +71,7 @@ const MODULE_DIALOG = [
         MenuComponent,
         InputComponent, 
         CardComponent, 
+        SidebarComponent
     ],
  
     providers :[

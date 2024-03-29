@@ -57,15 +57,17 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'CardDevelop'">  
-        <div class="CardDevelop card card--develop" [id]="id"  *ngFor="let item of dataArray | async"> 
-            <div>
-                <span class="primary-bold-h1 writing">{{ item.name }}</span>  <br>
-                <div class="secondary-400 primary-bold-h3 animationFadeIn">
-                    <span class="line-under-text">{{ item.text_lineOne}}</span>{{item.text_linetwo}}
+        <div *ngFor="let item of dataArray | async" > 
+            <div class="CardDevelop card card--develop" [id]="id"> 
+                <div>
+                    <span class="primary-bold-h1 writing">{{ item.name }}</span>  <br>
+                    <div class="secondary-400 primary-bold-h3 animationFadeIn">
+                        <span class="line-under-text">{{ item.text_lineOne}}</span>{{item.text_linetwo}}
+                    </div>
                 </div>
-            </div>
 
-            <img class="imagen-dev " [src]=" item.img_dev" alt="foto-perfiñ">		  
+                <img class="imagen-dev " [src]=" item.img_dev" alt="foto-perfiñ">	
+            </div>  	  
         </div>  
     </ng-container>
 </ng-container>

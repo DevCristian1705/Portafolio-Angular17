@@ -2,11 +2,19 @@
     <ng-container *ngSwitchCase="'Classic'">
         <button  [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()" >  
             <div [ngClass]="typeSize">
-                <p class="font-secondary-bold-14 text">{{ nombreBotton }}</p>  
+                <p class="font-secondary-bold-14  texto-botton">{{ nombreBotton }}</p>  
             </div>   
         </button> 
     </ng-container>
      
+    <ng-container *ngSwitchCase="'BottonLanding'">
+        <button  [ngClass]="typeClass" (click)="onClicked()" >  
+            <div [ngClass]="typeSize">
+                <p class="font-secondary-bold-14  texto-botton">{{ nombreBotton }}</p>  
+            </div>   
+        </button> 
+    </ng-container>
+
     <ng-container *ngSwitchCase="'BottonPrimaryBlock'">
         <button  [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()" >  
             <div [ngClass]="typeSize">

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
  
 const getStyles = (...args: string[]) => ["nombreBotton", ...args].filter(Boolean)
 
@@ -15,7 +15,7 @@ export class ButtonComponent   {
   @Input() isActive: boolean | null = false;
   @Input() urlimagen : string | null = "";
   @Input() loadingdButton = false;
-  @Input() type: "BottonPrimary" | "Classic" | "BottonPrimaryBlock" = "BottonPrimary";
+  @Input() type: "BottonPrimary" | "Classic" | "BottonLanding" | "BottonPrimaryBlock" = "BottonPrimary";
   @Output() clicked = new EventEmitter();
   
 

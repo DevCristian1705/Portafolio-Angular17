@@ -10,7 +10,7 @@ import { GlobalService } from '../../../service/global';
 export class MenuComponent implements OnInit {
   @Input() isShow : boolean = false;
   @Input() position : string | null = "";
-  @Input() type : 'SidenavPrimary' | 'SidenavSecondary' = 'SidenavPrimary';
+  @Input() type = 'MenuPrimary';
   @Output() closed: EventEmitter<boolean> = new EventEmitter();
  
   menuArray$ = this.globalsrv.getMenu();
@@ -32,14 +32,10 @@ export class MenuComponent implements OnInit {
   onActive(url : string){ 
     this.onHiddenSidenav();
   }
+ 
+  onNavigate(url : string){
+    this.router.navigateByUrl(url);
+  }
 
  
-
-  onLogin(){
-    this.router.navigateByUrl('/auth');
-  }
-
-  onRegistro(){
-    this.router.navigateByUrl('/auth/registro');
-  }
 }
