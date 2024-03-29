@@ -13,7 +13,15 @@
                                 <a [href]="item.routerlink" class="white">{{item.name}}</a>
                             </li>
                         </div>  
+
                         <app-button
+                            *ngIf="userSession"
+                            [nombreBotton]="userSession.names" 
+                            (clicked)="onNavigate('/dashboard')"
+                            size="sm" type="BottonPrimary">
+                        </app-button> 
+                        <app-button
+                            *ngIf="!userSession"
                             nombreBotton="Iniciar Sesión" 
                             (clicked)="onNavigate('auth/login')"
                             size="sm" type="BottonPrimary">
@@ -50,7 +58,12 @@
                             (closed)="onActiveSideBar(false)" >
                         </app-sidebar> 
                     </div>
-                    Cristian Martinez 
+
+                    <div class="name-user white"  *ngIf="userSession">  
+                        {{ userSession?.names  | titlecase }}
+                    </div> 
+
+                   
                 </div>
     
                 <app-button

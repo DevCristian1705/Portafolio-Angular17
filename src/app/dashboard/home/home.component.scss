@@ -1,0 +1,12 @@
+@import '../../..//assets/custom/breakpoints.scss';
+
+.container {
+    display: flex;
+    gap: 1.5em;
+    flex-direction: column; 
+    padding: 24px;
+    background: white;
+    border-radius: 15px;  
+}
+ 
+  

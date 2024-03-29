@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';   
 import { StorageService } from '../../../utils/service/storage/storage.service';
-import { STORAGE_KEY } from '../../../utils/constants/storage';
 import { IUser } from '../../../utils/interface/user.interface';
+import { STORAGE_KEY } from '../../../utils/constants/storage';
 
 @Component({
   selector: 'app-login', 
@@ -15,7 +15,7 @@ export class LoginComponent   {
   loginForm!: FormGroup; 
   loadingButton: boolean = false; 
   userReg : IUser = {} as IUser;
-
+  listUser : any[] = [];
   emailExiste : boolean = false; 
 
   constructor(
@@ -51,30 +51,36 @@ export class LoginComponent   {
     return '';
   }
 
+  ngOnInit(){
+    console.log('userSession', this.storageService.getData(STORAGE_KEY.listUser));
+  }
  
 
-  onLogin() {
+  onLogin() { 
     this.loadingButton = true
-    const dataForm = this.loginForm.value; 
-
-    if (this.onValidateCredentials(dataForm.email, dataForm.password)) { 
-      this.loadingButton = false;   
-      this.onNavigate('dashboard');
+    const DATA_FORM = this.loginForm.value;  
+    if(this.onValidateCredentials(DATA_FORM.email, DATA_FORM.password)) { 
+      this.loadingButton = false;    
+      this.onNavigate('/dashboard');
     } else {
       console.log('Los datos no existen, te invitamos a registrarte');
       this.loadingButton = false;  
     } 
   }
 
-  onValidateCredentials(email: string, password: string): boolean {
-    const users : any = this.storageService.getData(STORAGE_KEY.listUser)
-    const listUserRegistrados = JSON.parse(users) || []; 
+  onValidateCredentials(email: string, password: string): boolean {  
+    const listUserRegistrados: IUser[] = this.storageService.listUsuarios()
     const user = listUserRegistrados.find((user: any) => user.email === email && user.password === password);
+    //seteamos  la session del usuario
+    const userIndex = listUserRegistrados.findIndex((user: any) => user.email === email && user.password === password);
+    if (userIndex !== -1) {
+      listUserRegistrados[userIndex]  
+      this.storageService.setSessionUser(listUserRegistrados[userIndex]);  
+    } 
+
     return user !== undefined;
   }
-
-  
-
+ 
  
   onNavigate(url : string){
     this.router.navigateByUrl(url);

@@ -22,6 +22,20 @@ export class StorageService {
     localStorage.removeItem(key);
   }
 
+  listUsuarios(){
+    const users : any = this.getData(STORAGE_KEY.listUser)
+    const listUserRegistrados : IUser[] = JSON.parse(users) || []; 
+    return listUserRegistrados || null
+  }
+
+  setSessionUser(data: IUser) { 
+    this.setData(STORAGE_KEY.sessionUser, JSON.stringify(data));
+  }
+
+  getSessionUser() {
+    return this.getData(STORAGE_KEY.sessionUser) || null;
+  }
+
   clearData(): void {
     localStorage.clear();
   }
@@ -33,4 +47,12 @@ export class StorageService {
   private decrypt(txtToDecrypt: string) {
     return CryptoJS.AES.decrypt(txtToDecrypt, environment.keyencrypt).toString(CryptoJS.enc.Utf8);
   }
+
+
+  get isAuthenticated() {
+    const datosSession: any = this.getSessionUser();
+    const user = datosSession ? JSON.parse(datosSession) : null;
+    return user;
+  }
+
 }

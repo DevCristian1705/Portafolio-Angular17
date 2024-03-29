@@ -1,6 +1,9 @@
 import { Component, Input} from '@angular/core'; 
 import { GlobalService } from '../../service/global';
 import { Router } from '@angular/router';
+import { StorageService } from '../../../../utils/service/storage/storage.service';
+import { IUser } from '../../../../utils/interface/user.interface';
+import { STORAGE_KEY } from '../../../../utils/constants/storage';
 const getStyles = (...args: string[]) => ["nombreBotton", ...args].filter(Boolean)
 
 
@@ -14,7 +17,7 @@ export class NavbarComponent  {
   @Input() type: "Dashboard" | "Classic" = "Classic";
   isSidebar : boolean = false;
   navbarArray$ = this.globalsrv.getNavBar();
-
+  userSession  
 
   public get typeClass(): string[] {
     return getStyles(this.type)
@@ -23,9 +26,10 @@ export class NavbarComponent  {
 
   constructor(
     private globalsrv: GlobalService,
+    private storgaesrv : StorageService,
     private router: Router
-  ) { 
-     
+  ) {  
+    this.userSession = this.storgaesrv.isAuthenticated; 
   }
    
   onNavigate(url:string){
@@ -33,7 +37,7 @@ export class NavbarComponent  {
   } 
 
   onContraerMenu(){
-    
+      this.storgaesrv.removeData(STORAGE_KEY.sessionUser);
   }
 
   onActiveSideBar(isActive : boolean){

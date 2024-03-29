@@ -64,8 +64,7 @@ export class ChangePasswordComponent {
     this.updateUserPassword(DATOS_FORM.email, DATOS_FORM.password);
   }
 
-  updateUserPassword(email: string, newPassword: string): void {
-
+  updateUserPassword(email: string, newPassword: string): void { 
     const users : any = this.storageService.getData(STORAGE_KEY.listUser)
     const listUserRegistrados = JSON.parse(users) || []; 
  

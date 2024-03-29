@@ -17,7 +17,8 @@ export class RegistroComponent implements OnInit {
  registerForm!: FormGroup; 
  loadingButton: boolean = false;
  numberInput = EInputValidation.Number; 
- 
+ listUser : any[] = [];
+
 get frmNameControl(): FormControl { return this.registerForm.get("names") as FormControl;}
 get frmLastNameControl(): FormControl { return this.registerForm.get("lastname") as FormControl;}
 get frmCellphoneControl(): FormControl { return this.registerForm.get("cellphone") as FormControl;}
@@ -87,28 +88,22 @@ get getErrorPass(): string {
 
   
 
-  ngOnInit(): void {
-    let user : any = this.storageService.getData(STORAGE_KEY.listUser)
-    const listUserRegistrados = JSON.parse(user) || [];  
-    console.log('lista usuarior registrados', listUserRegistrados);
+  ngOnInit(): void { 
   }
-
-
+ 
   onLogin() {
     this.router.navigateByUrl("auth/login");
   }
- 
- 
+  
   onRegistro() { 
     this.loadingButton = true;
     const newUser = this.registerForm.value; 
     this.onValidateDatos(newUser); 
   }
-
-
-  onValidateDatos(newUser: IUser){ 
-    let user : any = this.storageService.getData(STORAGE_KEY.listUser)
-    const listUserRegistrados = JSON.parse(user) || []; 
+ 
+  onValidateDatos(newUser: IUser){  
+    this.listUser.push(this.storageService.listUsuarios()); 
+    const listUserRegistrados = this.listUser
 
  
     let existingUser = listUserRegistrados.filter((user: IUser) => 

@@ -10,9 +10,8 @@
                     <div class="div-closed__logo">
                         <img src="../../../../assets/iconos/icono-navbar.png" alt="loco de cambix">
                     </div>
-                    <div class="name-user white"> 
-                        <!-- {{ firstName | titlecase  | appAddPoints : 50}} {{ sesionUsuario?.lastName  | titlecase }}  -->
-                            Cristian Martinez 
+                    <div class="name-user white"  *ngIf="userSession">  
+                        {{ userSession?.names  | titlecase }}
                     </div> 
                     </div>
 
@@ -27,8 +26,14 @@
                                 </span>
                             </div>
                         </div>
-
-                        <div class="buttons">
+                        <div class="buttons"  *ngIf="userSession">
+                            <app-button
+                                nombreBotton="Cerrar Sesión"  
+                                (clicked)="onCerrarSession()"
+                                size="lg" type="BottonPrimaryBlock">
+                            </app-button> 
+                        </div> 
+                        <div class="buttons"  *ngIf="!userSession">
                             <app-button
                                 nombreBotton="Iniciar Sesión"  
                                 (clicked)="onNavigate('/auth')"

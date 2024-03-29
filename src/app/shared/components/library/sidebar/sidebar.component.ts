@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { GlobalService } from '../../../service/global';
-import { Observable } from 'rxjs';
+import { GlobalService } from '../../../service/global'; 
+import { StorageService } from '../../../../../utils/service/storage/storage.service';
+import { STORAGE_KEY } from '../../../../../utils/constants/storage';
 const getStyles = (...args: string[]) => ["nombreBotton", ...args].filter(Boolean)
-
-
+ 
 
 @Component({
   selector: 'app-sidebar', 
@@ -17,7 +17,8 @@ export class SidebarComponent {
   @Input() type : "SideLanding" | 'SideDashboard' = "SideLanding";
   @Output() closed: EventEmitter<boolean> = new EventEmitter();
   sidebarArray$ = this.globalsrv.getSidebar(); 
-  
+  userSession
+
   public get typeClass(): string[] {
     return getStyles(this.type)
   }
@@ -25,9 +26,10 @@ export class SidebarComponent {
 
   constructor(
     private globalsrv: GlobalService,
+    private storgaesrv: StorageService,
     private router : Router
   ) {
-    
+    this.userSession = this.storgaesrv.isAuthenticated;
   }
 
   ngOnInit(): void { 
@@ -43,8 +45,12 @@ export class SidebarComponent {
   }
  
   onNavigate(url: string){
-    this.router.navigateByUrl('/auth');
+    this.router.navigateByUrl(url);
   }
 
- 
+  onCerrarSession(){
+    this.storgaesrv.removeData(STORAGE_KEY.sessionUser)
+    this.closed.emit(false);
+    this.onNavigate('/');
+  }
 }
