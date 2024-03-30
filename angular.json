@@ -79,6 +79,9 @@
           "configurations": {
             "production": {
               "buildTarget": "Portafoly:build:production"
+            },
+            "development": {
+              "buildTarget": "Portafoly:build:development"
             }
           },
           "defaultConfiguration": "development"
