@@ -223,7 +223,7 @@ export class GlobalService {
     {
       id_encuesta : 0,
       pregunta: '¿Cual es la capital de Perú?',
-      imagen : '',
+      imagen : 'assets/encuesta/capital-peru.jpeg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'LIMA', value : true },
       { opcion : 'B', respuesta: 'CUZCO', value : false },
@@ -232,7 +232,7 @@ export class GlobalService {
     {
       id_encuesta : 1,
       pregunta: '¿Cual es el valor de PI?',
-      imagen : '',
+      imagen : 'assets/encuesta/valor-pi.jpeg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: '3.14..', value : true },
       { opcion : 'B', respuesta: '27, 000', value : false },
