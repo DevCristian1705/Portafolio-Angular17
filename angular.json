@@ -20,7 +20,7 @@
             "allowedCommonJsDependencies": [
               "crypto-js"
             ],
-            "outputPath": "dist/browser",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
