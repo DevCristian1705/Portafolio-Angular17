@@ -1,0 +1,124 @@
+@import '../../../../assets/custom/breakpoints.scss';
+
+.encuesta{
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+
+    &__opciones{
+        display: flex;
+        gap: 4em;
+        justify-content: center;
+        align-items: center;
+
+        @include media-breakpoint('lt-md') {
+            display: flex;
+            justify-content: center;
+            gap: 3em;
+            align-items: center;
+            flex-direction: column;
+        }
+     
+    }
+
+    .alternativas{ 
+        display: flex;
+        flex-direction: column; 
+    }
+}
+
+.opcion{
+    background-color: lightgray;
+    display: flex;
+    gap: 2em;
+    padding: 20px;
+    border-radius: 25px;
+    margin: 0.5em;
+    align-items: center;
+    height: 25px;
+
+    
+    @include media-breakpoint('lt-md') {
+        gap: 0em;
+    }
+
+    .code{
+        border-radius: 50%;
+        background: #8a8a91;
+        color: white;
+        padding: 1.2em;
+        width: 25px;
+        border: 5px solid #a3a365;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        right: 20px; 
+    }
+    .code--pregunta{ 
+        background: #16164c; 
+        padding: 1em;
+        width: 30px;   
+        right: 30px;  
+    }
+
+    .resp--valid{ 
+        background: #bdf600;  
+        border: 5px solid #e3e30d;
+        right: 25px;   
+    }
+
+    .resp--error{ 
+        background: #b71200; 
+        border: 5px solid #3b3b2e; 
+        right: 25px;  
+    }
+  
+    .titulo-pregunta{ 
+        text-align: center; 
+        z-index: 5;
+        @include media-breakpoint('lt-md') { 
+            text-align: left;
+        }
+    }
+
+    .name-opcion{
+        width: 360px;
+
+        @include media-breakpoint('lt-md') {
+           width: 180px;
+        }
+    }
+}
+
+.opcion--titulo{ 
+   
+     @include media-breakpoint('lt-md') {
+        gap: 0em;
+        height: 50px;   
+        margin: 0;  
+    }
+}
+
+.resp--valid{ 
+    background: #bdf600;   
+}
+
+.resp--error{ 
+    background: #b71200;  
+}
+
+@keyframes background-color-change {
+  
+    60% {
+      background-color: green;
+    }
+    80% {
+      background-color: yellow;
+    }
+    100% {
+      background-color: red;
+    }
+  }

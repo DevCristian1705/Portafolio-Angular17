@@ -49,7 +49,7 @@ export class GlobalService {
         {code: 0,name: 'Generador Otp', router : 'dashboard/proyecto/generate-otp'},
         {code: 1,name: 'Simulador de Cambio', router : 'dashboard/proyecto/simulator'},
         {code: 2,name: 'Bg Random', router : 'dashboard/proyecto/bg-random'},
-        {code: 3,name: 'Encuesta', router : 'dashboard/proyecto/encuesta'},
+        {code: 3,name: 'Encuesta', router : 'dashboard/encuesta'},
         {code: 4,name: 'Org de tareas', router : 'dashboard/proyecto/org-task'},
         {code: 5,name: 'Calendario', router : 'dashboard/proyecto/calendar'}
       ]
@@ -225,46 +225,46 @@ export class GlobalService {
       pregunta: '¿Cual es la capital de Perú?',
       imagen : 'assets/encuesta/capital-peru.jpeg',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: 'LIMA', value : true },
-      { opcion : 'B', respuesta: 'CUZCO', value : false },
-      { opcion : 'C', respuesta: 'PARIS', value : false }] 
+      { opcion : 'A', respuesta: 'LIMA', value : true, clase: 'resp--default'},
+      { opcion : 'B', respuesta: 'CUZCO', value : false, clase: 'resp--default' },
+      { opcion : 'C', respuesta: 'PARIS', value : false, clase: 'resp--default' }] 
     },
     {
       id_encuesta : 1,
       pregunta: '¿Cual es el valor de PI?',
       imagen : 'assets/encuesta/valor-pi.jpeg',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: '3.14..', value : true },
-      { opcion : 'B', respuesta: '27, 000', value : false },
-      { opcion : 'C', respuesta: '0', value : false }] 
+      { opcion : 'A', respuesta: '3.14..', value : true , clase: 'resp--default'},
+      { opcion : 'B', respuesta: '27, 000', value : false, clase: 'resp--default' },
+      { opcion : 'C', respuesta: '0', value : false , clase: 'resp--default'}] 
     },
     {
       id_encuesta : 2,
       pregunta: '¿Que plato es tipico de Perú?',
       imagen : '',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: 'Ceviche', value : false },
-      { opcion : 'B', respuesta: 'Arroz con Pato', value : false },
-      { opcion : 'C', respuesta: 'Carapulcra', value : false },
-      { opcion : 'D', respuesta: 'Todas las anteriores', value : true }] 
+      { opcion : 'A', respuesta: 'Ceviche', value : false, clase: 'resp--default' },
+      { opcion : 'B', respuesta: 'Arroz con Pato', value : false, clase: 'resp--default' },
+      { opcion : 'C', respuesta: 'Carapulcra', value : false, clase: 'resp--default' },
+      { opcion : 'D', respuesta: 'Todas las anteriores', value : true, clase: 'resp--default' }] 
     },
     {
       id_encuesta : 3,
       pregunta: '¿De dónde son originarios los perrios Husky Siberianos?',
       imagen : '',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: 'Angola', value : false },
-      { opcion : 'B', respuesta: 'Siberia', value : true },
-      { opcion : 'C', respuesta: 'Costa Rica', value : false }] 
+      { opcion : 'A', respuesta: 'Angola', value : false, clase: 'resp--default' },
+      { opcion : 'B', respuesta: 'Siberia', value : true, clase: 'resp--default' },
+      { opcion : 'C', respuesta: 'Costa Rica', value : false, clase: 'resp--default' }] 
     },
     {
       id_encuesta : 4,
       pregunta: '¿Cuál es el simbolo quimico del agua?',
       imagen : '',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: 'Ag', value : false },
-      { opcion : 'B', respuesta: 'Co', value : false },
-      { opcion : 'C', respuesta: 'H2O', value : true }] 
+      { opcion : 'A', respuesta: 'Ag', value : false, clase: 'resp--default' },
+      { opcion : 'B', respuesta: 'Co', value : false, clase: 'resp--default' },
+      { opcion : 'C', respuesta: 'H2O', value : true, clase: 'resp--default' }] 
     },
   ]
 
@@ -372,31 +372,4 @@ export class GlobalService {
     return prefix + '-' + randomBuffer;
   }
 
-}
-
-
-// SISTEMA DE ENCUESTA
-// 2 necesito mostrar las encuentas en mi html
-// idPreguntaActual : number = 0;
-// preguntaActual : IEncuesta as {};
- 
-// preguntaActual = this.arrayEncuenta[idPreguntaActual];
-
- 
-// 	preguntaActual.pregunta
-// 	ngFor let opciones of preguntaActual.opciones_respuesta
-// 	opciones.opcion
-// 	opciones.repsuesta
-// 	evento : click = onValidateRespuesta(opciones.value, preguntaActual.id_encuesta)
-
-// 3 necesito validar la respuesta
-// 	onValidateRespuesta(respuesta : boolean, id : number){
-// 		if(respuesta){ style.opcion = VERDADERO}
-// 		else style.opcion = ERRRO;
-// 		this.goNextPregunta(id);
-// 	}
-
-// 4 mostrar la siguiente pregunta
-// goNextPregunta(id : number){ 
-//  preguntaActual = this.arrayEncuenta[id + 1]; 
-// }
+} 

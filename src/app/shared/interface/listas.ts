@@ -57,7 +57,8 @@ export interface IDatosDevelop  {
 export interface IRespuestas {
 	opcion : string;
  	respuesta: string;
- 	value : boolean
+ 	value : boolean;
+    clase : string
 }
   
 export interface IEncuesta  {

@@ -4,13 +4,15 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from "./home/home.component";
+import { EncuestaComponent } from "./proyectos/encuesta/encuesta.component";
 
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    EncuestaComponent
   ],
   imports: [
     CommonModule,

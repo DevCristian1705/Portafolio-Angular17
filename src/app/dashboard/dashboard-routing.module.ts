@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';   
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { EncuestaComponent } from './proyectos/encuesta/encuesta.component';
 
 export const routes: Routes = [
     {
@@ -13,14 +14,11 @@ export const routes: Routes = [
           path: 'home',
           component: HomeComponent, 
         },
-    //     {
-    //       path: 'registro',
-    //       component: RegistroComponent, 
-    //     },
-    //     {
-    //       path: 'change-password',
-    //       component: ChangePasswordComponent, 
-    //     },
+        {
+          path: 'encuesta',
+          component: EncuestaComponent, 
+        },
+ 
       ], 
     } 
   ];
