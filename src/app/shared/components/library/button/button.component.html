@@ -15,6 +15,14 @@
         </button> 
     </ng-container>
 
+    <ng-container *ngSwitchCase="'BottonLandingPrimary'">
+        <button  [ngClass]="typeClass" (click)="onClicked()" >  
+            <div [ngClass]="typeSize">
+                <p class="font-secondary-bold-14  texto-botton">{{ nombreBotton }}</p>  
+            </div>   
+        </button> 
+    </ng-container>
+
     <ng-container *ngSwitchCase="'BottonPrimaryBlock'">
         <button  [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()" >  
             <div [ngClass]="typeSize">

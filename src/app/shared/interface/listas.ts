@@ -65,5 +65,5 @@ export interface IEncuesta  {
 	id_encuesta : number;
 	pregunta: string;
     imagen : string;
-	opciones_respuesta : IRespuestas[]
+	opciones_respuesta : IRespuestas[] 
 }

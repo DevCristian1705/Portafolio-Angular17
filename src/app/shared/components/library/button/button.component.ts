@@ -15,7 +15,7 @@ export class ButtonComponent   {
   @Input() isActive: boolean | null = false;
   @Input() urlimagen : string | null = "";
   @Input() loadingdButton = false;
-  @Input() type: "BottonPrimary" | "Classic" | "BottonLanding" | "BottonPrimaryBlock" = "BottonPrimary";
+  @Input() type: "BottonPrimary" | "BottonLandingPrimary" | "Classic" | "BottonLanding" | "BottonPrimaryBlock" = "BottonPrimary";
   @Output() clicked = new EventEmitter();
   
 

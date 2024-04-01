@@ -6,6 +6,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { SharedModule } from './shared/shared.module'; 
 import { SecureURLComponent } from './secure-url/secure-url.component';
 import { AppRoutingModule } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
  
  
 
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app.routes';
     
   ],
   providers:[
-    { provide: LocationStrategy, useClass: HashLocationStrategy }, 
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    provideAnimationsAsync(), 
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

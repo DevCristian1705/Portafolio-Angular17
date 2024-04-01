@@ -19,6 +19,8 @@ import { EmailValidationDirective } from "../../utils/directives/email-validatio
 import { RouterOutlet } from "@angular/router";
 import { CardComponent } from "./components/library/card/card.component";
 import { SidebarComponent } from "./components/library/sidebar/sidebar.component";
+import { MatDialogRef } from "@angular/material/dialog";
+ 
  
 const MODULE_DIRECTIVES = [
     ReactiveFormDirective,
@@ -42,7 +44,7 @@ const MODULE_DIALOG = [
         CommonModule,
         FormsModule, 
         ReactiveFormsModule,
-        RouterOutlet
+        RouterOutlet,   
     ],
 
     declarations: [
@@ -75,7 +77,8 @@ const MODULE_DIALOG = [
     ],
  
     providers :[
-        AppObservable,  
+        AppObservable,   
+        { provide: MatDialogRef, useValue: {} }, 
     ]
  
 })

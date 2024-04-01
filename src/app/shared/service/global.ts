@@ -1,6 +1,6 @@
 
 import { Injectable } from "@angular/core"; 
-import { Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, Subject, of } from "rxjs";
 import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, sideBarOptions, NavbarOptions, menuOptions } from "../interface/listas";
  
 
@@ -241,7 +241,7 @@ export class GlobalService {
     {
       id_encuesta : 2,
       pregunta: '¿Que plato es tipico de Perú?',
-      imagen : '',
+      imagen : 'assets/encuesta/platos-tipicos.jpeg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Ceviche', value : false, clase: 'resp--default' },
       { opcion : 'B', respuesta: 'Arroz con Pato', value : false, clase: 'resp--default' },
@@ -251,7 +251,7 @@ export class GlobalService {
     {
       id_encuesta : 3,
       pregunta: '¿De dónde son originarios los perrios Husky Siberianos?',
-      imagen : '',
+      imagen : 'assets/encuesta/siberianos.jpeg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Angola', value : false, clase: 'resp--default' },
       { opcion : 'B', respuesta: 'Siberia', value : true, clase: 'resp--default' },
@@ -260,7 +260,7 @@ export class GlobalService {
     {
       id_encuesta : 4,
       pregunta: '¿Cuál es el simbolo quimico del agua?',
-      imagen : '',
+      imagen : 'assets/encuesta/h20.jpg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Ag', value : false, clase: 'resp--default' },
       { opcion : 'B', respuesta: 'Co', value : false, clase: 'resp--default' },
@@ -311,12 +311,12 @@ export class GlobalService {
     let datosDev: Observable<IDatosDevelop[]> = of(this.datosDevelop); 
     return datosDev;
   }
-
-  getDatosEncuesta(): Observable<IEncuesta[]> { 
-    let datosEncuesta: Observable<IEncuesta[]> = of(this.datosEncuesta); 
-    return datosEncuesta;
+ 
+  getDatosEncuesta(): Observable<IEncuesta[]> {  
+    let datosEncuesta: Observable<IEncuesta[] >= of(this.datosEncuesta); 
+    return datosEncuesta; 
   }
-
+  
   onValidPass(event : any){   
     var contrasenna = event;
     let existeMayuscula = false;

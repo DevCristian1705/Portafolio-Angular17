@@ -1,25 +1,29 @@
 <div class="funds">
-    <div
-        class="funds__content"
-        [style.width]="width"
-    >
-        <img
-            class="imagen"
-            [src]="data.icon"
-            alt
-        >
-        <div class="titulo font-primary-bold-h5 mb-4">{{ data.titulo }}</div>
-        <div
-            class="font-secondary-regular-16 mb-6"
-            [innerHtml]="bodyHtml"
-        >
+    <img class="imagen" [src]="data.icon" alt  >
+
+    <div class="funds__content" [style.width]="width" > 
+        <div class="titulo primary-bold-h5 mb-4">
+            {{ data.titulo }}
         </div>
-        <div class="boton">
+        <div class=" body font-secondary-regular-16">  
+            {{ data.body }} <br>
+             <span>
+               <b> {{ data.puntaje }}  acierto(s) de {{ data.total }} preguntas</b>
+            </span>
+        </div>
+        <div class="botones">
             <app-button
-                (click)="onAceptar()"
-                type="BottonPrimary"
+                (click)="onAceptar(false)"
+                type="BottonLandingPrimary"
                 [size]="size"
-                [nombreBotton]="data.nameBoton" 
+                [nombreBotton]="data.nameBotonConfirm" 
+            ></app-button>
+
+            <app-button
+                (click)="onAceptar(true)"
+                type="BottonLanding"
+                [size]="size"
+                [nombreBotton]="data.nameBotonCancel" 
             ></app-button>
         </div>
     </div>

@@ -1,5 +1,5 @@
- import { Component, Inject, SecurityContext } from '@angular/core';
-// import { DomSanitizer } from '@angular/platform-browser';
+import { Component, Inject } from '@angular/core';  
+import {  MAT_DIALOG_DATA,  MatDialogRef } from '@angular/material/dialog'; 
  
 @Component({
   selector: 'cbx-dialog-message',
@@ -10,27 +10,23 @@
    width = 'auto';
    size = 'sm' ;
    bodyHtml : any ="";
-   data: any;
-//   constructor(
-//     // private dialogRef: DialogRef,
-//     // @Inject(DIALOG_DATA) public data: any,
-//     private sanitizer: DomSanitizer
-//     ) {
-//     if (data?.width) {
-//       this.width = data.width;
-//     } 
-//     if (data) {
-//       this.size = data.sizeButton ? data.sizeButton : this.size;
-//     }
-  
-//   }
 
-//   ngOnInit(){
-//     this.bodyHtml =  this.sanitizer.sanitize(SecurityContext.HTML, this.data.body);
-//   }
+  constructor(
+    public dialogRef: MatDialogRef<DialogMessageComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, 
+   
+    ) {
+    if (data?.width) {
+      this.width = data.width;
+    }   
+   }
 
-  onAceptar() {
-   // this.dialogRef.close(true);
+   ngOnInit(){
+    console.log('data', this.data)
+   }
+ 
+  onAceptar(value : boolean){
+    this.dialogRef.close(value);
   }
 
 }

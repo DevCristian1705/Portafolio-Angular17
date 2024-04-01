@@ -1,8 +1,5 @@
 <div class="encuesta">
-    <div class="opcion opcion--titulo primary-bold-h2" [ngClass]="{'loader-title-encuesta' : newQuestion}" > 
-        <div class="code code--pregunta">
-            {{currentQuestion.id_encuesta + 1}} 
-        </div>
+    <div class="opcion-titulo primary-bold-h2"> 
         <div class="titulo-pregunta">
             {{currentQuestion.pregunta}}
         </div> 
@@ -10,24 +7,21 @@
 
     <div class="encuesta__opciones">
         <div class="imagen">
-            <img [src]="imagenPregunta" alt="">
+            <img [src]="imagenPregunta" alt="" width="250" height="250">
          </div>
-         <div class="alternativas cursor-pointer"  >
-            <div class="opcion primary-bold-h4" [ngClass]="op.clase"
-             *ngFor="let op of currentQuestion.opciones_respuesta"
-             (click)="onValidateRespuesta(currentQuestion.id_encuesta, op)"> 
-                <div class="code" [ngClass]="op.clase" >
-                    {{op.opcion}} 
-                </div>
-                <div class="name-opcion"  [ngClass]="op.clase">
-                    {{op.respuesta}}
+         <div class="alternativas cursor-pointer">
+            <div class="primary-bold-h4"  *ngFor="let op of currentQuestion.opciones_respuesta"> 
+                <div class="opcion" [ngClass]="op.clase" (click)="onValidateRespuesta(currentQuestion.id_encuesta, op)">
+                    <div class="code" [ngClass]="op.clase" >
+                        {{op.opcion}} 
+                    </div>
+                    <div class="name-opcion"  [ngClass]="op.clase">
+                        {{op.respuesta}}
+                    </div> 
                 </div> 
             </div> 
          </div>
     </div> 
 </div>
 
-
-<!-- 
-    <app-resultados-encuesta></app-resultados-encuesta>
- -->
+ 

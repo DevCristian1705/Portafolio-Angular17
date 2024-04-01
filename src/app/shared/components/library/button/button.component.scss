@@ -145,11 +145,38 @@ $color-red-hover : #d40808;
     .spinner--quarter {@include styleSpinnerQarter(#fff7f7)}   
 }
 
+.BottonLandingPrimary{     
+    @include styleButton($color-red, solid 1px $color-red);   
+    width: 100%;
+ 
+    &__sm { .texto-botton {
+        padding: 8px 20px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__lg { .texto-botton {
+        padding: 8px 20px !important;
+        @include styleTextoButton(white);   
+    }}
+
+    
+    .texto-botton, .texto-botton-oculto{    
+        @include styleTextoButton(white);   
+        &:disabled:not(.texto-botton, .texto-botton-oculto:hover){ 
+            cursor:default;
+            color:  $color-secondary-200; } 
+    }
+     
+}
+
+
 .BottonLanding{     
     @include styleButton(#0c066d, solid 1px #288aff);  
     width: 100%;
  
-    
+    &__sm { .texto-botton {
+        padding: 8px 20px !important;
+        @include styleTextoButton(white);   
+    }}
     &__lg { .texto-botton {
         padding: 8px 20px !important;
         @include styleTextoButton(white);   

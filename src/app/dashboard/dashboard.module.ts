@@ -22,6 +22,7 @@ import { EncuestaComponent } from "./proyectos/encuesta/encuesta.component";
   providers: [    
     { provide: LOCALE_ID, useValue: 'es' }  
   ],  
+  bootstrap: [DashboardComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DashboardModule { }

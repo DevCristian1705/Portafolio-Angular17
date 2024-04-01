@@ -15,11 +15,24 @@ export const messageType = {
         nameBotonConfirm: 'Si',
         nameBotonCancel: 'No',
         sizeButton: ''
-    }, 
-   
+    },  
 }
 
  
+export const messageEncuesta = {
+    finish:
+    {
+        titulo: '!Gracias por participar¡',
+        body: 'Hemos llegado al final de las preguntas por lo tanto te mostraremos tu puntaje',
+        icon: 'assets/iconos/icono-navbar.png',
+        nameBotonConfirm: 'Salir',
+        nameBotonCancel: 'Intentar otra vez',
+        sizeButton: '',
+        puntaje: 0,
+        total: 0 
+    }
+}
+
 export const messageAuth = {
     revisa_tus_datos:
     {
