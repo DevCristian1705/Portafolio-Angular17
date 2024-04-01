@@ -3,7 +3,7 @@ export const messageType = {
     {
         titulo: 'Algo salió mal',
         body: 'Lo sentimos, se ha presentado un inconveniente. Por favor inténtalo nuevamente.',
-        icon: 'assets/imagenes/iconos/icono-algo-salio-mal.svg',
+        icon: 'assets/iconos/icono-navbar.png',
         nameBoton: 'Aceptar',
         sizeButton: ''
     }, 
@@ -11,7 +11,7 @@ export const messageType = {
     {
         titulo: '¿Estas seguro de cerrar sesión?',
         body: 'Se cerrará tu sesión inmediatamente ',
-        icon: 'assets/imagenes/iconos/icono-revisa-tus-datos.svg',
+        icon: 'assets/iconos/icono-navbar.png',
         nameBotonConfirm: 'Si',
         nameBotonCancel: 'No',
         sizeButton: ''
@@ -38,15 +38,15 @@ export const messageAuth = {
     {
         titulo: 'Datos incorrectos',
         body: 'Alguno de los datos ingresado son incorrectos, revísalos antes de continuar.',
-        icon: 'assets/imagenes/iconos/icono-revisa-tus-datos.svg',
+        icon: 'assets/iconos/icono-navbar.png',
         nameBoton: 'Aceptar',
         sizeButton: ''
     },
     datos_existentes:
     {
         titulo: 'Datos Registrados',
-        body: 'Estos datos ya se encuentran registrados,  ir a la opción de iniciar sesión.',
-        icon: 'assets/imagenes/iconos/icono-revisa-tus-datos.svg',
+        body: 'Estos datos ya se encuentran registrados,debes iniciar sesión.',
+        icon: 'assets/iconos/icono-navbar.png',
         nameBoton: 'Iniciar sesión',
         sizeButton: ''
     },
@@ -54,7 +54,7 @@ export const messageAuth = {
     {
         titulo: 'Datos no existen',
         body: 'Los datos ingresados no están registrados. Te invitamos a registrarte.',
-        icon: 'assets/imagenes/iconos/icono-revisa-tus-datos.svg',
+        icon: 'assets/iconos/icono-navbar.png',
         nameBoton: 'Ir a registro',
         sizeButton: ''
     },
@@ -67,7 +67,7 @@ export const messageDelete = {
     {
         titulo: 'Eliminar representante',
         body: '¿Estás seguro de eliminar este representante?',
-        icon: 'assets/imagenes/modals/mano-dollar.svg',
+        icon: 'assets/iconos/icono-navbar.png',
         nameBotonConfirm: 'Si',
         nameBotonCancel: 'No',
         sizeButton: ''
@@ -76,7 +76,7 @@ export const messageDelete = {
     {
         titulo: 'Eliminar accionista',
         body: '¿Estás seguro de eliminar este accionista?',
-        icon: 'assets/imagenes/modals/mano-dollar.svg',
+        icon: 'assets/iconos/icono-navbar.png',
         nameBotonConfirm: 'Si',
         nameBotonCancel: 'No',
         sizeButton: ''
@@ -85,7 +85,7 @@ export const messageDelete = {
     {
         titulo: 'Recuerda que',
         body: ' Se borrarán los datos ingresados de cada accionista(s), ¿Estas seguro?',
-        icon: 'assets/imagenes/modals/mano-dollar.svg',
+        icon: 'assets/iconos/icono-navbar.png',
         nameBotonConfirm: 'Si',
         nameBotonCancel: 'No',
         sizeButton: ''

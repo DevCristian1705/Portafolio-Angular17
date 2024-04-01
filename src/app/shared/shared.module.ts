@@ -20,6 +20,8 @@ import { RouterOutlet } from "@angular/router";
 import { CardComponent } from "./components/library/card/card.component";
 import { SidebarComponent } from "./components/library/sidebar/sidebar.component";
 import { MatDialogRef } from "@angular/material/dialog";
+import { DialogEncuestaComponent } from "./components/dialog/dialog-encuesta/dialog-encuesta.component";
+import { DialogConfirmComponent } from "./components/dialog/dialog-confirm/dialog-confirm.component";
  
  
 const MODULE_DIRECTIVES = [
@@ -35,7 +37,9 @@ const MODULE_PIPES = [
 ]
 
 const MODULE_DIALOG = [
-    DialogMessageComponent
+    DialogMessageComponent,
+    DialogEncuestaComponent,
+    DialogConfirmComponent
 ]
 
 

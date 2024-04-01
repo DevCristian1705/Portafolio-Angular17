@@ -13,10 +13,10 @@
             <div class="primary-bold-h4"  *ngFor="let op of currentQuestion.opciones_respuesta"> 
                 <div class="opcion" [ngClass]="op.clase" (click)="onValidateRespuesta(currentQuestion.id_encuesta, op)">
                     <div class="code" [ngClass]="op.clase" >
-                        {{op.opcion}} 
+                        {{ op.opcion }} 
                     </div>
                     <div class="name-opcion"  [ngClass]="op.clase">
-                        {{op.respuesta}}
+                        {{op.respuesta | titlecase}}
                     </div> 
                 </div> 
             </div> 

@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, ElementRef, Renderer2 } from '@angular/core';
+import {  Component, ElementRef, Renderer2 } from '@angular/core';
 import { GlobalService } from '../../../shared/service/global';
 import { IEncuesta, IRespuestas } from '../../../shared/interface/listas';
-import { DialogMessageComponent } from '../../../shared/components/dialog/dialog-message/dialog-message.component';
 import { messageEncuesta } from '../../../shared/components/message-type/message-type';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DialogEncuestaComponent } from '../../../shared/components/dialog/dialog-encuesta/dialog-encuesta.component';
  
 
 @Component({
@@ -82,7 +82,7 @@ export class EncuestaComponent {
         messageEncuesta.finish.puntaje =  this.questionValid.length;
         messageEncuesta.finish.total =  this.arrayEncuestaOrigin.length;
       
-        const dialogRef = this.dialog.open(DialogMessageComponent, {
+        const dialogRef = this.dialog.open(DialogEncuestaComponent, {
           disableClose: false, width: '350px', data: messageEncuesta.finish 
         });
 
@@ -100,23 +100,34 @@ export class EncuestaComponent {
  
   onReset(){ 
     this.arrayEncuesta.forEach((element: IEncuesta) => {
-      element.opciones_respuesta.forEach(elem => {  
-        elem.opcion = elem.opcion;
+      element.opciones_respuesta.forEach((elem, i) => {  
+        elem.opcion = this.setCodeQuestion(i+1);
         elem.clase = 'resp--default';  
       });  
     });
  
     this.arrayEncuestaOrigin.forEach((element: IEncuesta) => {
-      element.opciones_respuesta.forEach(elem => {  
-        elem.opcion = elem.opcion;
+      element.opciones_respuesta.forEach((elem, i) => {  
+        elem.opcion = this.setCodeQuestion(i+1);
         elem.clase = 'resp--default';  
       });  
     });
 
-    this.questionValid = []; 
-
+    this.questionValid = [];  
   }
  
+  setCodeQuestion(code : number){ 
+    const classEstado: { [key: number]: string } = {
+      1  : 'A',
+      2  : 'B',
+      3  : 'C',
+      4  : 'D',
+      5  : 'E',
+    }; 
+    return classEstado[code]; 
+
+
+  }
 
   showRandomQuestion() { 
     this.onAnimation();

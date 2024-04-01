@@ -2,16 +2,16 @@ import { Component, Inject } from '@angular/core';
 import {  MAT_DIALOG_DATA,  MatDialogRef } from '@angular/material/dialog'; 
  
 @Component({
-  selector: 'cbx-dialog-message',
-  templateUrl: './dialog-message.component.html',
-  styleUrls: ['./dialog-message.component.scss'],
+  selector: 'app-dialog-confirm', 
+  templateUrl: './dialog-confirm.component.html',
+  styleUrl: './dialog-confirm.component.scss'
 })
- export class DialogMessageComponent {
-   width = 'auto';
+export class DialogConfirmComponent {
+  width = 'auto';
    size = 'sm' ;
-  
+    
   constructor(
-    public dialogRef: MatDialogRef<DialogMessageComponent>,
+    public dialogRef: MatDialogRef<DialogConfirmComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, 
    
     ) {
@@ -19,9 +19,8 @@ import {  MAT_DIALOG_DATA,  MatDialogRef } from '@angular/material/dialog';
       this.width = data.width;
     }   
    }
-  
+ 
   onAceptar(value : boolean){
     this.dialogRef.close(value);
   }
-
 }

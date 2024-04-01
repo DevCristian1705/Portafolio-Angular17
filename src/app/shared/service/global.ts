@@ -222,7 +222,7 @@ export class GlobalService {
   private datosEncuesta : IEncuesta[] = [
     {
       id_encuesta : 0,
-      pregunta: '¿Cual es la capital de Perú?',
+      pregunta: '¿Cuál es la capital de Perú?',
       imagen : 'assets/encuesta/capital-peru.jpeg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'LIMA', value : true, clase: 'resp--default'},
@@ -231,7 +231,7 @@ export class GlobalService {
     },
     {
       id_encuesta : 1,
-      pregunta: '¿Cual es el valor de PI?',
+      pregunta: '¿Cuál es el valor de "PI"?',
       imagen : 'assets/encuesta/valor-pi.jpeg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: '3.14..', value : true , clase: 'resp--default'},
@@ -240,7 +240,7 @@ export class GlobalService {
     },
     {
       id_encuesta : 2,
-      pregunta: '¿Que plato es tipico de Perú?',
+      pregunta: '¿Qué platos son típicos en el Perú?',
       imagen : 'assets/encuesta/platos-tipicos.jpeg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Ceviche', value : false, clase: 'resp--default' },
@@ -250,7 +250,7 @@ export class GlobalService {
     },
     {
       id_encuesta : 3,
-      pregunta: '¿De dónde son originarios los perrios Husky Siberianos?',
+      pregunta: '¿De dónde son originarios los perros Husky-Siberianos?',
       imagen : 'assets/encuesta/siberianos.jpeg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Angola', value : false, clase: 'resp--default' },
@@ -259,7 +259,7 @@ export class GlobalService {
     },
     {
       id_encuesta : 4,
-      pregunta: '¿Cuál es el simbolo quimico del agua?',
+      pregunta: '¿Cuál es el símbolo químico del agua?',
       imagen : 'assets/encuesta/h20.jpg',
       opciones_respuesta : [
       { opcion : 'A', respuesta: 'Ag', value : false, clase: 'resp--default' },

@@ -32,6 +32,12 @@
                                 (clicked)="onCerrarSession()"
                                 size="lg" type="BottonPrimaryBlock">
                             </app-button> 
+
+                            <app-button
+                                nombreBotton="Dashboard"  
+                                (clicked)="onNavigate('/dashboard')"
+                                size="lg" type="BottonPrimaryBlock">
+                            </app-button> 
                         </div> 
                         <div class="buttons"  *ngIf="!userSession">
                             <app-button

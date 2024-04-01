@@ -6,14 +6,21 @@
             {{ data.titulo }}
         </div>
         <div class=" body font-secondary-regular-16">  
-            {{ data.body }} <br> 
+            {{ data.body }}  
         </div>
         <div class="botones">
+            <app-button
+                (click)="onAceptar(false)"
+                type="BottonLandingPrimary"
+                [size]="size"
+                [nombreBotton]="data.nameBotonConfirm" 
+            ></app-button>
+
             <app-button
                 (click)="onAceptar(true)"
                 type="BottonLanding"
                 [size]="size"
-                [nombreBotton]="data.nameBoton" 
+                [nombreBotton]="data.nameBotonCancel" 
             ></app-button>
         </div>
     </div>

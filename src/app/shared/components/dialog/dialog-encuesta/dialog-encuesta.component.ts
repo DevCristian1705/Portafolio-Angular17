@@ -2,16 +2,17 @@ import { Component, Inject } from '@angular/core';
 import {  MAT_DIALOG_DATA,  MatDialogRef } from '@angular/material/dialog'; 
  
 @Component({
-  selector: 'cbx-dialog-message',
-  templateUrl: './dialog-message.component.html',
-  styleUrls: ['./dialog-message.component.scss'],
+  selector: 'app-dialog-encuesta', 
+  templateUrl: './dialog-encuesta.component.html',
+  styleUrl: './dialog-encuesta.component.scss'
 })
- export class DialogMessageComponent {
-   width = 'auto';
+export class DialogEncuestaComponent {
+  width = 'auto';
    size = 'sm' ;
-  
+   bodyHtml : any ="";
+
   constructor(
-    public dialogRef: MatDialogRef<DialogMessageComponent>,
+    public dialogRef: MatDialogRef<DialogEncuestaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, 
    
     ) {
@@ -19,9 +20,12 @@ import {  MAT_DIALOG_DATA,  MatDialogRef } from '@angular/material/dialog';
       this.width = data.width;
     }   
    }
-  
+
+   ngOnInit(){
+    console.log('data', this.data)
+   }
+ 
   onAceptar(value : boolean){
     this.dialogRef.close(value);
   }
-
 }

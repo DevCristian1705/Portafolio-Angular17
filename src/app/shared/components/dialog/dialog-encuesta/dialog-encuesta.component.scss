@@ -28,9 +28,13 @@
      
     .botones{
       margin: 1em 0;
-      display: flex; 
-      justify-content: center;
-      
+      display: flex;
+      justify-content:space-evenly;
+
+      @include media-breakpoint("xs") { 
+        flex-direction: column;
+        gap: 0.5em;
+      } 
     }
   }
 }

@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { StorageService } from '../../../utils/service/storage/storage.service';
 import { IUser } from '../../../utils/interface/user.interface';
 import { STORAGE_KEY } from '../../../utils/constants/storage';
+import { DialogMessageComponent } from '../../shared/components/dialog/dialog-message/dialog-message.component';
+import { MatDialog } from '@angular/material/dialog';
+import { messageAuth } from '../../shared/components/message-type/message-type';
 
 @Component({
   selector: 'app-login', 
@@ -21,7 +24,8 @@ export class LoginComponent   {
   constructor(
     public fb: FormBuilder, 
     private router: Router,  
-    private storageService : StorageService
+    private storageService : StorageService,
+    public dialog: MatDialog
   ) {
     const patronCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -63,7 +67,14 @@ export class LoginComponent   {
       this.loadingButton = false;    
       this.onNavigate('/dashboard');
     } else {
-      console.log('Los datos no existen, te invitamos a registrarte');
+       
+      const dialogRef = this.dialog.open(DialogMessageComponent, {
+        disableClose: false, width: '350px', data: messageAuth.datos_Noexistentes 
+      });
+
+      dialogRef.afterClosed().subscribe((resp: boolean) => { 
+        this.onNavigate('/auth/registro');
+      });   
       this.loadingButton = false;  
     } 
   }

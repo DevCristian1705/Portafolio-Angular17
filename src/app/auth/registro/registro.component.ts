@@ -6,6 +6,9 @@ import { GlobalService } from '../../shared/service/global';
 import { STORAGE_KEY } from '../../../utils/constants/storage';
 import { IUser } from '../../../utils/interface/user.interface';
 import { EInputValidation } from '../../shared/components/library/input/input.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogMessageComponent } from '../../shared/components/dialog/dialog-message/dialog-message.component';
+import { messageAuth } from '../../shared/components/message-type/message-type';
  
 @Component({
   selector: 'app-registro',
@@ -73,6 +76,7 @@ get getErrorPass(): string {
     private router: Router,  
     private storageService : StorageService,
     private globalsrv: GlobalService, 
+    public dialog: MatDialog
   ) { 
     const patronCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -116,8 +120,15 @@ get getErrorPass(): string {
       this.loadingButton = false; 
       this.onLogin(); 
     } else { 
-      this.loadingButton = false; 
-      console.log('El usuario' + newUser.names + ' ya existe.');
+      this.loadingButton = false;  
+
+      const dialogRef = this.dialog.open(DialogMessageComponent, {
+        disableClose: false, width: '350px', data: messageAuth.datos_existentes 
+      }); 
+      dialogRef.afterClosed().subscribe((resp: boolean) => { 
+        this.onLogin(); 
+      });   
+
       return;
     }
   
