@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SecureURLComponent } from './secure-url/secure-url.component';
+import { LandingComponent } from './landing/landing.component';
 
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)
+    component: LandingComponent 
   }, 
   {
     path: 'auth',

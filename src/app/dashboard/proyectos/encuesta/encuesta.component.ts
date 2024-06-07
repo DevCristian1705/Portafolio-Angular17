@@ -29,8 +29,8 @@ export class EncuestaComponent {
   constructor(
     private globalsrv : GlobalService,
     public dialog: MatDialog, 
-    private renderer: Renderer2,
-    private el: ElementRef,
+    // private renderer: Renderer2,
+    // private el: ElementRef,
     private router: Router, 
   ){  
   }
@@ -43,8 +43,8 @@ export class EncuestaComponent {
   onLoadEncuesta( ){ 
     this.globalsrv.getDatosEncuesta() 
     .subscribe((resp)=> { 
-      this.arrayEncuesta = resp;  
-      this.arrayEncuestaOrigin = resp;
+      this.arrayEncuesta = {...resp};  
+      this.arrayEncuestaOrigin =  {...resp}; 
       this.currentQuestion = {} as IEncuesta; // reset currentQuestion
       this.showRandomQuestion();
     })
@@ -125,8 +125,6 @@ export class EncuestaComponent {
       5  : 'E',
     }; 
     return classEstado[code]; 
-
-
   }
 
   showRandomQuestion() { 
@@ -142,33 +140,43 @@ export class EncuestaComponent {
   } 
 
   onAnimationTitle(){
-    const elements = this.el.nativeElement.querySelectorAll('.opcion-titulo');
-    elements.forEach((element: any) => {  
-      this.renderer.addClass(element, 'loader-title-encuesta');   
-    });
+    const elemento = document.querySelector('.opcion-titulo');
+    if (elemento) elemento.classList.add('loader-title-encuesta')
+
+    // const elements = this.el.nativeElement.querySelectorAll('.opcion-titulo');
+    // elements.forEach((element: any) => {  
+    //   this.renderer.addClass(element, 'loader-title-encuesta');   
+    // });
    }
 
    onAnimationTitleRemove(){
-    const elements = this.el.nativeElement.querySelectorAll('.opcion-titulo');
-    elements.forEach((element: any) => {  
-        this.renderer.removeClass(element, 'loader-title-encuesta');  
-    });
+    const elemento = document.querySelector('.opcion-titulo');
+    if (elemento) elemento.classList.remove('loader-title-encuesta')
+    // const elements = this.el.nativeElement.querySelectorAll('.opcion-titulo');
+    // elements.forEach((element: any) => {  
+    //     this.renderer.removeClass(element, 'loader-title-encuesta');  
+    // });
    }
 
 
    onAnimation(){
-    const elements = this.el.nativeElement.querySelectorAll('.encuesta');
-    elements.forEach((element: any) => { 
-      this.renderer.addClass(element, 'change-question-fade');  
-    });
+    const elemento = document.querySelector('.encuesta');
+    if (elemento) elemento.classList.add('change-question-fade') 
+    // const elements = this.el.nativeElement.querySelectorAll('.encuesta');
+    // elements.forEach((element: any) => { 
+    //   this.renderer.addClass(element, 'change-question-fade');  
+    // });
    }
 
    
    onAnimationRemove(){
-    const elements = this.el.nativeElement.querySelectorAll('.encuesta');
-    elements.forEach((element: any) => { 
-      this.renderer.removeClass(element, 'change-question-fade');  
-    });
+    const elemento = document.querySelector('.encuesta');
+    if (elemento) elemento.classList.remove('change-question-fade') 
+
+    // const elements = this.el.nativeElement.querySelectorAll('.encuesta');
+    // elements.forEach((element: any) => { 
+    //   this.renderer.removeClass(element, 'change-question-fade');  
+    // });
    }
 
  

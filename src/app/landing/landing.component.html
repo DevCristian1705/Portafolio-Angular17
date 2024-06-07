@@ -1,13 +1,37 @@
-<app-navbar></app-navbar>
+ 
+	  <!-- <app-navbar></app-navbar>  -->
+	<div class="landing bg-black white  "> 
+		<div class="landing__name">
+			<div class="loader-up"> </div>
+				<h1 class="animation-fadeIn"> Cristian Martinez</h1>
+			<div class="loader-up loader-up--rotate "> </div>
+		</div>
+
+		<div class="landing__profession animation-fadeIn animation-fadeIn--description">
+			<span>
+				Develop Frontend, con más de 5 años de experiencia en el desarrollo web, 
+				en constante capacitación, autodidacta y con ganas de seguir aprendiendo.
+			</span>
+		</div>
+
+		<app-button 
+			class="animation-fadeIn animation-fadeIn--button"
+			nombreBotton="Explorar"
+			type="BottonPrimary"
+			size="md" 
+			[sizeResponsive]="true" >
+		</app-button>
+	</div>
+
 	<div class="home-lading">   
 		<div class="cards"> 
    
-			<app-card
+			<!-- <app-card
 				id="home" 
 				[dataArray]="dataDevelopArray$"
 				type="CardDevelop">
 			</app-card>
-			
+			 -->
 			<app-card
 				id="jobs"
 				title="EXPERIENCIA LABORAL"

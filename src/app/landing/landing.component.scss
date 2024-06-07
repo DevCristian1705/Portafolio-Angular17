@@ -1,5 +1,35 @@
  @import '../../assets/custom/breakpoints.scss';
 
+ .landing{
+	text-align: center;
+	padding: 3em 2em ;
+	height: 100%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    gap: 2em;
+	
+	&__name{
+		max-width: 420px;
+
+		h1{
+			letter-spacing: 3px;
+			padding: 0.2em 1em;
+			margin: 0;
+		}
+	}
+
+	&__profession{
+		padding: 1em 0;
+		max-width: 400px;
+		display: flex;
+		text-align: center;
+		line-height: 20px;
+		letter-spacing: 1px;
+	}
+ }
+
  .home-lading{
 	background-color: lightgray;
 	display: flex;
@@ -23,3 +53,71 @@
  }
  
  
+
+
+ 
+@mixin loaderName() {
+	height: 6px;
+	position: relative;
+	overflow: hidden;
+	background-color: transparent ; 
+	border-radius: 10px;
+  }
+  
+  @mixin loaderNameAfter($animation, $bg-color) {
+	content: "";
+	position: absolute; 
+	height: 3px; 
+	background-color: $bg-color ; 
+	border-radius: 50px;
+	animation: $animation 3s forwards;
+	animation-fill-mode: forwards;
+	display: block; 
+	animation-delay: 1s;
+  }
+  
+  @keyframes lineAnimUp {
+	0% { width: 0%; }
+	100% { width: 100%; background-color: #34b356 }
+  } 
+  
+  
+  .loader-up {
+	@include loaderName();  
+	&:after {@include loaderNameAfter(lineAnimUp, #C7B1DA)}   
+  
+	&--rotate {
+	  transform: rotate(180deg);
+	}
+  }
+
+
+  @mixin animationFadeIn($fade, $delay) {
+	animation: $fade;
+	animation-delay: $delay;
+  }
+  
+  .animation-fadeIn{ 
+	@include animationFadeIn(AnimationfadeIn 2s ease-in-out, 0s); 
+
+	&--description{
+		@include animationFadeIn(AnimationfadeInElementos 5s ease-in-out, 0s); 
+	}
+	&--button{
+		@include animationFadeIn(AnimationfadeInElementos 5.1s ease-in-out, 0s); 
+	}
+  }
+  
+  @keyframes AnimationfadeIn {
+	0% { visibility: hidden; opacity: 0; }
+	50% { visibility: hidden; opacity: 0.5;	}
+	100% { visibility: visible; opacity: 1;	}
+  }
+
+  @keyframes AnimationfadeInElementos {
+	0% { visibility: hidden }
+	25% { visibility: hidden }
+	50% { visibility: hidden }
+	75% { visibility: visible; opacity: 0.5; }
+	100% { visibility: visible; opacity: 1;	}
+  }
