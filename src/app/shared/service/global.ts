@@ -1,7 +1,7 @@
 
 import { Injectable } from "@angular/core"; 
 import { BehaviorSubject, Observable, Subject, of } from "rxjs";
-import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, sideBarOptions, NavbarOptions, menuOptions } from "../interface/listas";
+import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, sideBarOptions, NavbarOptions, menuOptions, ISkills } from "../interface/listas";
  
 
 @Injectable({
@@ -268,7 +268,34 @@ export class GlobalService {
     },
   ]
 
-
+  private datosSkills : ISkills[] = [
+    {
+      icon: 'assets/iconos/js.webp',
+      alt_icon: 'icono de JavaScritp',
+    },{
+      icon: 'assets/iconos/ts.png',
+      alt_icon: 'icono de TypeScritp',
+    },{
+      icon: 'assets/iconos/html.png',
+      alt_icon: 'icono de Html',
+    },{
+      icon: 'assets/iconos/scss.png',
+      alt_icon: 'icono de Scss',
+    },{ 
+      icon: 'assets/iconos/jira.png',
+      alt_icon: 'icono de Jira',
+    },{
+      icon: 'assets/iconos/git.png',
+      alt_icon: 'icono de Git',
+    },{
+      icon: 'assets/iconos/github.png',
+      alt_icon: 'icono de Github',
+    },{
+      icon: 'assets/iconos/azure.png',
+      alt_icon: 'icono de Azure',
+    }
+  ]
+  
   onCopyCodeText(text: any) {
     navigator.clipboard.writeText(text)
         .then(() => { console.log('Código copiado')})
@@ -315,6 +342,11 @@ export class GlobalService {
   getDatosEncuesta(): Observable<IEncuesta[]> {  
     let datosEncuesta: Observable<IEncuesta[] >= of(this.datosEncuesta); 
     return datosEncuesta; 
+  }
+
+  getskilss(): Observable<ISkills[]> {  
+    let datosSkills: Observable<ISkills[] >= of(this.datosSkills); 
+    return datosSkills; 
   }
   
   onValidPass(event : any){   

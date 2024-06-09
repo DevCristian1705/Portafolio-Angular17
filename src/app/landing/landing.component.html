@@ -1,6 +1,6 @@
  
 	  <!-- <app-navbar></app-navbar>  -->
-	<div class="landing bg-black white  "> 
+	<div class="landing bg-black white animation-bg-imagen"> 
 		<div class="landing__name">
 			<div class="loader-up"> </div>
 				<h1 class="animation-fadeIn"> Cristian Martinez</h1>
@@ -23,15 +23,31 @@
 		</app-button>
 	</div>
 
+
+	<div class="skills bg-blue white">
+		<h1> Habilidades</h1>
+		<div class="skills__info">
+			A lo largo de esta aventura como programador web, he obtenido habilidad para mejorar las paginas 
+			que me solicitan en las empresas de las cuales he sido parte, a continuacion listare las habilidad que 
+			mas resaltan dentro de todas las que he venido usando y aprendido.
+		</div >
+		<div class="skills__iconos animation-fadeIn animation-fadeIn--skills">
+			<div *ngFor="let skill of dataSkills">
+				<img [src]="skill.icon" width="50" height="50" [alt]="skill.alt_icon"> 
+			</div> 
+		</div>
+	</div>
+
+
 	<div class="home-lading">   
 		<div class="cards"> 
-   
+
 			<!-- <app-card
 				id="home" 
 				[dataArray]="dataDevelopArray$"
 				type="CardDevelop">
 			</app-card>
-			 -->
+				-->
 			<app-card
 				id="jobs"
 				title="EXPERIENCIA LABORAL"
@@ -48,7 +64,7 @@
 				dataHover="Click para conocer más">
 			</app-card>
 		
-		  	<app-card
+			<app-card
 				id="contact"
 				title="CONTACTO"
 				type="CardContacto"
@@ -58,4 +74,5 @@
 
 		</div> 
 	</div>
-<app-footer></app-footer> 
+	<app-footer></app-footer> 
+ 

@@ -67,3 +67,9 @@ export interface IEncuesta  {
     imagen : string;
 	opciones_respuesta : IRespuestas[] 
 }
+
+
+export interface ISkills {  
+    icon: string,   
+    alt_icon: string,   
+}

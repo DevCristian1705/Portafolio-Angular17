@@ -1,15 +1,14 @@
  @import '../../assets/custom/breakpoints.scss';
 
  .landing{
-	text-align: center;
-	padding: 3em 2em ;
+	text-align: center; 
 	height: 100%;
 	align-items: center;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-    gap: 2em;
-	
+    gap: 2em; 
+
 	&__name{
 		max-width: 420px;
 
@@ -29,7 +28,7 @@
 		letter-spacing: 1px;
 	}
  }
-
+ 
  .home-lading{
 	background-color: lightgray;
 	display: flex;
@@ -52,7 +51,43 @@
 	} 
  }
  
- 
+ .skills{
+	text-align: center;
+	padding: 3em 2em ;
+	height: 60%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    gap: 2em;
+
+	h1{
+		box-shadow: 0px 5px 0px 0px rgba(255, 255, 255, 0.8);
+	}
+
+	&__info{
+		max-width: 500px;
+		letter-spacing: 1px;
+		font-family: cursive;
+	}
+
+	&__iconos{ 
+		justify-content: center;
+		display: flex;
+		gap: 2em;
+		align-items: center;
+		padding: 2em;
+		flex-wrap: wrap; 
+
+		img{
+		    box-shadow: 0px 5px 0px 0px rgb(255 255 255 / 80%);  
+			border-radius: 10%;
+			padding-bottom: 5px;
+		} 
+	}
+
+
+ }
 
 
  
@@ -62,62 +97,86 @@
 	overflow: hidden;
 	background-color: transparent ; 
 	border-radius: 10px;
-  }
-  
-  @mixin loaderNameAfter($animation, $bg-color) {
-	content: "";
-	position: absolute; 
-	height: 3px; 
-	background-color: $bg-color ; 
-	border-radius: 50px;
-	animation: $animation 3s forwards;
-	animation-fill-mode: forwards;
-	display: block; 
-	animation-delay: 1s;
-  }
-  
-  @keyframes lineAnimUp {
-	0% { width: 0%; }
-	100% { width: 100%; background-color: #34b356 }
-  } 
-  
-  
-  .loader-up {
-	@include loaderName();  
-	&:after {@include loaderNameAfter(lineAnimUp, #C7B1DA)}   
-  
-	&--rotate {
-	  transform: rotate(180deg);
-	}
-  }
+}
 
+@mixin loaderNameAfter($animation, $bg-color) {
+content: "";
+position: absolute; 
+height: 3px; 
+background-color: $bg-color ; 
+border-radius: 50px;
+animation: $animation 3s forwards;
+animation-fill-mode: forwards;
+display: block; 
+animation-delay: 1s;
+}
 
-  @mixin animationFadeIn($fade, $delay) {
+@keyframes lineAnimUp {
+0% { width: 0%; }
+100% { width: 100%; background-color: #34b356 }
+} 
+
+  
+.loader-up {
+@include loaderName();  
+&:after {@include loaderNameAfter(lineAnimUp, #C7B1DA)}   
+
+&--rotate {
+	transform: rotate(180deg);
+}
+}
+ 
+@mixin animationFadeIn($fade, $delay) {
 	animation: $fade;
 	animation-delay: $delay;
-  }
-  
-  .animation-fadeIn{ 
-	@include animationFadeIn(AnimationfadeIn 2s ease-in-out, 0s); 
-
+}
+ 
+.animation-fadeIn{ 
+	@include animationFadeIn(AnimationfadeIn 1.5s ease-in-out, 0s); 
+ 
 	&--description{
-		@include animationFadeIn(AnimationfadeInElementos 5s ease-in-out, 0s); 
+		@include animationFadeIn(AnimationfadeInElementos 4s ease-in-out, 0s); 
 	}
 	&--button{
-		@include animationFadeIn(AnimationfadeInElementos 5.1s ease-in-out, 0s); 
+		@include animationFadeIn(AnimationfadeInElementos 4.1s ease-in-out, 0s); 
 	}
-  }
-  
-  @keyframes AnimationfadeIn {
+	&--skills{
+		@include animationFadeIn(AnimationfadeInElementos 2.1s ease-in-out, 0s); 
+	}
+}
+
+@keyframes AnimationfadeIn {
 	0% { visibility: hidden; opacity: 0; }
 	50% { visibility: hidden; opacity: 0.5;	}
 	100% { visibility: visible; opacity: 1;	}
-  }
+}
 
-  @keyframes AnimationfadeInElementos {
-	0% { visibility: hidden }
-	25% { visibility: hidden }
-	50% { visibility: hidden }
-	75% { visibility: visible; opacity: 0.5; }
-	100% { visibility: visible; opacity: 1;	}
-  }
+.animation-bg-imagen{ 
+	background-image: url("../../assets/background/bg-portafolio-1.webp");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 0; /* initial size is 0 */
+	transition: background-size 2.5s forwards;
+	animation: AnimationfadeInBG 1s forwards;
+	animation-delay: 2.5s;
+  
+}
+ 
+
+@keyframes AnimationfadeInBG {  
+	100% {
+		background-size: cover;
+		opacity: 1;
+		background-image: url("../../assets/background/bg-portafolio-1.webp");
+		background-repeat: no-repeat;
+		background-position: center; 
+	} 
+}
+ 
+@keyframes AnimationfadeInElementos {
+0% { visibility: hidden }
+25% { visibility: hidden }
+50% { visibility: hidden }
+75% { visibility: visible; opacity: 0.5; }
+100% { visibility: visible; opacity: 1;	}
+}
