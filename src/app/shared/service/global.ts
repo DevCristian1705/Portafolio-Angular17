@@ -1,7 +1,7 @@
 
 import { Injectable } from "@angular/core"; 
-import { BehaviorSubject, Observable, Subject, of } from "rxjs";
-import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, sideBarOptions, NavbarOptions, menuOptions, ISkills } from "../interface/listas";
+import {  Observable,  of } from "rxjs";
+import {  IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, NavbarOptions, menuOptions, ISkills } from "../interface/listas";
  
 
 @Injectable({
@@ -9,54 +9,42 @@ import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyecto
 })
   
 export class GlobalService {
-  //DATOS DE EL DEVELOP
-  private datosDevelop : IDatosDevelop[] = [
-    {
-      name : "Cristian Martinez Fajardo",
-      text_lineOne : "Fro",
-      text_linetwo : "ntend Develop" ,
-      img_dev : "../../assets/imagenes/person-develop.jpeg"
-    } 
-  ]
+ 
  //MENUS
   private menuOptions: menuOptions[] = [
     {
       code: 1,
       name: 'Dashboard',
-      router : '/dashboard',
+      routerlink : '/dashboard',
       icon: '../../../assets/iconos/icono-home.png',
-      alt_icon: 'icono dashboar',
-      subMenu: []
+      alt_icon: 'icono dashboar'
+    },  
+    {
+      code: 2,
+      name: 'Generador Otp',
+      routerlink : '/generate-otp',
+      icon: '../../../assets/iconos/icono-proyectos.png',
+      alt_icon: 'icono proyectos'  
     }, 
     {
       code: 3,
-      name: 'Experiencia',
-      icon: '../../../assets/iconos/icono-experiencia.png',
-      alt_icon: 'icono experiencia',
-      subMenu: [
-        {code: 0,name: 'Bancom', router : 'dashboard/exp-laboral/bancom'},
-        {code: 1,name: 'Ti Soluciones', router : 'dashboard/exp-laboral/ti-soluciones'},
-        {code: 2,name: 'Textil Del Valle', router : 'dashboard/exp-laboral/del-valle'},
-        {code: 3,name: 'Midis - Pais', router : 'dashboard/exp-laboral/midis'}
-      ]
-    },
+      name: 'Simulador de Cambio',
+      routerlink : '/simulator-change',
+      icon: '../../../assets/iconos/icono-proyectos.png',
+      alt_icon: 'icono proyectos'
+    }, 
     {
       code: 4,
-      name: 'Proyectos',
+      name: 'Encuesta',
+      routerlink : '/encuesta',
       icon: '../../../assets/iconos/icono-proyectos.png',
-      alt_icon: 'icono proyectos',   
-      subMenu: [
-        {code: 0,name: 'Generador Otp', router : 'dashboard/proyecto/generate-otp'},
-        {code: 1,name: 'Simulador de Cambio', router : 'dashboard/proyecto/simulator'},
-        {code: 2,name: 'Bg Random', router : 'dashboard/proyecto/bg-random'},
-        {code: 3,name: 'Encuesta', router : 'dashboard/encuesta'},
-        {code: 4,name: 'Org de tareas', router : 'dashboard/proyecto/org-task'},
-        {code: 5,name: 'Calendario', router : 'dashboard/proyecto/calendar'}
-      ]
-    },
+      alt_icon: 'icono proyectos'  
+    }, 
+    // {code: 4,name: 'Org de tareas', router : 'dashboard/proyecto/org-task'},
+    // {code: 5,name: 'Calendario', router : 'dashboard/proyecto/calendar'}
   ];
   //SIDEBAR
-  private sideBarOptions: sideBarOptions[] = [
+  private sideBarOptions: menuOptions[] = [
     {
       code: 1,
       name: 'Inicio',
@@ -108,28 +96,32 @@ export class GlobalService {
       date_init: '21/11/2022',
       date_end: '25/03/2024',
       img_company: '../../assets/logos/logo-bancom.png',
-      altImg : 'logo-bancom'
+      altImg : 'logo-bancom',
+      description : 'En esta empresa del rubro banca, forme parte del equipo Frontend, donde utilce tecnologias como: angular, html, scss, git, devops, entre otras herramientas para llevar a cabo los proyectos solicitados'
     }, 
     { 
       name_company: 'TI SOLUCIONES', 
       date_init: '01/01/2022',
       date_end: '15/11/2022',
       img_company: '../../assets/logos/logo-ti-soluciones.jpeg',
-      altImg : 'logo-ti-soluciones'
+      altImg : 'logo-ti-soluciones',
+      description : 'En TI-soliciones estuve a cargo del lado Frontend, un proyecto ERP desde 0, junto con el quipo, contruimos la parte administrativa y contable, donde aplicamos las bondades de angular como LazyLoad, Modulos, y SPA, se aplico programacion reactiva en todo el proyecto'
     }, 
     { 
       name_company: 'DEL VALLE', 
       date_init: '15/06/2020',
       date_end: '20/06/2021',
       img_company: '../../assets/logos/logo-del-valle.jpg',
-      altImg : 'logo-del-valle'
+      altImg : 'logo-del-valle',
+      description : 'En Valle se trabajo con la version 10 de Angular, donde migramos modulos hechos en C++, y se construyeron nuevos sistemas, como Doctor TDV, Evaluacion y renovacion de personal, Programa "Tu Idea", entre otros que me ayudaron a seguir aprendiendo.'
     }, 
     { 
       name_company: 'MIDIS - PAIS', 
       date_init: '10/05/2018',
       date_end: '03/03/2020',
       img_company: '../../assets/logos/logo-midis-pais.jpg',
-      altImg : 'logo-midis'
+      altImg : 'logo-midis',
+      description : 'Mi experiencia en el MIDIS fue el inicio de mi pasion por el desarrollo web, aqui no solo vi Frontend, si no que ocupe el cargo de fullStack, para esto me onvolucre desde 0 a los requerimientos de las distintas areas del programa PAIS.'
     }, 
   ];
   // PROYECTOS
@@ -270,6 +262,9 @@ export class GlobalService {
 
   private datosSkills : ISkills[] = [
     {
+      icon: 'assets/iconos/angular.png',
+      alt_icon: 'icono de angular',
+    },{
       icon: 'assets/iconos/js.webp',
       alt_icon: 'icono de JavaScritp',
     },{
@@ -293,6 +288,24 @@ export class GlobalService {
     },{
       icon: 'assets/iconos/azure.png',
       alt_icon: 'icono de Azure',
+    },{
+      icon: 'assets/iconos/boostrap.webp',
+      alt_icon: 'icono de boostrap',
+    },{
+      icon: 'assets/iconos/laravel.png',
+      alt_icon: 'icono de laravel',
+    },{
+      icon: 'assets/iconos/material.png',
+      alt_icon: 'icono de Azure',
+    },{
+      icon: 'assets/iconos/php.png',
+      alt_icon: 'icono de php',
+    },{
+      icon: 'assets/iconos/primeng.png',
+      alt_icon: 'icono de primeng',
+    },{
+      icon: 'assets/iconos/sql.png',
+      alt_icon: 'icono de sql',
     }
   ]
   
@@ -303,8 +316,8 @@ export class GlobalService {
     });
   }
 
-  getSidebar(): Observable<sideBarOptions[]> {
-    let sideBarOptions: Observable<sideBarOptions[]> = of(this.sideBarOptions); 
+  getSidebar(): Observable<menuOptions[]> {
+    let sideBarOptions: Observable<menuOptions[]> = of(this.sideBarOptions); 
     return sideBarOptions;
   }
 
@@ -332,11 +345,6 @@ export class GlobalService {
   getDatosProfile(): Observable<IDatosProfile[]> { 
     let datosOptions: Observable<IDatosProfile[]> = of(this.datosProfileOptions); 
     return datosOptions;
-  }
-
-  getDatosDevelop(): Observable<IDatosDevelop[]> { 
-    let datosDev: Observable<IDatosDevelop[]> = of(this.datosDevelop); 
-    return datosDev;
   }
  
   getDatosEncuesta(): Observable<IEncuesta[]> {  
@@ -397,8 +405,7 @@ export class GlobalService {
 
     return validateEmail;
   }
-
-
+ 
   generateUniqueId(prefix: string): string {
     const randomBuffer = Math.floor(Math.random() * 1000000);
     return prefix + '-' + randomBuffer;

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { SecureURLComponent } from './secure-url/secure-url.component';
+import { RouterModule, Routes } from '@angular/router'; 
 import { LandingComponent } from './landing/landing.component';
 
 export const routes: Routes = [
@@ -15,11 +14,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-  },  
-  {
-    path: 'secure-redirect',
-    component: SecureURLComponent
-  },
+  },   
   {
     path: '', redirectTo: '', pathMatch: 'full'
   },

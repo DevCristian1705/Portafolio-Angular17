@@ -67,14 +67,11 @@ export class LoginComponent   {
       this.loadingButton = false;    
       this.onNavigate('/dashboard');
     } else {
-       
       const dialogRef = this.dialog.open(DialogMessageComponent, {
         disableClose: false, width: '350px', data: messageAuth.datos_Noexistentes 
       });
 
-      dialogRef.afterClosed().subscribe((resp: boolean) => { 
-        this.onNavigate('/auth/registro');
-      });   
+      dialogRef.afterClosed().subscribe(() => this.onNavigate('/auth/registro'));   
       this.loadingButton = false;  
     } 
   }
@@ -86,7 +83,10 @@ export class LoginComponent   {
     const userIndex = listUserRegistrados.findIndex((user: any) => user.email === email && user.password === password);
     if (userIndex !== -1) {
       listUserRegistrados[userIndex]  
-      this.storageService.setSessionUser(listUserRegistrados[userIndex]);  
+      this.storageService.setData(
+        STORAGE_KEY.sessionUser, 
+        JSON.stringify(listUserRegistrados[userIndex])
+      );
     } 
 
     return user !== undefined;

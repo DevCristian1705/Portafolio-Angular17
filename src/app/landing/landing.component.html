@@ -1,5 +1,7 @@
  
 	  <!-- <app-navbar></app-navbar>  -->
+
+	<!-- landing -- PRESENTACION -->
 	<div class="landing bg-black white animation-bg-imagen"> 
 		<div class="landing__name">
 			<div class="loader-up"> </div>
@@ -23,38 +25,79 @@
 		</app-button>
 	</div>
 
-
-	<div class="skills bg-blue white">
-		<h1> Habilidades</h1>
+	<div class="jobs">
+		<div class="jobs__cabecera">
+			<marquee behavior="" direction="right" behavior="alternate"  >
+				<span> Habilidades</span>   
+				<span> Habilidades</span>   
+				<span> Habilidades</span>   
+				<span> Habilidades</span>   
+				<span> Habilidades</span>   
+				<span> Habilidades</span>   
+			</marquee>  
+		</div>
+	</div>
+ 
+	<!-- landing -- SKILLS -->
+	<div class="skills bg-blue white"> 
 		<div class="skills__info">
 			A lo largo de esta aventura como programador web, he obtenido habilidad para mejorar las paginas 
 			que me solicitan en las empresas de las cuales he sido parte, a continuacion listare las habilidad que 
 			mas resaltan dentro de todas las que he venido usando y aprendido.
 		</div >
-		<div class="skills__iconos animation-fadeIn animation-fadeIn--skills">
-			<div *ngFor="let skill of dataSkills">
-				<img [src]="skill.icon" width="50" height="50" [alt]="skill.alt_icon"> 
-			</div> 
+		<div class="skills__iconos">
+			<div class="content animation-fadeIn animation-fadeIn--skills">
+				<div *ngFor="let skill of dataSkills">
+					<img [src]="skill.icon" width="50" height="50" [alt]="skill.alt_icon"> 
+				</div> 
+			</div>
 		</div>
 	</div>
+
+
+	<!-- landing -- EXP LABORAL -->
+
+	<div class="jobs">
+		<div class="jobs__cabecera">
+			<marquee behavior="" direction="right" behavior="alternate"  >
+				<span> Experiencia laboral  </span>   
+				<span> Experiencia laboral  </span>   
+				<span> Experiencia laboral  </span>   
+				<span> Experiencia laboral  </span>   
+			</marquee>  
+		</div>
+	</div>
+
+
+	<div class="exp-laboral">
+		<div class="exp-laboral__content" *ngFor="let item of dataExpLaboral;let impar = odd" 
+			[ngClass]="{ 
+			'exp-laboral__content--par' : !impar,
+			'exp-laboral__content--impar' : impar
+			}" >  
+			<img [src]="item.img_company"  [alt]="item.altImg">  
+			<div class="datos-exp">
+				<div class="primary-bold-h2 secondary-400"> {{ item.name_company}} </div> 
+				<div class="font-secondary-bold-14">  {{ item.date_init}} -  {{ item.date_end}}</div>
+				<div class="datos-exp__description">
+					{{ item.description}}
+				</div>
+			</div>
+		</div> 
+	</div>   
+
 
 
 	<div class="home-lading">   
 		<div class="cards"> 
 
 			<!-- <app-card
-				id="home" 
-				[dataArray]="dataDevelopArray$"
-				type="CardDevelop">
-			</app-card>
-				-->
-			<app-card
 				id="jobs"
 				title="EXPERIENCIA LABORAL"
 				type="CardExperiencia"
 				[dataArray]="expLaboralArray$"
 				dataHover="Click para conocer más">
-			</app-card>
+			</app-card> -->
 		
 			<app-card
 				id="proyectos"

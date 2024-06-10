@@ -54,20 +54,5 @@
                 </div>   
             </div>    
         </div>
-    </ng-container>
-
-    <ng-container *ngSwitchCase="'CardDevelop'">  
-        <div *ngFor="let item of dataArray | async" > 
-            <div class="CardDevelop card card--develop" [id]="id"> 
-                <div>
-                    <span class="primary-bold-h1 writing">{{ item.name }}</span>  <br>
-                    <div class="secondary-400 primary-bold-h3 animationFadeIn">
-                        <span class="line-under-text">{{ item.text_lineOne}}</span>{{item.text_linetwo}}
-                    </div>
-                </div>
-
-                <img class="imagen-dev " [src]=" item.img_dev" alt="foto-perfiñ">	
-            </div>  	  
-        </div>  
-    </ng-container>
+    </ng-container> 
 </ng-container>

@@ -1,26 +1,10 @@
-export interface sideBarOptions {
-    code: number,
-    name: string,
-    icon: string, 
-    routerlink: string,
-}
-  
-
-export interface subMenuOptions {
-    code: number,
-    name: string, 
-    router : string
-}
-
 export interface menuOptions {
     code: number,
     name: string,
-    icon: string,   
-    alt_icon: string,   
-    router? : string,
-    subMenu: subMenuOptions[],
+    icon: string, 
+    alt_icon?: string,   
+    routerlink: string,
 }
-
    
 export interface NavbarOptions  { 
     name: string,  
@@ -33,6 +17,7 @@ export interface IListExpLaboral  {
     date_end: string,
     img_company: string,
     altImg : string
+    description : string
 }
 
 export interface IListProyectos  { 
@@ -45,13 +30,6 @@ export interface IListProyectos  {
 export interface IDatosProfile  { 
     titulo: string,  
     dato: string,
-}
-
-export interface IDatosDevelop  {  
-    name: string,
-    text_lineOne: string,
-    text_linetwo: string,
-    img_dev: string,
 }
  
 export interface IRespuestas {

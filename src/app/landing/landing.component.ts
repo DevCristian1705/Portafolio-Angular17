@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";  
 import { GlobalService } from "../shared/service/global";
-import { ISkills } from "../shared/interface/listas";
+import { IListExpLaboral, ISkills } from "../shared/interface/listas";
 
 @Component({
   selector: "app-landing",
@@ -9,11 +9,11 @@ import { ISkills } from "../shared/interface/listas";
 })
 export class LandingComponent implements OnInit {
   
-  expLaboralArray$ = this.globalsrv.getExpLaboral();
   proyextosArray$ = this.globalsrv.getProyectos();
-  profileArray$ = this.globalsrv.getDatosProfile();
-  dataDevelopArray$ = this.globalsrv.getDatosDevelop();
+  profileArray$ = this.globalsrv.getDatosProfile(); 
+
   dataSkills : ISkills[] = []
+  dataExpLaboral: IListExpLaboral[] = []
 
   constructor( 
     private globalsrv : GlobalService
@@ -22,11 +22,18 @@ export class LandingComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-   this.onLoadSkill()
+   this.onLoadSkill();
+   this.onLoadExpLaboral();
   }
 
   onLoadSkill(){
     this.globalsrv.getskilss()
     .subscribe(resp => this.dataSkills = resp)
   }
+
+  onLoadExpLaboral(){
+    this.globalsrv.getExpLaboral()
+    .subscribe(resp => this.dataExpLaboral = resp)
+  }
+
 }

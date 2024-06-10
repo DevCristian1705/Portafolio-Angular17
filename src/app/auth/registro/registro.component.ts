@@ -100,18 +100,17 @@ get getErrorPass(): string {
   }
   
   onRegistro() { 
-    this.loadingButton = true;
-    const newUser = this.registerForm.value; 
-    this.onValidateDatos(newUser); 
+    this.loadingButton = true; 
+    this.onValidateDatos(this.registerForm.value); 
   }
  
   onValidateDatos(newUser: IUser){  
     this.listUser.push(this.storageService.listUsuarios()); 
     const listUserRegistrados = this.listUser
-
  
     let existingUser = listUserRegistrados.filter((user: IUser) => 
-        user.names === newUser.names && user.email === newUser.email
+        user.names === newUser.names 
+        && user.email === newUser.email
     );
  
     if (existingUser.length === 0) {
@@ -120,15 +119,11 @@ get getErrorPass(): string {
       this.loadingButton = false; 
       this.onLogin(); 
     } else { 
-      this.loadingButton = false;  
-
+      this.loadingButton = false;   
       const dialogRef = this.dialog.open(DialogMessageComponent, {
         disableClose: false, width: '350px', data: messageAuth.datos_existentes 
       }); 
-      dialogRef.afterClosed().subscribe((resp: boolean) => { 
-        this.onLogin(); 
-      });   
-
+      dialogRef.afterClosed().subscribe(() => this.onLogin());   
       return;
     }
   

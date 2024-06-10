@@ -28,14 +28,7 @@ export class StorageService {
     return listUserRegistrados || null
   }
 
-  setSessionUser(data: IUser) { 
-    this.setData(STORAGE_KEY.sessionUser, JSON.stringify(data));
-  }
-
-  getSessionUser() {
-    return this.getData(STORAGE_KEY.sessionUser) || null;
-  }
-
+  
   clearData(): void {
     localStorage.clear();
   }
@@ -50,7 +43,7 @@ export class StorageService {
 
 
   get isAuthenticated() {
-    const datosSession: any = this.getSessionUser();
+    const datosSession: any =  this.getData(STORAGE_KEY.sessionUser) ;
     const user = datosSession ? JSON.parse(datosSession) : null;
     return user;
   }
