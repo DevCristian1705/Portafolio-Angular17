@@ -1,15 +1,10 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { ValidatorsService } from '../../../service/validators.service';
+import { FormGroup } from '@angular/forms';
+import { EInputValidation } from '../../../../../utils/interface/type-input-validation';
  
 const getStyles = (...args: string[]) => [...args].filter(Boolean)
-
-export enum EInputValidation {
-  Number = 'number',
-  Alpha = 'alpha',
-  Alphanumeric = 'alphanumeric',
-  Text = 'text',
-  digitsOnly = 'number',
-}
-
+ 
 @Component({
   selector: 'app-input-library',
   templateUrl: './input.component.html',
@@ -17,17 +12,17 @@ export enum EInputValidation {
 })
 export class InputComponent implements OnChanges {
 
+  @Input() form! : FormGroup;
   @Input() idTextField = 'idTextField';
   @Input() placeholder = ' ';
   @Input() label = 'label';
   @Input() type = 'text';
   @Input() disabled = false;
   @Input() value : string = "";
-  @Input() maxLength = '60';
+  @Input() maxLength = '60'; 
+  @Input() minCaracter = 0; 
   @Input() size = 'md';
-  @Input() paste = true;
-  @Input() msgError = ""; 
-  @Input() width = '';
+  @Input() paste = true;  
   @Input() height = '48px';
   @Input() icon = '';
   @Input() inputValidation!: EInputValidation;
@@ -37,15 +32,9 @@ export class InputComponent implements OnChanges {
   @Input() typeInput: "ClassicInput" | "ClassicInputRegistroPass" | "ClassicInputPass" = "ClassicInput";
   @Input() loading = false;
   @Input() readOnly=false;
-  hasError = false; 
-  maxLimitLength = 60;
-  maxInputLength = this.maxLimitLength;
-  expression!: RegExp;
-  counter = 0;
-  total = 60;
+   
   hasIcon = false;
   showPassword : boolean = false;  
-
   flgVerCaracteristicas: boolean = false; 
 
   isNumber: boolean = false;
@@ -53,69 +42,81 @@ export class InputComponent implements OnChanges {
   isMinuscula: boolean = false;
   isSimbolo: boolean = false;
   isLength: boolean = false; 
-
-  ejemCaracteres : string = '!@#$%ˆ&*';
+ 
   classInput = {
     'text-input': true,
     'error-input': false
   };
  
+
+  constructor(
+    private validatorsService: ValidatorsService
+  ){
+
+  }
   public get typeInputs(): string[] {
     return getStyles(this.typeInput)
   }
  
- 
+  isValidField() {
+    return this.validatorsService.isValidField( this.form, this.idTextField );
+  }
    
+  getFieldError( field: string ): string | null {
+
+    if ( !this.form.controls[field] ) {
+      this.classInput['error-input'] = false;
+      this.classInput['text-input'] = true;
+      return null;
+    }
+
+    const errors = this.form.controls[field].errors || {};
+
+    for (const key of Object.keys(errors) ) {
+      switch( key ) {
+        case 'required':
+          this.onErrorInput();
+          return `Ingresa un ${this.label}`;
+
+        case 'minLength':
+          this.onErrorInput();
+          return  `El ${this.label} debe tener ${this.minCaracter} digitos`;
+
+        case 'pattern':
+          this.onErrorInput();
+          return  `No tiene formato de ${this.label}`; 
+      }
+    }
+
+    return null;
+  }
+
+  onErrorInput(){
+    this.classInput['error-input'] = true;
+    this.classInput['text-input'] = false;
+  }
+
   ngOnChanges(changes: SimpleChanges) {  
-    if (this.msgError != "") {   
-      this.hasError = true;
-      this.classInput['error-input'] = this.hasError;
-      this.classInput['text-input'] = !this.hasError;
-    } else { 
-      this.hasError = false;
-      this.classInput['error-input'] = this.hasError;
-      this.classInput['text-input'] = !this.hasError;
-    } 
-    
     if (this.icon != "") this.hasIcon = true;
-    else this.hasIcon = false; 
-    this.total = Number(this.maxLength);   
-    
+    else this.hasIcon = false;   
   }
  
   onChange(target: any) { 
-    this.flgVerCaracteristicas = true;   
-    switch (this.inputValidation) {
-      case EInputValidation.Number:
-        this.expression = /[A-Za-zÑÁÉÍÓÚñáéíóú`~!¡@#$%^&*()_|+\-=?;:'",.<>° ]/g;
-        break;
-      case EInputValidation.Alpha:
-        this.expression = /[0-9`~!¡@#$%^&*()_|+\-=?;:'",.<>° ]/g;
-        break;
-      case EInputValidation.Alphanumeric:
-        this.expression = /[`~!¡@#$%^&*()_|+\-=?;:'",.<>° ]/g;
-        break;
-      case EInputValidation.Text:
-        this.expression = /[0-9`~!¡@#$%^&*()_|+\-=?;:'",.<>°]/g;
-        break;
-    }
-
-    if (this.expression) {
-      target.value = target.value.replace(this.expression, ''); 
-    }
+    this.flgVerCaracteristicas = true;    
     target.value = target.value.substr(0, Number(this.maxLength)); 
-    this.validPassword(target.value);
-    this.blurred.emit(target.value); 
-    this.valueChanged.emit(target.value);    
-   
+    this.validPassword(target.value); 
+    this.valueChanged.emit(target.value);  
   }
  
   onFocus(event : any){    
-    this.hasError = false;
+    this.classInput['error-input'] = true;
+    this.classInput['text-input'] = false;
   }
  
   onBlur(event :any ){ 
-    this.hasError = true; 
+    this.classInput['error-input'] = true;
+    this.classInput['text-input'] = false;
+    this.blurred.emit(event.value); 
   }
 
   onEnter(event: any, value: any) {

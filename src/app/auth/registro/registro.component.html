@@ -24,8 +24,7 @@
                         idTextField="names" 
                         formControlName="names"
                         cbxReactiveForm 
-                        [readOnly]="loadingButton"
-                        [msgError]="getErrorName"
+                        [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>  
 
@@ -35,8 +34,7 @@
                         idTextField="lastname" 
                         formControlName="lastname"
                         cbxReactiveForm 
-                        [readOnly]="loadingButton"
-                        [msgError]="getErrorLastName"
+                        [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>  
  
@@ -50,8 +48,7 @@
                         maxLength="9"
                         cbxReactiveForm 
                         [inputValidation]='numberInput'
-                        [readOnly]="loadingButton"
-                        [msgError]="getErrorCellphone"
+                        [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>  
 
@@ -61,9 +58,7 @@
                         idTextField="email"
                         maxLength="50"
                         formControlName="email"
-                        cbxReactiveForm
-                        emailValidator
-                        [msgError]="getErrorEmail"
+                        cbxReactiveForm  
                         [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>  
@@ -76,8 +71,7 @@
                         formControlName="password"
                         passValidator
                         cbxReactiveForm  
-                        [readOnly]="loadingButton"
-                        [msgError]="getErrorPass"
+                        [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>    
                 </div> 
