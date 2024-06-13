@@ -1,15 +1,13 @@
 @import '../../../../assets/custom/breakpoints.scss';
 
 .simulator{ 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; 
+    justify-content: flex-end;
+    align-items: flex-end;
     height: 100vh;
  
     &__contenedor{ 
-        display: grid;
-        justify-content: center;
-        align-items: center; 
+        display: grid;  
         gap: 1em;
         padding: 20px; 
         border-radius: 20px;
