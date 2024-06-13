@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; 
 import { StorageService } from '../../../utils/service/storage/storage.service';
 import { GlobalService } from '../../shared/service/global';
@@ -16,13 +16,20 @@ import { EInputValidation } from '../../../utils/interface/type-input-validation
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss']
 })
-export class RegistroComponent  {
-
- registerForm!: FormGroup; 
- loadingButton: boolean = false;
- numberInput = EInputValidation.Number; 
- listUser : any[] = [];
+export class RegistroComponent {
  
+ loadingButton: boolean = false; 
+ listUser : any[] = [];
+ numberExpresion = EInputValidation.Number;
+
+  registerForm : FormGroup= this.fb.group({
+    code_user: [ this.globalsrv.generateUniqueId('USER') , Validators.required], 
+    names: ['', [Validators.required, Validators.minLength(3)]],
+    lastname: ['', [Validators.required, Validators.minLength(3)]],
+    cellphone: ['', [Validators.required, Validators.minLength(9)] ],
+    email: ['', [Validators.required, Validators.minLength(10), Validators.pattern(this.validatorsService.emailPattern)]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
 
   constructor(
     public fb: FormBuilder, 
@@ -30,17 +37,9 @@ export class RegistroComponent  {
     private storageService : StorageService,
     private globalsrv: GlobalService, 
     public dialog: MatDialog,
-    private validatorsService: ValidatorsService
+    public validatorsService: ValidatorsService
   ) { 
- 
-    this.registerForm = this.fb.group({
-      code_user: [ this.globalsrv.generateUniqueId('USER') , Validators.required], 
-      names: ['', [Validators.required, Validators.minLength(3)]],
-      lastname: ['', [Validators.required, Validators.minLength(3)]],
-      cellphone: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email, Validators.pattern(this.validatorsService.emailPattern)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    });
+  
   }
  
   onLogin() {
@@ -66,20 +65,18 @@ export class RegistroComponent  {
       this.storageService.setData(STORAGE_KEY.listUser, JSON.stringify(listUserRegistrados));
       this.loadingButton = false; 
       this.onLogin(); 
-    } else { 
+      return;
+    }  
+
       this.loadingButton = false;   
       const dialogRef = this.dialog.open(DialogMessageComponent, {
         disableClose: false, width: '350px', data: messageAuth.datos_existentes 
       }); 
       dialogRef.afterClosed().subscribe(() => this.onLogin());   
-      return;
+     
     }
   
   
   }
 
 
-  
-
- 
-}

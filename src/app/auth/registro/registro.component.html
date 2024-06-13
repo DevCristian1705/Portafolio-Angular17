@@ -24,6 +24,7 @@
                         idTextField="names" 
                         formControlName="names"
                         cbxReactiveForm 
+                        [form]="registerForm" 
                         [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>  
@@ -34,6 +35,7 @@
                         idTextField="lastname" 
                         formControlName="lastname"
                         cbxReactiveForm 
+                        [form]="registerForm" 
                         [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>  
@@ -43,11 +45,12 @@
                         typeInput="ClassicInput"
                         label="Celular"
                         idTextField="cellphone" 
-                        formControlName="cellphone"
-                        cellphoneValidator
+                        formControlName="cellphone" 
                         maxLength="9"
-                        cbxReactiveForm 
-                        [inputValidation]='numberInput'
+                        [minCaracter]="9"
+                        cbxReactiveForm   
+                        [inputValidation]="numberExpresion"
+                        [form]="registerForm"  
                         [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>  
@@ -56,9 +59,11 @@
                         typeInput="ClassicInput"
                         label="Correo electrónico"
                         idTextField="email"
-                        maxLength="50"
                         formControlName="email"
+                        [minCaracter]="10"
+                        maxLength="50"
                         cbxReactiveForm  
+                        [form]="registerForm" 
                         [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>  
@@ -68,9 +73,9 @@
                         label="Contraseña"
                         idTextField="password"
                         minLength="8"   
-                        formControlName="password"
-                        passValidator
+                        formControlName="password" 
                         cbxReactiveForm  
+                        [form]="registerForm" 
                         [readOnly]="loadingButton" 
                         [firstTouchedValue]="false">
                     </app-input-library>    

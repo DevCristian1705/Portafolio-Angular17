@@ -21,6 +21,7 @@ import { SidebarComponent } from "./components/library/sidebar/sidebar.component
 import { MatDialogRef } from "@angular/material/dialog";
 import { DialogEncuestaComponent } from "./components/dialog/dialog-encuesta/dialog-encuesta.component";
 import { DialogConfirmComponent } from "./components/dialog/dialog-confirm/dialog-confirm.component";
+import { PageValidPasswordComponent } from "./components/library/page-valid-password/page-valid-password.component";
  
  
 const MODULE_DIRECTIVES = [
@@ -59,7 +60,8 @@ const MODULE_DIALOG = [
         MenuComponent,
         InputComponent, 
         CardComponent,
-        SidebarComponent
+        SidebarComponent,
+        PageValidPasswordComponent
         
     ],
 
@@ -75,7 +77,8 @@ const MODULE_DIALOG = [
         MenuComponent,
         InputComponent, 
         CardComponent, 
-        SidebarComponent
+        SidebarComponent,
+        PageValidPasswordComponent
     ],
  
     providers :[

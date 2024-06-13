@@ -8,6 +8,7 @@
             [id]="idTextField" 
             [style.height]="height" 
             [placeholder]="placeholder" 
+            [minLength]="minCaracter"
             [disabled]="disabled"
             [readonly]="readOnly" 
             [value]="value"
@@ -30,7 +31,7 @@
             [type]="showPassword ? 'text' : 'password'"
             [id]="idTextField" 
             [style.height]="height"
-            [placeholder]="placeholder"
+            [placeholder]="placeholder" 
             [disabled]="disabled"
             [readonly]="readOnly"
             [value]="value"
@@ -73,39 +74,10 @@
           </div>
         </div>
    
-    <div *ngIf="flgVerCaracteristicas">
-      <div class="color-secondary" >Tu contraseña debe cumplir con lo siguiente</div>
-      <div class="list-error-password font-secondary-regular-12">
-         
-          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isLength , 'text-pass--invalid' : !isLength}">
-            <img [src]="!isLength ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
-            <span class="font-secondary-regular-12">Mínimo 8 caracteres.</span>
-          </div>
-    
-          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isMinuscula , 'text-pass--invalid' : !isMinuscula}">
-            <img [src]="!isMinuscula ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
-            <span class="font-secondary-regular-12"> Al menos una minúscula. </span>
-          </div>
-    
-          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isMayuscula , 'text-pass--invalid' : !isMayuscula}">
-            <img [src]="!isMayuscula ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
-            <span class="font-secondary-regular-12"> Al menos una mayúscula. </span>
-          </div>
-    
-          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isNumber, 'text-pass--invalid' : !isNumber}">
-            <img [src]="!isNumber ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
-            <span class="font-secondary-regular-12"> Al menos un número. </span>
-          </div>
-    
-          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isSimbolo , 'text-pass--invalid' : !isSimbolo}" >
-            <img [src]="!isSimbolo ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
-            <span class="font-secondary-regular-12"> Al menos un carácter especial. Ejm: {{"!@#$%ˆ&*"}} </span>
-          </div> 
-         
+        <div *ngIf="flgValidPass">
+          <page-valid-password [password]="currentValueInput"> </page-valid-password> 
+        </div> 
       </div>
-    </div>
-      
-    </div> 
     }
   }  
 </div>

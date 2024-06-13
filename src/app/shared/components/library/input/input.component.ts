@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ValidatorsService } from '../../../service/validators.service';
 import { FormGroup } from '@angular/forms';
 import { EInputValidation } from '../../../../../utils/interface/type-input-validation';
@@ -14,13 +14,13 @@ export class InputComponent implements OnChanges {
 
   @Input() form! : FormGroup;
   @Input() idTextField = 'idTextField';
-  @Input() placeholder = ' ';
+  @Input() placeholder = ' ';  
   @Input() label = 'label';
   @Input() type = 'text';
   @Input() disabled = false;
   @Input() value : string = "";
   @Input() maxLength = '60'; 
-  @Input() minCaracter = 0; 
+  @Input() minCaracter : number = 0; 
   @Input() size = 'md';
   @Input() paste = true;  
   @Input() height = '48px';
@@ -35,14 +35,10 @@ export class InputComponent implements OnChanges {
    
   hasIcon = false;
   showPassword : boolean = false;  
-  flgVerCaracteristicas: boolean = false; 
+  flgValidPass : boolean = false;  
+  currentValueInput : string = "";
+  expression!: RegExp;
 
-  isNumber: boolean = false;
-  isMayuscula: boolean = false;
-  isMinuscula: boolean = false;
-  isSimbolo: boolean = false;
-  isLength: boolean = false; 
- 
   classInput = {
     'text-input': true,
     'error-input': false
@@ -50,7 +46,7 @@ export class InputComponent implements OnChanges {
  
 
   constructor(
-    private validatorsService: ValidatorsService
+    private validatorsService: ValidatorsService, 
   ){
 
   }
@@ -77,14 +73,15 @@ export class InputComponent implements OnChanges {
         case 'required':
           this.onErrorInput();
           return `Ingresa un ${this.label}`;
-
-        case 'minLength':
-          this.onErrorInput();
-          return  `El ${this.label} debe tener ${this.minCaracter} digitos`;
-
+ 
         case 'pattern':
           this.onErrorInput();
-          return  `No tiene formato de ${this.label}`; 
+          let mssg : string = this.validatorsService.isValidCustomMessageError( this.form, field ); 
+          return mssg
+
+        case 'minlength':
+            this.onErrorInput();  
+            return this.validatorsService.isValidCustomMinLengthError( field, this.minCaracter);
       }
     }
 
@@ -101,14 +98,39 @@ export class InputComponent implements OnChanges {
     else this.hasIcon = false;   
   }
  
-  onChange(target: any) { 
-    this.flgVerCaracteristicas = true;    
+ 
+ 
+
+  onChange(target: any) {    
+    switch (this.inputValidation) {
+      case EInputValidation.Number:
+        this.expression = /[A-Za-z}{ÑÁÉÍÓÚñáéíóú`~!¡@#$%^&*()_|+\-=?;:'",.<>° ]/g;
+        break;
+      case EInputValidation.Alpha:
+        this.expression = /[0-9`~!¡@#$%^&*()_|+\-=?;:'",.<>° ]/g;
+        break;
+      case EInputValidation.Alphanumeric:
+        this.expression = /[`~!¡@#$%^&*()_|+\-=?;:'",.<>° ]/g;
+        break;
+      case EInputValidation.Text:
+        this.expression = /[0-9`~!¡@#$%^&*()_|+\-=?;:'",.<>°]/g;
+        break;
+    }
+  
+    if (this.expression) {
+      target.value = target.value
+        .replace(this.expression, ''); 
+    }
+
+   
     target.value = target.value.substr(0, Number(this.maxLength)); 
-    this.validPassword(target.value); 
+    this.currentValueInput =  target.value; 
+    console.log('currentValueInput',  this.currentValueInput);
     this.valueChanged.emit(target.value);  
   }
  
   onFocus(event : any){    
+    this.flgValidPass = true;    
     this.classInput['error-input'] = true;
     this.classInput['text-input'] = false;
   }
@@ -136,38 +158,6 @@ export class InputComponent implements OnChanges {
     this.showPassword = !this.showPassword
   }
 
-  validPassword(newPass : string) {  
-    this.isMayuscula = false;
-    this.isMinuscula = false;
-    this.isNumber = false;
-    this.isSimbolo = false;
-    this.isLength = false;   
-
-    for (let i = 0; i < newPass.length; i++) {
-      if (newPass.charCodeAt(i) >= 65 && newPass.charCodeAt(i) <= 90) {
-        this.isMayuscula = true;
-      } else if ( newPass.charCodeAt(i) >= 97 && newPass.charCodeAt(i) <= 122 ) {
-        this.isMinuscula = true;
-      } else if ( newPass.charCodeAt(i) >= 48 && newPass.charCodeAt(i) <= 57 ) {
-        this.isNumber = true;
-      } else if (
-        newPass.charCodeAt(i) >= 33 && newPass.charCodeAt(i) <= 47 ||
-        newPass.charCodeAt(i) >= 58 && newPass.charCodeAt(i) <= 64 ||
-        newPass.charCodeAt(i) >= 123 && newPass.charCodeAt(i) <= 126
-        ) {
-        this.isSimbolo = true;
-      }
-    }
-
-    if (newPass.length >= 8) { 
-      this.isLength = true;
-    }
  
-    if (this.isMayuscula && this.isMinuscula && this.isSimbolo && this.isLength && this.isNumber) {  
-      this.flgVerCaracteristicas = false;  
-    }else{
-      this.flgVerCaracteristicas = true;  
-    }
-  }
 
 }
