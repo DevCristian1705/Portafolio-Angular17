@@ -16,7 +16,7 @@ export class SidebarComponent {
   @Input() isShow : boolean = false; 
   @Input() type : "SideLanding" | 'SideDashboard' = "SideLanding";
   @Output() closed: EventEmitter<boolean> = new EventEmitter();
-  sidebarArray$ = this.globalsrv.getSidebar(); 
+  sidebarArray = this.globalsrv.sidebar; 
   userSession
 
   public get typeClass(): string[] {

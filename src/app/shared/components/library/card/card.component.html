@@ -7,7 +7,7 @@
             </div>
 
             <div class="datos">
-                <div class="datos__logos"  *ngFor="let item of dataArray | async"> 
+                <div class="datos__logos"  *ngFor="let item of dataArray"> 
                     <span class="primary-bold-h2 secondary-400">
                         {{ item.name_company}} <br>
                         <div class="font-secondary-bold-14">  {{ item.date_init}} -  {{ item.date_end}}</div>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="datos">
-                <div class="logos" *ngFor="let item of dataArray | async"> 
+                <div class="logos" *ngFor="let item of dataArray"> 
                       <span class="primary-bold-h2 secondary-400">
                         {{item.name_proyecto}}
                     </span>	 
@@ -48,7 +48,7 @@
             </div>
 
             <div class="datos datos--centrado">
-                <div class="info-perfil"  *ngFor="let item of dataArray | async">
+                <div class="info-perfil"  *ngFor="let item of dataArray">
                     <div class="primary-bold-h6"> <b>{{ item.titulo}}:</b> </div>
                     <div class="primary-regular"> {{ item.dato}}</div>
                 </div>   

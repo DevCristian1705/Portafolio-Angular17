@@ -11,9 +11,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DialogMessageComponent } from "./components/dialog/dialog-message/dialog-message.component";
 import { AppObservable } from "../../utils/observables/app.observable";
 import { StripHtmlDirective } from "../../utils/directives/strip-html.directive";
-import { SanitizeHtmlPipe } from "../../utils/interceptor/pipes/sanitizeHtml.pipe";
-import { CellphoneValidationDirective } from "../../utils/directives/cellphone.validation.directive";
-import { PasswordValidationDirective } from "../../utils/directives/pass.validate.directive";
+import { SanitizeHtmlPipe } from "../../utils/interceptor/pipes/sanitizeHtml.pipe"; 
 import { ReactiveFormDirective } from "../../utils/directives/reactiveForm.directive"; 
 import { RouterOutlet } from "@angular/router";
 import { CardComponent } from "./components/library/card/card.component";
@@ -25,9 +23,7 @@ import { PageValidPasswordComponent } from "./components/library/page-valid-pass
  
  
 const MODULE_DIRECTIVES = [
-    ReactiveFormDirective, 
-    PasswordValidationDirective,
-    CellphoneValidationDirective,
+    ReactiveFormDirective,  
     StripHtmlDirective,
 ]
  

@@ -28,12 +28,7 @@
 	<div class="jobs">
 		<div class="jobs__cabecera">
 			<marquee behavior="" direction="right" behavior="alternate"  >
-				<span> Habilidades</span>   
-				<span> Habilidades</span>   
-				<span> Habilidades</span>   
-				<span> Habilidades</span>   
-				<span> Habilidades</span>   
-				<span> Habilidades</span>   
+				<span *ngFor="let item of  onCloneText(7)"> Habilidades  </span>  
 			</marquee>  
 		</div>
 	</div>
@@ -59,12 +54,8 @@
 
 	<div class="jobs">
 		<div class="jobs__cabecera">
-			<marquee behavior="" direction="right" behavior="alternate"  >
-				<span> Experiencia laboral  </span>   
-				<span> Experiencia laboral  </span>   
-				<span> Experiencia laboral  </span>   
-				<span> Experiencia laboral  </span>   
-				<!-- <span *ngFor="let item of Array(4).fill('Experiencia laboral')"> {{ item }} </span> -->
+			<marquee behavior="" direction="right" behavior="alternate"  > 
+				<span *ngFor="let item of  onCloneText(4)">  Experiencia laboral   </span>
 			</marquee>  
 		</div>
 	</div>
@@ -100,11 +91,11 @@
 				dataHover="Click para conocer más">
 			</app-card> -->
 		
-			<app-card
+			<!-- <app-card
 				id="proyectos"
 				title="PROYECTOS"
 				type="CardProyectos"
-				[dataArray]="proyextosArray$"
+				[dataArray]="proyextosArray"
 				dataHover="Click para conocer más">
 			</app-card>
 		
@@ -112,9 +103,9 @@
 				id="contact"
 				title="CONTACTO"
 				type="CardContacto"
-				[dataArray]="profileArray$"
+				[dataArray]="profileArray"
 				dataHover="Click para conocer más">
-			</app-card>   
+			</app-card>    -->
 
 		</div> 
 	</div>

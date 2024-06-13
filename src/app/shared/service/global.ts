@@ -22,27 +22,32 @@ export class GlobalService {
     {
       code: 2,
       name: 'Generador Otp',
-      routerlink : '/generate-otp',
+      routerlink : '/dashboard/generate-otp',
       icon: '../../../assets/iconos/icono-proyectos.png',
       alt_icon: 'icono proyectos'  
     }, 
     {
       code: 3,
       name: 'Simulador de Cambio',
-      routerlink : '/simulator-change',
+      routerlink : '/dashboard/simulator-change',
       icon: '../../../assets/iconos/icono-proyectos.png',
       alt_icon: 'icono proyectos'
     }, 
     {
       code: 4,
       name: 'Encuesta',
-      routerlink : '/encuesta',
+      routerlink : '/dashboard/encuesta',
       icon: '../../../assets/iconos/icono-proyectos.png',
       alt_icon: 'icono proyectos'  
     }, 
     // {code: 4,name: 'Org de tareas', router : 'dashboard/proyecto/org-task'},
     // {code: 5,name: 'Calendario', router : 'dashboard/proyecto/calendar'}
   ];
+
+  get menu(): menuOptions[] {
+    return this.menuOptions;
+  }
+
   //SIDEBAR
   private sideBarOptions: menuOptions[] = [
     {
@@ -70,6 +75,11 @@ export class GlobalService {
       routerlink: '#proyectos',
     },
   ];
+
+  get sidebar(): menuOptions[] {
+    return this.sideBarOptions;
+  }
+
   //TOOL
   private navBarOption: NavbarOptions[] = [
     { 
@@ -89,6 +99,11 @@ export class GlobalService {
       routerlink: '#contact',
     }
   ];
+
+  get navbar(): NavbarOptions[] {
+    return this.navBarOption;
+  }
+
   //EXP LABORAL
   private ExpLaboralOptions: IListExpLaboral[] = [
     { 
@@ -124,6 +139,11 @@ export class GlobalService {
       description : 'Mi experiencia en el MIDIS fue el inicio de mi pasion por el desarrollo web, aqui no solo vi Frontend, si no que ocupe el cargo de fullStack, para esto me onvolucre desde 0 a los requerimientos de las distintas areas del programa PAIS.'
     }, 
   ];
+
+  get expLaboral(): IListExpLaboral[] {
+    return this.ExpLaboralOptions;
+  }
+
   // PROYECTOS
   private ProyectosOptions: IListProyectos[] = [
     { 
@@ -187,6 +207,11 @@ export class GlobalService {
       altImg : ''
     }, 
   ];
+
+  get proyectos(): IListProyectos[] {
+    return this.ProyectosOptions;
+  }
+
   //DATOS PERFIL
   private datosProfileOptions: IDatosProfile[] = [
     { 
@@ -210,55 +235,69 @@ export class GlobalService {
       dato: 'www.linkedin.com/in/cristian-martinez-fajardo'
     }, 
   ]
+
+  get perfil(): IDatosProfile[] {
+    return this.datosProfileOptions;
+  }
+
   //Datos de Encuenta
   private datosEncuesta : IEncuesta[] = [
     {
       id_encuesta : 0,
       pregunta: '¿Cuál es la capital de Perú?',
       imagen : 'assets/encuesta/capital-peru.jpeg',
+      respuesta_correcta : 'A',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: 'LIMA', value : true, clase: 'resp--default'},
-      { opcion : 'B', respuesta: 'CUZCO', value : false, clase: 'resp--default' },
-      { opcion : 'C', respuesta: 'PARIS', value : false, clase: 'resp--default' }] 
+      { opcion : 'A', respuesta: 'LIMA', clase: 'resp--default'},
+      { opcion : 'B', respuesta: 'CUZCO', clase: 'resp--default' },
+      { opcion : 'C', respuesta: 'PARIS', clase: 'resp--default' }] 
     },
     {
       id_encuesta : 1,
       pregunta: '¿Cuál es el valor de "PI"?',
       imagen : 'assets/encuesta/valor-pi.jpeg',
+      respuesta_correcta : 'A',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: '3.14..', value : true , clase: 'resp--default'},
-      { opcion : 'B', respuesta: '27, 000', value : false, clase: 'resp--default' },
-      { opcion : 'C', respuesta: '0', value : false , clase: 'resp--default'}] 
+      { opcion : 'A', respuesta: '3.14..', clase: 'resp--default'},
+      { opcion : 'B', respuesta: '27, 000', clase: 'resp--default' },
+      { opcion : 'C', respuesta: '0', clase: 'resp--default'}] 
     },
     {
       id_encuesta : 2,
       pregunta: '¿Qué platos son típicos en el Perú?',
       imagen : 'assets/encuesta/platos-tipicos.jpeg',
+      respuesta_correcta : 'D',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: 'Ceviche', value : false, clase: 'resp--default' },
-      { opcion : 'B', respuesta: 'Arroz con Pato', value : false, clase: 'resp--default' },
-      { opcion : 'C', respuesta: 'Carapulcra', value : false, clase: 'resp--default' },
-      { opcion : 'D', respuesta: 'Todas las anteriores', value : true, clase: 'resp--default' }] 
+      { opcion : 'A', respuesta: 'Ceviche', clase: 'resp--default' },
+      { opcion : 'B', respuesta: 'Arroz con Pato', clase: 'resp--default' },
+      { opcion : 'C', respuesta: 'Carapulcra', clase: 'resp--default' },
+      { opcion : 'D', respuesta: 'Todas las anteriores', clase: 'resp--default' }] 
     },
     {
       id_encuesta : 3,
       pregunta: '¿De dónde son originarios los perros Husky-Siberianos?',
       imagen : 'assets/encuesta/siberianos.jpeg',
+      respuesta_correcta : 'B',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: 'Angola', value : false, clase: 'resp--default' },
-      { opcion : 'B', respuesta: 'Siberia', value : true, clase: 'resp--default' },
-      { opcion : 'C', respuesta: 'Costa Rica', value : false, clase: 'resp--default' }] 
+      { opcion : 'A', respuesta: 'Angola', clase: 'resp--default' },
+      { opcion : 'B', respuesta: 'Siberia', clase: 'resp--default' },
+      { opcion : 'C', respuesta: 'Costa Rica', clase: 'resp--default' }] 
     },
     {
       id_encuesta : 4,
       pregunta: '¿Cuál es el símbolo químico del agua?',
       imagen : 'assets/encuesta/h20.jpg',
+      respuesta_correcta : 'C',
       opciones_respuesta : [
-      { opcion : 'A', respuesta: 'Ag', value : false, clase: 'resp--default' },
-      { opcion : 'B', respuesta: 'Co', value : false, clase: 'resp--default' },
-      { opcion : 'C', respuesta: 'H2O', value : true, clase: 'resp--default' }] 
+      { opcion : 'A', respuesta: 'Ag', clase: 'resp--default' },
+      { opcion : 'B', respuesta: 'Co', clase: 'resp--default' },
+      { opcion : 'C', respuesta: 'H2O', clase: 'resp--default' }] 
     },
   ]
+ 
+  get encuestas(): IEncuesta[] {
+    return this.datosEncuesta;
+  }
 
   private datosSkills : ISkills[] = [
     {
@@ -308,102 +347,17 @@ export class GlobalService {
       alt_icon: 'icono de sql',
     }
   ]
+
+  get skills(): ISkills[] {
+    return this.datosSkills;
+  }
+
   
   onCopyCodeText(text: any) {
     navigator.clipboard.writeText(text)
         .then(() => { console.log('Código copiado')})
         .catch((err) => { console.error('Error al copiar el código:', err);
     });
-  }
-
-  getSidebar(): Observable<menuOptions[]> {
-    let sideBarOptions: Observable<menuOptions[]> = of(this.sideBarOptions); 
-    return sideBarOptions;
-  }
-
-
-  getMenu(): Observable<menuOptions[]> {
-    let menuOptions: Observable<menuOptions[]> = of(this.menuOptions); 
-    return menuOptions;
-  }
-
-  getNavBar(): Observable<NavbarOptions[]> { 
-    let navBarOption: Observable<NavbarOptions[]> = of(this.navBarOption); 
-    return navBarOption;
-  }
-
-  getExpLaboral(): Observable<IListExpLaboral[]> { 
-    let expOptions: Observable<IListExpLaboral[]> = of(this.ExpLaboralOptions); 
-    return expOptions;
-  }
-
-  getProyectos(): Observable<IListProyectos[]> { 
-    let proyectosOptions: Observable<IListProyectos[]> = of(this.ProyectosOptions); 
-    return proyectosOptions;
-  }
-
-  getDatosProfile(): Observable<IDatosProfile[]> { 
-    let datosOptions: Observable<IDatosProfile[]> = of(this.datosProfileOptions); 
-    return datosOptions;
-  }
- 
-  getDatosEncuesta(): Observable<IEncuesta[]> {  
-    let datosEncuesta: Observable<IEncuesta[] >= of(this.datosEncuesta); 
-    return datosEncuesta; 
-  }
-
-  getskilss(): Observable<ISkills[]> {  
-    let datosSkills: Observable<ISkills[] >= of(this.datosSkills); 
-    return datosSkills; 
-  }
-  
-  onValidPass(event : any){   
-    var contrasenna = event;
-    let existeMayuscula = false;
-    let existeMinuscula = false;
-    let existeNumber = false;
-    let existeSimbolo = false;
-    let existelengValidate = false;   
-
-    for (var i = 0; i < contrasenna.length; i++) {
-        if (contrasenna.charCodeAt(i) >= 65 && contrasenna.charCodeAt(i) <= 90) {
-            existeMayuscula = true;
-        } else if ( contrasenna.charCodeAt(i) >= 97 && contrasenna.charCodeAt(i) <= 122 ) {
-            existeMinuscula = true;
-        } else if ( contrasenna.charCodeAt(i) >= 48 && contrasenna.charCodeAt(i) <= 57 ) {
-            existeNumber = true;
-        } else if (
-            contrasenna.charCodeAt(i) >= 33 && contrasenna.charCodeAt(i) <= 47 ||
-            contrasenna.charCodeAt(i) >= 58 && contrasenna.charCodeAt(i) <= 64 ||
-            contrasenna.charCodeAt(i) >= 123 && contrasenna.charCodeAt(i) <= 126
-            ) {
-            existeSimbolo = true;
-        }
-    }
-
-    if (contrasenna.length >= 8) { 
-        existelengValidate = true;
-    }
-
-    if (existeMayuscula && existeMinuscula && existeSimbolo && existelengValidate && existeNumber) {  
-        return true;
-    }else{
-        return false;
-    } 
- 
-  }
-
-  onValidateFormEmail(email: string) {
-    let validateEmail: boolean = false;
-    if (email) {
-      const regex = /(\.{2,}|\.+$)/;
-      const dotCount = email.split('.').length - 1;
-      if (dotCount > 2 || regex.test(email)) {
-        validateEmail = true;
-      }
-    }
-
-    return validateEmail;
   }
  
   generateUniqueId(prefix: string): string {

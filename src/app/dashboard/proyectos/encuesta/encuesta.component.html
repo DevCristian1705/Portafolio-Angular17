@@ -7,7 +7,7 @@
 
     <div class="encuesta__opciones">
         <div class="imagen">
-            <img [src]="imagenPregunta" alt="" width="250" height="250">
+            <img [src]="currentQuestion | imagenDefault : answer" alt="" width="250" height="250">
          </div>
          <div class="alternativas cursor-pointer">
             <div class="primary-bold-h4"  *ngFor="let op of currentQuestion.opciones_respuesta"> 

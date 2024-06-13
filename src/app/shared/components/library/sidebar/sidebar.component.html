@@ -18,7 +18,7 @@
                     <div class="loader-line" ></div>
 
                     <div class="content-sidebar-sidenav " >
-                        <div class="sidebar" *ngFor="let item of sidebarArray$ | async">
+                        <div class="sidebar" *ngFor="let item of sidebarArray">
                             <div class="sidebar__items" (click)="onActive(item.routerlink)" >
                                 <img class="sidebar__icon" [src]="item.icon" alt="icono de sidebar" width="25" height="25">
                                 <span class="font-secondary-regular-18 white sidebar__name-item " >

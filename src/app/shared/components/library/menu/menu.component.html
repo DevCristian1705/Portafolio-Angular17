@@ -1,9 +1,9 @@
 <div [ngClass]="type" >    
     <div class="navigation">   
         <div class="navigation__menu" >
-            <div  *ngFor="let items of menuArray$ | async">
+            <div  *ngFor="let items of menuArray">
                 <div class="items-content white">
-                    <div class="items-content__item-menu primary-bold-h6">
+                    <div class="items-content__item-menu primary-bold-h4">
                         <img [src]="items.icon" [alt]="items.alt_icon" width="20" height="20">
                         <span class="cursor-pointer" (click)="onNavigate(items.routerlink || '')"> {{items.name }}</span>
                     </div>  

@@ -5,19 +5,23 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from "./home/home.component";
 import { EncuestaComponent } from "./proyectos/encuesta/encuesta.component";
-
+import { ImagenDefaultPipe } from "../../utils/pipe/imagen-default.pipe";
+ 
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     HomeComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    ImagenDefaultPipe
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule, 
-    SharedModule
+    SharedModule,
+
+    
   ],
   providers: [    
     { provide: LOCALE_ID, useValue: 'es' }  

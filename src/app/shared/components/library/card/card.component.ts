@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
   @Input() id : string = "";
   @Input() type : string = "";
   @Input() dataHover  : string = "";
-  @Input() dataArray! : Observable<any[]>;
+  @Input() dataArray : any[] = [];
  
   public get typeClass(): string[] {
     return getStyles(this.type)

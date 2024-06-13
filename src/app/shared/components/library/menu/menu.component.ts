@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
   @Input() type = 'MenuPrimary';
   @Output() closed: EventEmitter<boolean> = new EventEmitter();
  
-  menuArray$ = this.globalsrv.getMenu();
+  menuArray = this.globalsrv.menu;
 
   constructor(
     private globalsrv: GlobalService,

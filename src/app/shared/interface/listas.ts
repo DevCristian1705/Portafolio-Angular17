@@ -34,8 +34,7 @@ export interface IDatosProfile  {
  
 export interface IRespuestas {
 	opcion : string;
- 	respuesta: string;
- 	value : boolean;
+ 	respuesta: string; 
     clase : string
 }
   
@@ -43,6 +42,7 @@ export interface IEncuesta  {
 	id_encuesta : number;
 	pregunta: string;
     imagen : string;
+    respuesta_correcta : string;
 	opciones_respuesta : IRespuestas[] 
 }
 

@@ -7,33 +7,22 @@ import { IListExpLaboral, ISkills } from "../shared/interface/listas";
   templateUrl: "./landing.component.html",
   styleUrls: ["./landing.component.scss"],
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent {
   
-  proyextosArray$ = this.globalsrv.getProyectos();
-  profileArray$ = this.globalsrv.getDatosProfile(); 
+  // proyextosArray$ = this.globalsrv.getProyectos();
+  // profileArray$ = this.globalsrv.getDatosProfile(); 
 
-  dataSkills : ISkills[] = []
-  dataExpLaboral: IListExpLaboral[] = []
+  dataSkills : ISkills[] =  this.globalsrv.skills
+  dataExpLaboral: IListExpLaboral[] = this.globalsrv.expLaboral
 
   constructor( 
     private globalsrv : GlobalService
   ) {
-  
+   
   } 
+  
 
-  ngOnInit(): void {
-   this.onLoadSkill();
-   this.onLoadExpLaboral();
+  onCloneText(cantidad : number = 4): any[]{
+    return Array(cantidad).fill(0).map((x ,i ) => i);
   }
-
-  onLoadSkill(){
-    this.globalsrv.getskilss()
-    .subscribe(resp => this.dataSkills = resp)
-  }
-
-  onLoadExpLaboral(){
-    this.globalsrv.getExpLaboral()
-    .subscribe(resp => this.dataExpLaboral = resp)
-  }
-
 }
