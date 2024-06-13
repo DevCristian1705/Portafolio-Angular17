@@ -79,5 +79,26 @@
         </div> 
       </div>
     }
+    @case ('InputSimulator') {
+      <div class="InputSimulator"> 
+        <div class="label"> {{label}} </div>
+        <div class="inputSimulator">
+            <input 
+                onlyNumbers 
+                inputmode="numeric"
+                class="input"
+                type="text" 
+                [autocomplete]="false"
+                [value]="value"
+                (input)="onChange($event.target)" 
+                [readonly]="isReadOnly" > 
+            <div class="currencyInput"> {{typeCurrency}} </div> 
+        </div>
+
+        <div *ngIf="isValidField()" class="message-error"  >
+          {{ getFieldError(this.idTextField) | lowercase }} 
+        </div>  
+      </div> 
+    }
   }  
 </div>

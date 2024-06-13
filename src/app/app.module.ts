@@ -18,9 +18,7 @@ import { LandingComponent } from './landing/landing.component';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
-
-    
+    SharedModule
   ],
   providers:[
     provideAnimationsAsync(), 

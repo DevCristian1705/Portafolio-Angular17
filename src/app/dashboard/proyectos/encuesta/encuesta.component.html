@@ -6,13 +6,14 @@
     </div> 
 
     <div class="encuesta__opciones">
-        <div class="imagen">
+        <div class="imagen" [ngClass]="{ 'imagen--animationImg': answer }">
             <img [src]="currentQuestion | imagenDefault : answer" alt="" width="250" height="250">
          </div>
          <div class="alternativas cursor-pointer">
-            <div class="primary-bold-h4"  *ngFor="let op of currentQuestion.opciones_respuesta"> 
-                <div class="opcion" [ngClass]="op.clase" (click)="onValidateRespuesta(currentQuestion.id_encuesta, op)">
-                    <div class="code" [ngClass]="op.clase" >
+            <div class="primary-bold-h4" *ngFor="let op of currentQuestion.opciones_respuesta"> 
+                <div class="opcion" [ngClass]="'opcion__'+op.clase"  
+                    (click)="onValidateRespuesta(op.opcion)">
+                    <div class="code" [ngClass]="'code__'+op.clase" >
                         {{ op.opcion }} 
                     </div>
                     <div class="name-opcion"  [ngClass]="op.clase">

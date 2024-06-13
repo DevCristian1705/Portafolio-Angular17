@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { EncuestaComponent } from './proyectos/encuesta/encuesta.component';
+import { GenerateOtpComponent } from './proyectos/generate-otp/generate-otp.component';
+import { SimulatorChangeComponent } from './proyectos/simulator-change/simulator-change.component';
+import { HistorialSimulatorComponent } from './proyectos/simulator-change/historial-simulator/historial-simulator.component';
 
 export const routes: Routes = [
     {
@@ -18,7 +21,21 @@ export const routes: Routes = [
           path: 'encuesta',
           component: EncuestaComponent, 
         },
- 
+        {
+          path: 'generate-otp',
+          component: GenerateOtpComponent, 
+        },
+        {
+          path: 'simulator-change',
+          component: SimulatorChangeComponent,  
+        },
+        {
+          path: 'historial-simulations',
+          component: HistorialSimulatorComponent,  
+        },
+
+      
+
       ], 
     } 
   ];

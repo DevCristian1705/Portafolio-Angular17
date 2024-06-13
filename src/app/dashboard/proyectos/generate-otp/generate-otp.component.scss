@@ -1,0 +1,17 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    
+    &__properties{
+        padding: 2em;
+    }
+
+    
+    &__body-otp{
+        padding: 2em;
+    }
+}

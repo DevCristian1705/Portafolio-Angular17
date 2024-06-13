@@ -1,0 +1,109 @@
+
+<div class="simulator">  
+    <div class="simulator__contenedor"> 
+        <div class="simulator__info">
+            <div class="simulator__imagen">
+                <img width="150" height="50"
+                    src="../../assets/iconos/icono-navbar.png" 
+                    alt="logo">
+            </div>
+        
+            <div class="simulator__titulo">
+                Cambia tus dolares y soles al intante
+            </div>
+        </div>
+
+        <ng-container *ngIf="!isLoading; else skeleton">
+            <div class="simulator__type-change">
+                <div [ngClass]="{ 'active' : flgRotate, 'inaactive' : !flgRotate}">
+                    VENTA S/ {{ TCventa }}
+                </div> 
+
+                <div [ngClass]="{ 'active' : !flgRotate, 'inaactive' : flgRotate}">
+                    COMPRA S/ {{ TCcompra }}
+                </div>  
+            </div>   
+
+            <form [formGroup]="simulatorForm">
+                <div class="simulator__form">
+                
+                    <app-input-library 
+                        typeInput="InputSimulator"
+                        label="TIENES"  
+                        idTextField="amountLeft" 
+                        formControlName="amountLeft"     
+                        maxLength="8"  
+                        [form]="simulatorForm" 
+                        [typeCurrency]="(flgRotate) ?  'Dólares' : 'Soles'" 
+                        cbxReactiveForm>
+                    </app-input-library>
+                    
+                    <div class="simulator__form__icon" >
+                        <img 
+                            (click)="onRotateIcon()"
+                            [ngClass]="{ 'icon-rotate' : flgRotate, 'icon-fijo' : !flgRotate}"
+                            src="assets/iconos/invert.svg" 
+                            alt="Invertir" width="48" height="48"
+                            role="button">
+                    </div>
+        
+                    <app-input-library  
+                        typeInput="InputSimulator"
+                        label="RECIBES"
+                        idTextField="amountRight" 
+                        formControlName="amountRight"  
+                        [isReadOnly]="true" 
+                        [value]="simulatorForm.get('amountRight')?.value" 
+                        maxLength="10" 
+                        [form]="simulatorForm" 
+                        [typeCurrency]="(flgRotate) ?  'Soles' : 'Dólares'" 
+                        [isReadOnly]="true" 
+                        cbxReactiveForm>
+                    </app-input-library>
+                
+                </div> 
+            
+                <div class="button">
+                    <app-button
+                        (clicked)="onSaveSimulate()"
+                        nombreBotton="Registrar Cambio"
+                        type="BottonPrimaryBlock"
+                        size="xl" 
+                        [sizeResponsive]="true"
+                        [isDisabled]="!currentAmount">
+                    </app-button>
+
+                    <app-button
+                        (clicked)="onToGoHistorial()"
+                        nombreBotton="Ver Historial"
+                        type="BottonPrimaryBlock"
+                        size="xl" 
+                        [sizeResponsive]="true" >
+                    </app-button>  
+                </div> 
+            </form> 
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #skeleton>
+    <div class="skeleton-simulator "> 
+        <div class="skeleton-simulator__contenedor">
+        
+            <div class="change-type">
+                <div class="change-type__input skeleton"></div> 
+                <div class="change-type__input skeleton"></div> 
+            </div>
+
+            <div class="first-input skeleton"></div> 
+
+            <div class="second-row"> 
+                <div class="second-row__rates-wrapper"> 
+                    <div class="second-row__change-btn skeleton"> </div> 
+                </div> 
+            </div>
+
+        <div class="first-input skeleton"></div>  
+        </div>
+    </div>  
+</ng-template>

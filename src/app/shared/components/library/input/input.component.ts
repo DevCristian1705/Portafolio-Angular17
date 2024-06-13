@@ -18,7 +18,9 @@ export class InputComponent implements OnChanges {
   @Input() label = 'label';
   @Input() type = 'text';
   @Input() disabled = false;
+  @Input() isReadOnly = false; 
   @Input() value : string = "";
+  @Input() typeCurrency : string = "";
   @Input() maxLength = '60'; 
   @Input() minCaracter : number = 0; 
   @Input() size = 'md';
@@ -29,7 +31,7 @@ export class InputComponent implements OnChanges {
   @Output() public valueChanged = new EventEmitter();
   @Output() public blurred = new EventEmitter();
   @Output() public enter = new EventEmitter();
-  @Input() typeInput: "ClassicInput" | "ClassicInputRegistroPass" | "ClassicInputPass" = "ClassicInput";
+  @Input() typeInput: "ClassicInput" | "InputSimulator" | "ClassicInputRegistroPass" | "ClassicInputPass" = "ClassicInput";
   @Input() loading = false;
   @Input() readOnly=false;
    
@@ -98,9 +100,6 @@ export class InputComponent implements OnChanges {
     else this.hasIcon = false;   
   }
  
- 
- 
-
   onChange(target: any) {    
     switch (this.inputValidation) {
       case EInputValidation.Number:
@@ -124,8 +123,7 @@ export class InputComponent implements OnChanges {
 
    
     target.value = target.value.substr(0, Number(this.maxLength)); 
-    this.currentValueInput =  target.value; 
-    console.log('currentValueInput',  this.currentValueInput);
+    this.currentValueInput =  target.value;  
     this.valueChanged.emit(target.value);  
   }
  

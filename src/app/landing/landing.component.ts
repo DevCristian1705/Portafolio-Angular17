@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";  
+import { Component } from "@angular/core";  
 import { GlobalService } from "../shared/service/global";
 import { IListExpLaboral, ISkills } from "../shared/interface/listas";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-landing",
@@ -16,7 +17,9 @@ export class LandingComponent {
   dataExpLaboral: IListExpLaboral[] = this.globalsrv.expLaboral
 
   constructor( 
-    private globalsrv : GlobalService
+    private globalsrv : GlobalService,
+    private router : Router
+
   ) {
    
   } 
@@ -24,5 +27,9 @@ export class LandingComponent {
 
   onCloneText(cantidad : number = 4): any[]{
     return Array(cantidad).fill(0).map((x ,i ) => i);
+  }
+
+  onDashboard(){
+    this.router.navigateByUrl('/dashboard')
   }
 }

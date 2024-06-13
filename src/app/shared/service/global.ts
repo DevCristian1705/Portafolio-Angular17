@@ -296,7 +296,7 @@ export class GlobalService {
   ]
  
   get encuestas(): IEncuesta[] {
-    return this.datosEncuesta;
+    return [...this.datosEncuesta];
   }
 
   private datosSkills : ISkills[] = [
