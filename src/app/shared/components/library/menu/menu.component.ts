@@ -35,6 +35,7 @@ export class MenuComponent implements OnInit {
  
   onNavigate(url : string){
     this.router.navigateByUrl(url);
+    this.closed.emit(false);
   }
 
  

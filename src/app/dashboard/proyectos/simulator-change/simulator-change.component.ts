@@ -98,6 +98,7 @@ isLoading : boolean = true;
     const newData = [...existingData, DATA]; 
     localStorage.setItem('simulations-exchange', JSON.stringify(newData));
 
+    this.simulatorForm.reset(); 
   }
 
  onToGoHistorial(){

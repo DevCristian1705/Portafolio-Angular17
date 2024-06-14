@@ -4,7 +4,7 @@
         
         <div class="simulator__info">
             <div class="simulator__imagen">
-                <img width="150" height="50" src="../../assets/icono-navbar.png" alt="logo">
+                <img width="150" height="50" src="../../assets/iconos/icono-navbar.png" alt="logo">
             </div>
             <div class="simulator__titulo"> Historial de cambio </div>
         </div>
@@ -24,9 +24,15 @@
         </div> 
         
         <div class="button">
-            <button class="bottom-primary"  (click)="onBack()">   
-                <p class="font-secondary-bold-14  texto-botton"> Registrar Cambio </p>   
-            </button> 
+
+            <app-button
+                (clicked)="onBack()"
+                nombreBotton="Registrar Cambio"
+                type="BottonPrimaryBlock"
+                size="xl" 
+                [sizeResponsive]="true" >
+            </app-button>
+             
         </div>
     </div>
 

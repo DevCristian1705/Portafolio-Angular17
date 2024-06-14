@@ -63,7 +63,7 @@
                 <div class="navigation" *ngIf="isShow">  
                     <div class="close-sidebar" >
                         <div  class="close-sidebar__icon"  (click)="onHiddenSidenav()"> &#x2715; </div>
-                        <app-menu></app-menu> 
+                        <app-menu (closed)="onHiddenSidenav()"></app-menu> 
                     </div> 
                 </div>
             </div>  
