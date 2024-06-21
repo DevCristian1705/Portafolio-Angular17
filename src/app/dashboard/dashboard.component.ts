@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { AuthService } from '../auth/service/auth.service';
  
 @Component({
   selector: 'app-dashboard', 
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  private authService = inject(AuthService);
+  public user = computed( () => this.authService.currentUser() ); 
+  public sessionUser = this.user();
+ 
 }

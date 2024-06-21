@@ -16,7 +16,7 @@
 
                         <app-button
                             *ngIf="userSession"
-                            [nombreBotton]="userSession.names" 
+                            [nombreBotton]="userSession.name" 
                             (clicked)="onNavigate('/dashboard')"
                             size="sm" type="BottonPrimary">
                         </app-button> 
@@ -60,13 +60,19 @@
                     </div>
 
                     <div class="name-user white"  *ngIf="userSession">  
-                        {{ userSession?.names  | titlecase }}
+                        {{ userSession.name  | titlecase }}
                     </div> 
                 </div>
     
                 <app-button
                     nombreBotton="Landing" 
                     (clicked)="onNavigate('/')"
+                    size="lg" type="BottonLanding">
+                </app-button>  
+
+                <app-button
+                    nombreBotton="Cerrar Sesión" 
+                    (clicked)="onLogout()"
                     size="lg" type="BottonLanding">
                 </app-button>  
             </nav>

@@ -1,8 +1,8 @@
-import { Component, Input} from '@angular/core'; 
+import { Component, Input, inject} from '@angular/core'; 
 import { GlobalService } from '../../service/global';
-import { Router } from '@angular/router';
-import { StorageService } from '../../../../utils/service/storage/storage.service'; 
-import { STORAGE_KEY } from '../../../../utils/constants/storage';
+import { Router } from '@angular/router'; 
+import { User } from '../../../auth/interfaces';
+import { AuthService } from '../../../auth/service/auth.service';
 
 const getStyles = (...args: string[]) => ["nombreBotton", ...args].filter(Boolean)
 
@@ -17,31 +17,29 @@ export class NavbarComponent  {
   @Input() type: "Dashboard" | "Classic" = "Classic";
   isSidebar : boolean = false;
   navbarArray = this.globalsrv.navbar;
-  userSession  
+  @Input() userSession? : User | null;
 
   public get typeClass(): string[] {
     return getStyles(this.type)
   }
 
+  private authService = inject(AuthService);
+  private router = inject(Router); 
 
   constructor(
-    private globalsrv: GlobalService,
-    private storgaesrv : StorageService,
-    private router: Router
-  ) {  
-    this.userSession = this.storgaesrv.isAuthenticated; 
-  }
+    public globalsrv : GlobalService
+  ) {   }
    
   onNavigate(url:string){
     this.router.navigateByUrl(url);
   } 
-
-  onContraerMenu(){
-      this.storgaesrv.removeData(STORAGE_KEY.sessionUser);
-  }
-
+ 
   onActiveSideBar(isActive : boolean){
     this.isSidebar = isActive; 
+  }
+
+  onLogout(){
+    this.authService.logout();
   }
 
  

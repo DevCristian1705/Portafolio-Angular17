@@ -5,7 +5,9 @@ import { FormGroup } from '@angular/forms';
 export class ValidatorsService {
 
   public message : string = "";
-  public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  
+  public emailPattern: string = "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+
   flgPropertiesPassword : any;
   
   public isValidField( form: FormGroup, field: string ) {
@@ -21,9 +23,7 @@ export class ValidatorsService {
         && form.controls[field].value.startsWith('9')){
           this.message = ''
       }  
-    }else{
-      this.message = `No tiene formato de ${field}  `;
-    }
+    } 
  
     return this.message;
   }
@@ -64,22 +64,22 @@ export class ValidatorsService {
     return this.flgPropertiesPassword
   }
  
-    private isUppercase(charCode: number): boolean {
-      return charCode >= 65 && charCode <= 90;
-    }
-    
-    private isLowercase(charCode: number): boolean {
-      return charCode >= 97 && charCode <= 122;
-    }
-    
-    private isNumber(charCode: number): boolean {
-      return charCode >= 48 && charCode <= 57;
-    }
-    
-    private isSymbol(charCode: number): boolean {
-      return (charCode >= 33 && charCode <= 47) ||
-            (charCode >= 58 && charCode <= 64) ||
-            (charCode >= 123 && charCode <= 126);
-    }
+  private isUppercase(charCode: number): boolean {
+    return charCode >= 65 && charCode <= 90;
+  }
+  
+  private isLowercase(charCode: number): boolean {
+    return charCode >= 97 && charCode <= 122;
+  }
+  
+  private isNumber(charCode: number): boolean {
+    return charCode >= 48 && charCode <= 57;
+  }
+  
+  private isSymbol(charCode: number): boolean {
+    return (charCode >= 33 && charCode <= 47) ||
+          (charCode >= 58 && charCode <= 64) ||
+          (charCode >= 123 && charCode <= 126);
+  }
  
 }

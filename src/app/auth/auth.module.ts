@@ -17,7 +17,8 @@ import { ChangePasswordComponent } from "./change-password/change-password.compo
     imports: [   
         CommonModule,
         AuthRoutingModule, 
-        SharedModule
+        SharedModule,
+        
     ],
     providers: [    
         { provide: LOCALE_ID, useValue: 'es' }  

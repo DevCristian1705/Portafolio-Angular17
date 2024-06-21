@@ -21,8 +21,7 @@ export class InputComponent implements OnChanges {
   @Input() isReadOnly = false; 
   @Input() value : string = "";
   @Input() typeCurrency : string = "";
-  @Input() maxLength = '60'; 
-  @Input() minCaracter : number = 0; 
+  @Input() maxLength = '60';  
   @Input() size = 'md';
   @Input() paste = true;  
   @Input() height = '48px';
@@ -75,15 +74,14 @@ export class InputComponent implements OnChanges {
         case 'required':
           this.onErrorInput();
           return `Ingresa un ${this.label}`;
- 
-        case 'pattern':
-          this.onErrorInput();
-          let mssg : string = this.validatorsService.isValidCustomMessageError( this.form, field ); 
-          return mssg
+        // case 'pattern':
+        //   this.onErrorInput();
+        //   let mssg : string = this.validatorsService.isValidCustomMessageError( this.form, field ); 
+        //   return mssg
 
-        case 'minlength':
-            this.onErrorInput();  
-            return this.validatorsService.isValidCustomMinLengthError( field, this.minCaracter);
+        // case 'minlength':
+        //     this.onErrorInput();  
+        //     return this.validatorsService.isValidCustomMinLengthError( field, this.minCaracter);Less@prueba.com
       }
     }
 
@@ -124,6 +122,7 @@ export class InputComponent implements OnChanges {
    
     target.value = target.value.substr(0, Number(this.maxLength)); 
     this.currentValueInput =  target.value;  
+    console.log('this.currentValueInpu', this.currentValueInput);
     this.valueChanged.emit(target.value);  
   }
  
@@ -132,13 +131,7 @@ export class InputComponent implements OnChanges {
     this.classInput['error-input'] = true;
     this.classInput['text-input'] = false;
   }
- 
-  onBlur(event :any ){ 
-    this.classInput['error-input'] = true;
-    this.classInput['text-input'] = false;
-    this.blurred.emit(event.value); 
-  }
-
+  
   onEnter(event: any, value: any) {
     this.enter.emit(value || event.target.value);
   }

@@ -11,6 +11,7 @@ export class PageValidPasswordComponent  {
   @Input() set password(value: string){ 
     this.validPassword( value);
   }
+
   flgShowCaracters : boolean = false;
   propertiesValidPass  = {
     isMayuscula : false, 
@@ -26,13 +27,8 @@ export class PageValidPasswordComponent  {
     
   }
 
- 
-
   validPassword( newPass : string) {  
     this.propertiesValidPass = this.validatorsService.onValidPassword(newPass);
-
-    console.log('validPass',  this.propertiesValidPass);
-    
   }
 }
 

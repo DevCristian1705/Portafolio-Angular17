@@ -20,6 +20,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { DialogEncuestaComponent } from "./components/dialog/dialog-encuesta/dialog-encuesta.component";
 import { DialogConfirmComponent } from "./components/dialog/dialog-confirm/dialog-confirm.component";
 import { PageValidPasswordComponent } from "./components/library/page-valid-password/page-valid-password.component";
+import { HttpClientModule } from "@angular/common/http";
  
  
 const MODULE_DIRECTIVES = [
@@ -43,6 +44,7 @@ const MODULE_DIALOG = [
         CommonModule,
         FormsModule, 
         ReactiveFormsModule,
+        HttpClientModule,
         RouterOutlet,   
     ],
 
