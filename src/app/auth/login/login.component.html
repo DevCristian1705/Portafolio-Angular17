@@ -23,8 +23,6 @@
                 <div class="formulario font-secondary-regular-12">
         
                     <div class="formulario__inputs">
-
-                        
                         <div class="ClassicInput">
                             <div class="input-container" >
                               <input 
@@ -40,18 +38,22 @@
                             </div> 
                         </div> 
 
-
                         <div class="ClassicInput">
                             <div class="input-container" >
                               <input 
-                                [type]="showPassword ? 'text' : 'password'" 
+                                [type]="isShowPassword ? 'text' : 'password'" 
                                 [ngClass]="classInput"
                                 formControlName="password" 
                                 autocomplete="off" />
                               <label  class="label"> Contraseña </label>
-                              <div class="icon" (click)="showPassword  = !showPassword">
-                                <img *ngIf="showPassword" src="assets/iconos/icon-eye-open.svg">
-                                <img *ngIf="!showPassword" src="assets/iconos/icon-eye-close.svg">
+                              <div class="icon" (click)="isShowPassword  = !isShowPassword">
+                                
+                                @if (isShowPassword) {
+                                    <img src="assets/iconos/icon-eye-open.svg">
+                                }@else{
+                                    <img src="assets/iconos/icon-eye-close.svg">
+                                } 
+                              
                               </div>
                             </div>
                              
@@ -59,30 +61,7 @@
                               {{ getFieldError('password') | lowercase }} 
                             </div> 
                         </div> 
-                        
-                        <!-- <app-input-library 
-                            typeInput="ClassicInput"
-                            label="Correo electrónico"
-                            idTextField="email" 
-                            [minCaracter]="4"   
-                            formControlName="email"
-                            cbxReactiveForm   
-                            [form]="loginForm" 
-                            [readOnly]="loadingButton" 
-                            [firstTouchedValue]="false">
-                        </app-input-library>  
-
-                        <app-input-library
-                            typeInput="ClassicInputPass"
-                            label="Contraseña"
-                            idTextField="password"
-                            [minLength]="'8'"   
-                            formControlName="password"
-                            cbxReactiveForm
-                            [form]="loginForm" 
-                            [readOnly]="loadingButton" 
-                            [firstTouchedValue]="false">
-                        </app-input-library>   -->
+                  
                     </div>
                 
                     <span class="formulario__olvidopass 

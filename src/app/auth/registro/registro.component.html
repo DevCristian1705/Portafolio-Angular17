@@ -18,67 +18,62 @@
             <div class="formulario font-secondary-regular-12">
     
                 <div class="formulario__inputs">
-                    <app-input-library 
-                        typeInput="ClassicInput"
-                        label="Nombres"
-                        idTextField="names" 
-                        formControlName="names"
-                        cbxReactiveForm 
-                        [form]="registerForm" 
-                        [readOnly]="loadingButton" 
-                        [firstTouchedValue]="false">
-                    </app-input-library>  
 
-                    <app-input-library 
-                        typeInput="ClassicInput"
-                        label="Apellidos"
-                        idTextField="lastname" 
-                        formControlName="lastname"
-                        cbxReactiveForm 
-                        [form]="registerForm" 
-                        [readOnly]="loadingButton" 
-                        [firstTouchedValue]="false">
-                    </app-input-library>  
- 
+                    <div class="ClassicInput">
+                        <div class="input-container" >
+                          <input 
+                            type="text"     
+                            formControlName="names" 
+                            [ngClass]="classInput"
+                            autocomplete="off" />
+                          <label class="label"> Email </label>
+                        </div>
+                         
+                        <div *ngIf="isValidField('names')" class="message-error"  >
+                          {{ getFieldError('names') | lowercase }} 
+                        </div> 
+                    </div> 
 
-                    <app-input-library 
-                        typeInput="ClassicInput"
-                        label="Celular"
-                        idTextField="cellphone" 
-                        formControlName="cellphone" 
-                        maxLength="9"
-                        [minCaracter]="9"
-                        cbxReactiveForm   
-                        [inputValidation]="numberExpresion"
-                        [form]="registerForm"  
-                        [readOnly]="loadingButton" 
-                        [firstTouchedValue]="false">
-                    </app-input-library>  
-
-                   <app-input-library 
-                        typeInput="ClassicInput"
-                        label="Correo electrónico"
-                        idTextField="email"
-                        formControlName="email"
-                        [minCaracter]="10"
-                        maxLength="50"
-                        cbxReactiveForm  
-                        [form]="registerForm" 
-                        [readOnly]="loadingButton" 
-                        [firstTouchedValue]="false">
-                    </app-input-library>  
-
-                    <app-input-library
-                        typeInput="ClassicInputRegistroPass"
-                        label="Contraseña"
-                        idTextField="password"
-                        minLength="8"   
-                        formControlName="password" 
-                        cbxReactiveForm  
-                        [form]="registerForm" 
-                        [readOnly]="loadingButton" 
-                        [firstTouchedValue]="false">
-                    </app-input-library>    
+                    <div class="ClassicInput">
+                        <div class="input-container" >
+                          <input 
+                            type="text"     
+                            formControlName="lastname" 
+                            [ngClass]="classInput"
+                            autocomplete="off" />
+                          <label class="label"> Apellidos </label>
+                        </div>
+                         
+                        <div *ngIf="isValidField('names')" class="message-error"  >
+                          {{ getFieldError('names') | lowercase }} 
+                        </div> 
+                    </div> 
+                 
+                    <div class="ClassicInput">
+                        <div class="input-container" >
+                          <input 
+                            [type]="isShowPassword ? 'text' : 'password'" 
+                            [ngClass]="classInput"
+                            formControlName="password" 
+                            autocomplete="off" />
+                          <label  class="label"> Contraseña </label>
+                          <div class="icon" (click)="isShowPassword  = !isShowPassword">
+                            
+                            @if (isShowPassword) {
+                                <img src="assets/iconos/icon-eye-open.svg">
+                            }@else{
+                                <img src="assets/iconos/icon-eye-close.svg">
+                            } 
+                          
+                          </div>
+                        </div>
+                         
+                        <div *ngIf="isValidField('password')" class="message-error"  >
+                          {{ getFieldError('password') | lowercase }} 
+                        </div> 
+                    </div> 
+                 
+                     
                 </div> 
             </div>  
         </form> 
@@ -90,7 +85,7 @@
                 nombreBotton="Registrarme"
                 type="BottonPrimary"
                 size="xl"
-                [loadingdButton]="loadingButton"
+                [loadingdButton]="isLoadingButton"
                 [sizeResponsive]="true"
                 [isDisabled]="registerForm.invalid">
             </app-button>

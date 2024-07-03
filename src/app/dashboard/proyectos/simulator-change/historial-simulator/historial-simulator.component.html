@@ -19,7 +19,7 @@
         <div class="datos-exhange  datos-exhange--table" *ngFor="let item of arrayHistory"> 
             <div> {{item.amount}}  </div>
             <div> {{ item.type }}  </div> 
-            <div> {{ item.type === ' COMPRA'? item.valuePurchase :  item.valueSale}}  </div>
+            <div> {{ item.type === 'COMPRA'? item.valuePurchase :  item.valueSale}}  </div>
             <div> {{ item.amountChange  }}  </div>  
         </div> 
         

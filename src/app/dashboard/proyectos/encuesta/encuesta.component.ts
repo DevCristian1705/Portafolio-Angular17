@@ -15,14 +15,10 @@ import { DialogEncuestaComponent } from '../../../shared/components/dialog/dialo
 export class EncuestaComponent {
  
   currentQuestion : IEncuesta = {} as IEncuesta; 
-  questionValid : boolean[] = []; 
-  arrayEncuestas : IEncuesta[] = [];
-  answer : boolean = false;
-  classRespuesta = {
-    'resp--valid': false,
-    'resp--error': false,
-    'resp--default': true,
-  };
+  isQuestionValid : boolean[] = []; 
+  questions : IEncuesta[] = [];
+  isAnswer : boolean = false;
+ 
 
   constructor(
     private globalsrv : GlobalService,
@@ -42,24 +38,24 @@ export class EncuestaComponent {
   }
 
   onLoadEncuestas(){  
-    this.arrayEncuestas =  [...this.encuestas]; 
-    this.showRandomQuestion(); 
+    this.questions =  [...this.encuestas]; 
+    this.onFirstQuestion(); 
   }
 
-  showRandomQuestion() { 
-    this.answer = false;
-    let [ primeraEncuesta ] = [...this.arrayEncuestas]
-    this.currentQuestion = {...primeraEncuesta}; 
+  onFirstQuestion() { 
+    this.isAnswer = false;
+    let [ firstQuestion ] = [...this.questions]
+    this.currentQuestion = {...firstQuestion}; 
   } 
 
 
-  onValidateRespuesta(respuestaUsuario : string){ 
-    this.answer = true;
+  onValidAnswer( answerUser : string){ 
+    this.isAnswer = true;
     this.onAnimationTitleRemove();
     this.onAnimationRemove(); 
 
     const { respuesta_correcta, id_encuesta } = this.currentQuestion; 
-    if( respuesta_correcta === respuestaUsuario ) this.questionValid.push(true) 
+    if( respuesta_correcta === answerUser ) this.isQuestionValid.push(true) 
     
     const currentQuestionCopy = { ...this.currentQuestion };
     currentQuestionCopy.opciones_respuesta = [...this.currentQuestion.opciones_respuesta.map((option) => ({ ...option }))];
@@ -78,14 +74,14 @@ export class EncuestaComponent {
     setTimeout(() => {     
       //Restablece los valores originales luego de aplicar los estilos
       this.encuestas[id_encuesta].opciones_respuesta = currentQuestionCopy.opciones_respuesta; 
-      this.onValidateEncuesta();
+      this.onNextQuestion();
     }, 1000); 
   }
 
-  onValidateEncuesta(){   
-    if (this.arrayEncuestas.length === 1 ) { 
+  onNextQuestion(){   
+    if (this.questions.length === 1 ) { 
 
-      messageEncuesta.finish.puntaje = this.questionValid.length;
+      messageEncuesta.finish.puntaje = this.isQuestionValid.length;
       messageEncuesta.finish.total = this.encuestas.length;
 
       const dialogRef = this.dialog.open(DialogEncuestaComponent, {
@@ -97,17 +93,17 @@ export class EncuestaComponent {
           this.router.navigateByUrl('/dashboard')
           return; 
         }  
-        this.questionValid = [];   
+        this.isQuestionValid = [];   
         this.onLoadEncuestas(); 
       }); 
-      return;
+      return; 
+    } 
 
-    }else { 
-      this.onAnimation();
-      this.onAnimationTitle(); 
-      this.arrayEncuestas.shift();
-      this.showRandomQuestion(); 
-    }
+    this.onAnimation();
+    this.onAnimationTitle(); 
+    this.questions.shift();
+    this.onFirstQuestion(); 
+   
  
   }
    

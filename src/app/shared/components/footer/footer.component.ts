@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent  {
 
   currentDate : Date = new Date();
-  anioActual = this.currentDate.getFullYear();
+  currentYear = this.currentDate.getFullYear();
   email :string = 'criizt.mart@gmail.com';
   
   constructor() { }

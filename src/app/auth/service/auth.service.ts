@@ -44,6 +44,18 @@ export class AuthService {
     }
 
 
+    create(user : User) : Observable<boolean>{
+        const url = `${this.baseUrl}/auth/create`;
+        const body = { user};
+
+        return this.http.post<LoginResponse>( url, body)
+        .pipe(
+            map( ({token, user}) => this.setAuthentication(user, token) ),
+            catchError( err => throwError ( ()=> err.error.message ))
+        );
+    }
+
+
 
     checAuthStatus(): Observable<boolean>{
         const url = `${this.baseUrl}/auth/check-token`;

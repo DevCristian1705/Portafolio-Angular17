@@ -16,7 +16,7 @@ export class LoginComponent   {
  
   loadingButton: boolean = false; 
   loginForm! : FormGroup;
-  showPassword : boolean = false;  
+  isShowPassword: boolean = false;  
   
   private authServie = inject(AuthService)
   private router = inject(Router)
@@ -25,10 +25,7 @@ export class LoginComponent   {
   private validatorsService = inject(ValidatorsService)
 
 
-  classInput = {
-    'text-input': true,
-    'error-input': false
-  };
+  classInput : string  = 'text-input' 
 
   constructor() {
     this.onCreateForm();
@@ -55,11 +52,16 @@ export class LoginComponent   {
 
   onMessageModal(){
     const dialogRef = this.dialog.open(DialogMessageComponent, {
-      disableClose: false, width: '350px', data: messageAuth.datos_Noexistentes 
+      disableClose: false,
+      width: '350px',
+      data: messageAuth.datos_Noexistentes 
     });
 
-    dialogRef.afterClosed().subscribe(() => this.onNavigate('/auth/registro'));   
-    this.loadingButton = false;  
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadingButton = false;
+      this.onNavigate('/auth/registro')
+    });   
+   
   }
 
   onNavigate(url : string){
@@ -71,18 +73,14 @@ export class LoginComponent   {
   }
 
   getFieldError(field : string){
-    if ( !this.loginForm.controls[field] ) {
-      this.classInput['error-input'] = false;
-      this.classInput['text-input'] = true;
-      return null;
-    }
+    if ( !this.loginForm.controls[field] ) return null;
 
     const errors = this.loginForm.controls[field].errors || {};
 
     for (const key of Object.keys(errors) ) {
       switch( key ) {
         case 'required':
-          this.onErrorInput();
+          this.onErrorInput(); 
           return `Ingresa un ${field}`;
         case 'pattern':
           this.onErrorInput();
@@ -98,8 +96,7 @@ export class LoginComponent   {
 
 
   onErrorInput(){
-    this.classInput['error-input'] = true;
-    this.classInput['text-input'] = false;
+    this.classInput = 'error-input';
   }
 
 

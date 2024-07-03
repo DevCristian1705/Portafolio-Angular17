@@ -15,12 +15,12 @@
 
         <ng-container *ngIf="!isLoading; else skeleton">
             <div class="simulator__type-change">
-                <div [ngClass]="{ 'active' : flgRotate, 'inaactive' : !flgRotate}">
-                    VENTA S/ {{ TCventa }}
+                <div [ngClass]="{ 'active' : isRotate, 'inaactive' : !isRotate}">
+                    VENTA S/ {{ typeChangeSale }}
                 </div> 
 
-                <div [ngClass]="{ 'active' : !flgRotate, 'inaactive' : flgRotate}">
-                    COMPRA S/ {{ TCcompra }}
+                <div [ngClass]="{ 'active' : !isRotate, 'inaactive' : isRotate}">
+                    COMPRA S/ {{ typeChangePurchase }}
                 </div>  
             </div>   
 
@@ -35,14 +35,14 @@
                         [value]="simulatorForm.get('amountLeft')?.value"   
                         maxLength="8"  
                         [form]="simulatorForm" 
-                        [typeCurrency]="(flgRotate) ?  'Dólares' : 'Soles'" 
+                        [typeCurrency]="(isRotate) ?  'Dólares' : 'Soles'" 
                         cbxReactiveForm>
                     </app-input-library>
                     
                     <div class="simulator__form__icon" >
                         <img 
                             (click)="onRotateIcon()"
-                            [ngClass]="{ 'icon-rotate' : flgRotate, 'icon-fijo' : !flgRotate}"
+                            [ngClass]="{ 'icon-rotate' : isRotate, 'icon-fijo' : !isRotate}"
                             src="assets/iconos/invert.svg" 
                             alt="Invertir" width="48" height="48"
                             role="button">
@@ -57,7 +57,7 @@
                         [value]="simulatorForm.get('amountRight')?.value" 
                         maxLength="10" 
                         [form]="simulatorForm" 
-                        [typeCurrency]="(flgRotate) ?  'Soles' : 'Dólares'" 
+                        [typeCurrency]="(isRotate) ?  'Soles' : 'Dólares'" 
                         [isReadOnly]="true" 
                         cbxReactiveForm>
                     </app-input-library>

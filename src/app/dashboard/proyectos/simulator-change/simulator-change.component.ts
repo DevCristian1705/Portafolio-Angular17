@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-simulator-change', 
@@ -9,13 +10,13 @@ import { Router } from '@angular/router';
 })
 export class SimulatorChangeComponent {
 
-simulatorForm!: FormGroup; 
-TCcompra = 3.460;
-TCventa = 3.680;   
-currentAmount = 0;
+  simulatorForm!: FormGroup; 
+  typeChangePurchase  : number  = 3.460;
+  typeChangeSale  : number  = 3.680;   
+  currentAmount : number = 0;
 
-flgRotate : boolean = true; 
-isLoading : boolean = true;
+  isRotate : boolean = true; 
+  isLoading : boolean = true;
 
   constructor(
     public fb: FormBuilder,
@@ -25,10 +26,7 @@ isLoading : boolean = true;
   }
  
   ngOnInit(){ 
-    this.onDetectedChangeAmount();
-    setTimeout(() => {
-      this.isLoading = false
-    }, 1000);
+    this.onDetectedChangeAmount(); 
   }
 
   onCreateForm(){
@@ -39,65 +37,65 @@ isLoading : boolean = true;
   }
 
   onDetectedChangeAmount(){  
-    this.simulatorForm.get('amountLeft')?.valueChanges.subscribe((value: number) => { 
-      console.log('value',value);
-      if (value) {
-        this.currentAmount = value; 
-        this.amountLeftValChanges();   
-        return;
-      }  
+    this.simulatorForm.get('amountLeft')?.valueChanges 
+      .pipe(
+        tap(()=> this.isLoading = false )
+      )  
+      .subscribe((value: number) => {  
+        if (value) { 
+          this.currentAmount = value; 
+          this.onAmountLeftChange();   
+          return;
+        }  
 
-      this.currentAmount = 0;
-      this.simulatorForm.get('amountRight')?.setValue(null);
- 
-      
+        this.currentAmount = 0;
+        this.simulatorForm.get('amountRight')?.setValue(null);
+  
     }); 
   }
-
-
-  
+ 
   onRotateIcon() { 
     if(this.currentAmount){
-      this.flgRotate = !this.flgRotate; 
-      this.amountLeftValChanges(); 
+      this.isRotate = !this.isRotate; 
+      this.onAmountLeftChange(); 
     }  
   }
   
-  amountLeftValChanges(): void {
+  onAmountLeftChange(): void {
     const amountLeftValue = this.simulatorForm.get('amountLeft')?.value;
-    if (amountLeftValue) {
-      const newAmountRight = this.flgRotate
-      ? amountLeftValue * this.TCventa 
-      : amountLeftValue / this.TCcompra;
 
-      const roundedNewAmountRight = (Math.round(newAmountRight * 100) / 100).toFixed(2);
-      this.simulatorForm.get('amountRight')?.setValue(roundedNewAmountRight);
-
-    } else {
+    if (!amountLeftValue) {
       this.simulatorForm.get('amountRight')?.setValue(null);
+      return
     }
+
+    const newAmountRight = this.isRotate
+    ? amountLeftValue * this.typeChangeSale 
+    : amountLeftValue / this.typeChangePurchase;
+
+    const roundedNewAmountRight = (Math.round(newAmountRight * 100) / 100).toFixed(2);
+    this.simulatorForm.get('amountRight')?.setValue(roundedNewAmountRight);
+
+   
   }
   
 
   onSaveSimulate(){
     const DATA = {
-      valuePurchase : this.TCcompra,
-      valueSale : this.TCventa,
+      valuePurchase : this.typeChangePurchase,
+      valueSale : this.typeChangeSale,
       amount  : this.simulatorForm.get('amountLeft')?.value,
       amountChange:this.simulatorForm.get('amountRight')?.value, 
-      type: (this.flgRotate ? 'VENTA' : 'COMPRA')
+      type: (this.isRotate ? 'VENTA' : 'COMPRA')
     }
     
     const existingDataString = localStorage.getItem('simulations-exchange');
     let existingData = existingDataString ? JSON.parse(existingDataString) : []; 
  
-    if (!Array.isArray(existingData)) {
-        existingData = [];
-    }
+    if (!Array.isArray(existingData)) existingData = [];
    
     const newData = [...existingData, DATA]; 
     localStorage.setItem('simulations-exchange', JSON.stringify(newData));
-
     this.simulatorForm.reset(); 
   }
 
