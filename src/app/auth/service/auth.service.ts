@@ -45,7 +45,7 @@ export class AuthService {
 
 
     create(user : User) : Observable<boolean>{
-        const url = `${this.baseUrl}/auth/create`;
+        const url = `${this.baseUrl}/auth/register`;
         const body = { user};
 
         return this.http.post<LoginResponse>( url, body)
