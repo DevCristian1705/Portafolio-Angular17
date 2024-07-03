@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { CommonModule } from "@angular/common";
 import { RegistroComponent } from './registro/registro.component';
 import { ChangePasswordComponent } from "./change-password/change-password.component";
+import { TranslocoModule } from "@ngneat/transloco";
  
 @NgModule({
     declarations: [
@@ -18,7 +19,7 @@ import { ChangePasswordComponent } from "./change-password/change-password.compo
         CommonModule,
         AuthRoutingModule, 
         SharedModule,
-        
+        TranslocoModule
     ],
     providers: [    
         { provide: LOCALE_ID, useValue: 'es' }  

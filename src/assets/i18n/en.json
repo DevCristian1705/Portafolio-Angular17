@@ -1,0 +1,10 @@
+{
+    "login" : {
+        "email" : "Email",
+        "password" : "Password",
+        "password-forgot" : "Forgot Password",
+        "dont-have-account" : "¿Don´t have account?",
+        "register" : "Register",
+        "login" : "Login"
+    }
+}

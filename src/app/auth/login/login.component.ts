@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { messageAuth } from '../../shared/components/message-type/message-type';
 import { ValidatorsService } from '../../shared/service/validators.service';
 import { AuthService } from '../service/auth.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-login', 
@@ -23,6 +24,7 @@ export class LoginComponent   {
   private dialog = inject(MatDialog)
   private fb = inject(FormBuilder)
   private validatorsService = inject(ValidatorsService)
+  private lenguageService = inject(TranslocoService)
 
 
   classInput : string  = 'text-input' 
@@ -42,11 +44,11 @@ export class LoginComponent   {
   onLogin() { 
     this.loadingButton = true
     const {email , password } = this.loginForm.value;  
-
-    this.authServie.login(email, password).subscribe({
-      next: () => this.router.navigateByUrl('/Dashboard'),
-      error: () =>  this.onMessageModal()
-    });
+    this.router.navigateByUrl('/Dashboard')
+    // this.authServie.login(email, password).subscribe({
+    //   next: () => this.router.navigateByUrl('/Dashboard'),
+    //   error: () =>  this.onMessageModal()
+    // });
 
   }
 
@@ -99,6 +101,11 @@ export class LoginComponent   {
     this.classInput = 'error-input';
   }
 
+
+  onChangeLenguage(lenguage: any){
+    this.lenguageService.setActiveLang(lenguage.target.value)
+    console.log('lenguage',lenguage.target.value);
+  }
 
 }
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { debounceTime, tap, timeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-simulator-change', 
@@ -23,6 +23,7 @@ export class SimulatorChangeComponent {
     private router : Router, 
   ) {  
     this.onCreateForm(); 
+    this.isLoading = false
   }
  
   ngOnInit(){ 
@@ -37,10 +38,7 @@ export class SimulatorChangeComponent {
   }
 
   onDetectedChangeAmount(){  
-    this.simulatorForm.get('amountLeft')?.valueChanges 
-      .pipe(
-        tap(()=> this.isLoading = false )
-      )  
+    this.simulatorForm.get('amountLeft')?.valueChanges
       .subscribe((value: number) => {  
         if (value) { 
           this.currentAmount = value; 

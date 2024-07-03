@@ -1,0 +1,10 @@
+{
+    "login" : {
+        "email" : "Correo",
+        "password" : "Contraseña",
+        "password-forgot" : "Olvide mi contraseña",
+        "dont-have-account" : "¿No tienes cuenta?",
+        "register" : "Regístrate",
+        "login" : "Ingresar"
+    }
+}

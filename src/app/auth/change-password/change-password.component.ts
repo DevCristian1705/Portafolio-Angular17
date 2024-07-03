@@ -38,14 +38,14 @@ export class ChangePasswordComponent {
   }
 
   updateUserPassword(email: string, newPassword: string): void { 
-    const users : any = this.storageService.getData(STORAGE_KEY.listUser)
+    const users : any = this.storageService.getData(STORAGE_KEY.users)
     const listUserRegistrados = JSON.parse(users) || []; 
  
     const userIndex = listUserRegistrados.findIndex((user: any) => user.email === email);
 
     if (userIndex !== -1) {
       listUserRegistrados[userIndex].password = newPassword;  
-      this.storageService.setData(STORAGE_KEY.listUser, JSON.stringify(listUserRegistrados)); 
+      this.storageService.setData(STORAGE_KEY.users, JSON.stringify(listUserRegistrados)); 
       this.onLogin();
     } else {
       console.log('User not found');

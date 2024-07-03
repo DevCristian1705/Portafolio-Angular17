@@ -23,7 +23,7 @@ export class StorageService {
   }
 
   listUsuarios(){
-    const users : any = this.getData(STORAGE_KEY.listUser)
+    const users : any = this.getData(STORAGE_KEY.users)
     const listUserRegistrados : IUser[] = JSON.parse(users) || []; 
     return listUserRegistrados || null
   }
